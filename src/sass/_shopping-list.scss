@@ -1,0 +1,18 @@
+
+// Стилизация заголовка
+.shoppingList-title {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.19;
+
+    letter-spacing: -0.04em;
+    margin-top: 0px;
+    margin-bottom: 40px;
+    color: $color-black;
+}
+
+.shoppingList-title span {
+    color: $color-violet;
+}
