@@ -1,0 +1,20 @@
+img {
+    display: block;
+    max-width: 3%;
+    height: 3%;
+    width: 3%;
+    object-position: top;
+}
+
+body {
+    background-color: rgb(157, 170, 194);
+}
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+}
