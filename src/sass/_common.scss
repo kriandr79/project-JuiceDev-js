@@ -10,7 +10,8 @@ $color-black1: #202024;
 $color-violet: #4F2EE8;
 $color-yellow: #EAC645;
 $color-white: #fff;
-
+$color-grey: rgba(0, 0, 0, 0.6);
+$color-lightgrey: #B4AFAF;
 
 /* Reset styles start */
 
@@ -28,6 +29,10 @@ img {
     display: block;
     max-width: 100%;
     height: auto;
+}
+
+ul {
+    list-style-type: none;
 }
 
 .link {
