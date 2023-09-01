@@ -13,6 +13,54 @@
     color: $color-black;
 }
 
+@media screen and (min-width: 768px) {
+    .shoppingList-title {
+        line-height: 1.08;
+      }
+}
+
 .shoppingList-title span {
     color: $color-violet;
 }
+
+.shoppingList-text {
+    margin: 80px auto 0 auto;
+    width: 244px;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.29;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: rgba(0, 0, 0, 0.60);
+}
+
+@media screen and (min-width: 768px) {
+    .shoppingList-text {
+      margin-top: 100px;
+      font-size: 18px;
+      line-height: 1.33;
+      width: 349px;
+    }
+  }
+  
+.shoppingList-img {
+    margin: 14px auto 0 auto;
+    width: 265px;
+    height: 198px;
+    text-align: center;
+
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    border-image: url(../images/empty-page.png);
+}
+
+@media screen and (min-width: 768px) {
+    .shoppingList-img {
+      margin-top: 20px;
+      width: 322px;
+      height: 241px;
+    }
+  }
