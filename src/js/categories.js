@@ -36,7 +36,6 @@ getBooksCategory()
     } else {
       titleCategory =
         'Sorry, there are no books matching your search query. Please try again.';
-      // render.style.backgroundImage = '../images/pngegg.png';
     }
   })
   .catch(err => console.log(err));
