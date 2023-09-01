@@ -60,6 +60,9 @@ body {
 
 // Common
 .container {
+    max-width: 375px;
+  margin-left: auto;
+  margin-right: auto;
     padding-right: 20px;
     padding-left: 20px;
 }
