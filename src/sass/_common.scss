@@ -12,7 +12,7 @@ $color-yellow: #EAC645;
 $color-white: #fff;
 $color-grey: rgba(0, 0, 0, 0.6);
 $color-lightgrey: #B4AFAF;
-$backgraund-color: #F6F6F6;
+$background-color: #F6F6F6;
 
 /* Reset styles start */
 
@@ -60,7 +60,7 @@ button {
 
 body {
     font-family: 'DM Sans', sans-serif;
-    background-color: $backgraund-color;
+    background-color: $background-color;
 }
 
 // Sections
@@ -102,6 +102,7 @@ body {
 .main-box {
     display: flex;
     flex-direction: column;
+    gap: 40px;
 }
 
 @media only screen and (min-width: 768px) {
