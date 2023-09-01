@@ -1,4 +1,4 @@
-import { getTopBooks } from './api-top-books';
+import { getTopBooks } from './api-best-sellers';
 
 createMarkup();
 

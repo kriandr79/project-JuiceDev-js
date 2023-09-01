@@ -9,7 +9,7 @@
   letter-spacing: -1.28px;
 }
 
-@media screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   .title-best-sellers {
     text-shadow: none;
     font-size: 48px;
@@ -39,7 +39,7 @@
   margin-bottom: 18px;
 }
 
-@media screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   .list-categories-title {
     line-height: 24px;
   }
@@ -53,7 +53,7 @@
   overflow: hidden;
 }
 
-@media screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   .card-container {
     justify-content: space-between;
     gap: 24px;
@@ -61,13 +61,13 @@
   }
 }
 
-@media screen and (min-width: 1158px) {
+@media only screen and (min-width: 1158px) {
   .card-container {
     height: 306px;
   }
 }
 
-@media screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   .item-link {
   }
 }
@@ -86,14 +86,14 @@
   height: 485px;
 }
 
-@media screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   .img-card-title {
     width: 218px;
     height: 316px;
   }
 }
 
-@media screen and (min-width: 1158px) {
+@media only screen and (min-width: 1158px) {
   .img-card-title {
     width: 180px;
     height: 256px;
@@ -104,13 +104,13 @@
   width: 335px;
 }
 
-@media screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   .book-description {
     width: 218px;
   }
 }
 
-@media screen and (min-width: 1158px) {
+@media only screen and (min-width: 1158px) {
   .book-description {
     width: 180px;
   }
@@ -141,7 +141,7 @@
   letter-spacing: -0.48px;
 }
 
-@media screen and (min-width: 1158px) {
+@media only screen and (min-width: 1158px) {
   .card-author {
     height: 14px;
     overflow: hidden;
@@ -167,13 +167,13 @@
     background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   .book-button {
     margin-top: 20px;
   }
 }
 
-@media screen and (min-width: 1158px) {
+@media only screen and (min-width: 1158px) {
   .book-button {
     margin-top: 32px;
   }
