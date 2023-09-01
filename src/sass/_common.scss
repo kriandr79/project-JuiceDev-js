@@ -13,6 +13,28 @@ $color-white: #fff;
 $color-grey: rgba(0, 0, 0, 0.6);
 $color-lightgrey: #B4AFAF;
 
+
+
+html.light {
+    $color-black: #111111;
+  $color-black1: #202024;
+  $color-violet: #4F2EE8;
+  $color-yellow: #EAC645;
+  $color-white: #fff;
+  $color-grey: rgba(0, 0, 0, 0.6);
+  $color-lightgrey: #B4AFAF;
+  }
+  
+  html.dark {
+    $color-black: #fff;
+    $color-black1: #202024;
+    $color-violet: #4F2EE8;
+    $color-yellow: #EAC645;
+    $color-white: #111111;
+    $color-grey: rgba(0, 0, 0, 0.6);
+    $color-lightgrey: #B4AFAF;
+  }
+
 /* Reset styles start */
 
 h1,
