@@ -12,6 +12,7 @@
 }
 
 .scroll-container {
+    scroll-margin-top: 1px;
     overflow-y: scroll;
     scroll-behavior: smooth;
     display: flex;
