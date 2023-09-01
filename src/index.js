@@ -1,4 +1,4 @@
-import '../src/js/all-categories.js';
+import './js/best-sellers.js';
 import './js/header-burger';
 import './js/categories';
 import './js/mainshelf';
