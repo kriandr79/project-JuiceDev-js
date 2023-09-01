@@ -16,24 +16,12 @@ $color-lightgrey: #B4AFAF;
 
 
 html.light {
-    $color-black: #111111;
-  $color-black1: #202024;
-  $color-violet: #4F2EE8;
-  $color-yellow: #EAC645;
-  $color-white: #fff;
-  $color-grey: rgba(0, 0, 0, 0.6);
-  $color-lightgrey: #B4AFAF;
-  }
+$background-color: #F6F6F6;
+}
   
-  html.dark {
-    $color-black: #fff;
-    $color-black1: #202024;
-    $color-violet: #4F2EE8;
-    $color-yellow: #EAC645;
-    $color-white: #111111;
-    $color-grey: rgba(0, 0, 0, 0.6);
-    $color-lightgrey: #B4AFAF;
-  }
+html.dark {
+$background-color: #202024;
+}
 
 /* Reset styles start */
 
@@ -81,6 +69,7 @@ button {
 
 body {
     font-family: 'DM Sans', sans-serif;
+    background-color: $background-color;
 }
 
 // Sections
