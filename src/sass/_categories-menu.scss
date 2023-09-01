@@ -11,7 +11,9 @@
     padding-right: 20px;
 }
 
-.navigator {
+.scroll-container {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -23,6 +25,15 @@
     margin-right: auto;
     margin-bottom: 40px;
 }
+
+// .scroll-container {
+// display: block;
+//     width: 350px;
+//     height: 200px;
+//     overflow-y: scroll;
+//     scroll-behavior: smooth;
+// }
+    
 
 .select {
     display: flex;
@@ -74,6 +85,8 @@
 }
 
 .wrap {
+    overflow: scroll;
+
     display: flex;
     flex-wrap: wrap;
     min-width: 375px;
