@@ -65,6 +65,7 @@ body {
 
 // Common
 .container {
+    max-width: 375px;
     padding-right: 20px;
     padding-left: 20px;
 }
@@ -77,9 +78,9 @@ body {
     }
 }
 
-@media only screen and (min-width: 1158px) {
+@media only screen and (min-width: 1440px) {
     .container {
-        max-width: 1158px;
+        max-width: 1440px;
         padding-left: 24px;
         padding-right: 24px;
     }
@@ -90,7 +91,79 @@ body {
     padding-bottom: 40px;
 }
 
+// Boxes
+.main-box {
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (min-width: 768px) {
+    .main-box {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .main-box {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.shoppinglist-main-box {
+    display: flex;
+    flex-direction: row;
+}
+
+
 // Wrappers
-.main-menu-wrapper {}
+.main-menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    max-width: 335px;
+    width: 335px;
+}
+
+@media only screen and (min-width: 768px) {
+    .main-menu-wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+
+        max-width: 704px;
+        width: 704px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .main-menu-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 86px;
+
+        max-width: 356px;
+        width: 356px;
+    }
+}
+
+.shoppinglist-menu-wrapper {
+    display: none;
+}
+@media only screen and (min-width: 768px) {
+    .shoppinglist-menu-wrapper {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .shoppinglist-menu-wrapper {
+        display: block;
+    }
+}
+
+.main-shelf-wrapper {}
 
 .shoppinglist-wrapper {}
