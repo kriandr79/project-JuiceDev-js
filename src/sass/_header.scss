@@ -39,15 +39,50 @@
 }
 
 .header-container-logo-link {
-    margin-right: 76px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: auto;
+}
+
+@media only screen and (min-width: 768px) {
+    .header-container-logo-link {
+        margin-right: 40px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .header-container-logo-link {
+        margin-right: 76px;
+    }
+}
+
+.header-container-logo-bookshelf {
+    fill: $color-black;
 }
 
 .header-nav {
-    margin-right: auto;
+    display: none;
+}
 
+@media only screen and (min-width: 768px) {
+    .header-nav {
+        display: block;
+        margin-right: auto;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .header-nav {
+        display: block;
+        margin-right: auto;
+    }
 }
 
 .header-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
     color: $color-black;
     font-size: 14px;
     font-style: normal;
@@ -64,8 +99,14 @@
     border-radius: 36px;
 }
 
+.header-nav-shopping-cart {
+    fill: $color-black;
+}
+
+
 .header-nav-list {
     display: flex;
+    align-items: center;
     gap: 24px;
 
 
@@ -82,16 +123,37 @@
 .switch-slider {}
 
 .header-login-box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 184px;
-    height: 45px;
-    flex-shrink: 0;
-    padding: 8px 12px;
+    display: none;
+}
 
-    border-radius: 36px;
-    background: $color-violet;
+@media only screen and (min-width: 768px) {
+    .header-login-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 184px;
+        height: 45px;
+        flex-shrink: 0;
+        padding: 8px 12px;
+
+        border-radius: 36px;
+        background: $color-violet;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .header-login-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 184px;
+        height: 45px;
+        flex-shrink: 0;
+        padding: 8px 12px;
+
+        border-radius: 36px;
+        background: $color-violet;
+    }
 }
 
 .header-user-pic {
@@ -112,8 +174,13 @@
     letter-spacing: -0.44px;
 }
 
+.header-login-arrow {
+    fill: $color-white;
+}
+
 .header-burger-menu-btn {
     display: block;
+    background-color: none;
 }
 
 @media only screen and (min-width: 768px) {
@@ -128,8 +195,12 @@
     }
 }
 
+.header-burger-menu-icon {
+    fill: $color-black;
+}
 
 
+// Toggle styles
 .toggle-container {
     margin-right: 24px;
 
