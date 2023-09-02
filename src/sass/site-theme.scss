@@ -4,7 +4,7 @@
     top: 100px;
   }
   
-  .label-swich {
+  .label-switch {
     display: inline-block;
     position: relative;
     width: 40px;
@@ -15,13 +15,13 @@
     background: linear-gradient(to bottom, #4F2EE8, #DCDCDC);
   }
   
-  .togle-swich {
+  .toggle-switch {
     height: 0;
     width: 0;
     opacity: 0;
   }
   
-  .swich-slider::before {
+  .switch-slider::before {
     content: "";
     position: absolute;
     cursor: pointer;
@@ -36,7 +36,14 @@
     transition: 0.5s;
   }
   
-  .togle-swich:checked + .swich-slider::before {
+  .toggle-switch:checked + .switch-slider::before {
     transform: translateX(20px);
   }
   
+
+
+
+.test.dark-theme {
+  color: white;
+  background-color: black;
+}
