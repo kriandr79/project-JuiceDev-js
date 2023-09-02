@@ -1,8 +1,42 @@
-.icon {
+// ostap
+.toggle-container {
+    position: absolute;
+    // left: 100px;
+    top: 40px;
+    right: 100px;
+}
+
+.label-swich {
     display: inline-block;
-    width: 1em;
-    height: 1em;
-    stroke-width: 0;
-    stroke: currentColor;
-    fill: currentColor;
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background-color: brown;
+    border-radius: 36px;
+    background: linear-gradient(to bottom, #4F2EE8, #DCDCDC);
+}
+
+.togle-swich {
+    height: 0;
+    width: 0;
+    opacity: 0;
+}
+
+.swich-slider::before {
+    content: "";
+    position: absolute;
+    cursor: pointer;
+    left: 1px;
+    bottom: 1px;
+    top: 1px;
+    height: 18px;
+    width: 18px;
+    background-color: white;
+    border-radius: 100%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+    transition: 0.5s;
+}
+
+.togle-swich:checked+.swich-slider::before {
+    transform: translateX(20px);
 }
