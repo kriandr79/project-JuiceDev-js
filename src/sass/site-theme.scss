@@ -1,49 +1,8 @@
-.toggle-container {
-    position: absolute;
-    left: 100px;
-    top: 100px;
-  }
-  
-  .label-switch {
-    display: inline-block;
-    position: relative;
-    width: 40px;
-    height: 20px;
-    background-color: brown;
-    border-radius: 36px;
-    
-    background: linear-gradient(to bottom, #4F2EE8, #DCDCDC);
-  }
-  
-  .toggle-switch {
-    height: 0;
-    width: 0;
-    opacity: 0;
-  }
-  
-  .switch-slider::before {
-    content: "";
-    position: absolute;
-    cursor: pointer;
-    left: 1px;
-    bottom: 1px;
-    top: 1px;
-    height: 18px;
-    width: 18px;
-    background-color: white;
-    border-radius: 100%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-    transition: 0.5s;
-  }
-  
-  .toggle-switch:checked + .switch-slider::before {
-    transform: translateX(20px);
-  }
-  
-
-
-
-.test.dark-theme {
-  color: white;
-  background-color: black;
+body.dark-theme {
+  background-color: $color-black1;
 }
+.header-container.dark-theme {
+  background-color: $color-black;
+  border: 1.5px solid $color-white;
+}
+
