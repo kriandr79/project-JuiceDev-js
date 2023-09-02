@@ -1,8 +1,8 @@
 import { getTopBooks } from './api-best-sellers';
 
-createMarkup();
+// createMarkup();
 
-async function createMarkup() {
+export async function createMarkup() {
   const info = await getTopBooks();
   console.log('info from getTopBooks:', info);
   createGallery(info);
@@ -52,16 +52,16 @@ function createGallery(data) {
   allCategories.insertAdjacentHTML('beforeend', markup);
 }
 
-const seeMoreBtn = document.querySelectorAll('.book-button');
-const cardLink = document.querySelectorAll('.item-link');
+// const seeMoreBtn = document.querySelectorAll('.book-button');
+// const cardLink = document.querySelectorAll('.item-link');
 
-seeMoreBtn.forEach(btn => {
-  btn.addEventListener('click', onSeeMoreBtn);
-});
+// seeMoreBtn.forEach(btn => {
+//   btn.addEventListener('click', onSeeMoreBtn);
+// });
 
-cardLink.forEach(book => {
-  book.addEventListener('click', onBookClick);
-});
+// cardLink.forEach(book => {
+//   book.addEventListener('click', onBookClick);
+// });
 
 // export function onSeeMoreBtn(e) {
 
