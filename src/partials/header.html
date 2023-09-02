@@ -1,44 +1,52 @@
-<nav>
-  <a href="./index.html">
+<div class="header-container">
+  <!-- Логотип -->
+  <a class="header-container-logo-link" href="./index.html">
     <svg class="" width="24" height="24">
       <use href="./images/icons.svg#icon-logo_website"></use>
     </svg>
     Bookshelf
   </a>
 
-  <ul>
-    <!-- Меню навігації по інших сторінках -->
-    <li><a href="">Home</a></li>
+  <!-- Основная навигация -->
+  <nav class="header-nav">
+    <ul class="header-nav-list">
+      <li class="header-nav-item">
+        <a href="header-nav-link">Home</a>
+      </li>
+      <li class="header-nav-item">
+        <a href="./index.html"
+          >Shopping list
+          <svg class="" width="10" height="10">
+            <use href="./images/icons.svg#icon-logo_website"></use>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </nav>
 
-    <li>
-      <a href="./shoppinglist.html">
-        Shopping list
-        <svg class="" width="28" height="28">
-          <use href="./images/icons.svg#icon_shopping"></use>
-        </svg>
-      </a>
-    </li>
-  </ul>
+  <!-- Переключатель темы -->
+  <div class="toggle-container">
+    <label class="label-switch">
+      <input type="checkbox" class="toggle-switch" id="themeToggle" />
+      <span class="switch-slider"></span>
+    </label>
+  </div>
 
-  <ul>
-    <!-- Перемикач теми -->
-    <li>
-      <a href="">
-        <svg class="" width="40" height="24">
-          <use href="./images/icons.svg#icon-switcher"></use>
-        </svg>
-      </a>
-    </li>
+  <!-- Блок логина -->
+  <div class="header-login-box">
+    <img
+      src="./images/shop1.png"
+      class="header-user-pic"
+      alt="User Stepfen"
+      width="37"
+      height="37"
+    />
+    <p>Stepfen</p>
+    <svg class="" width="20" height="20">
+      <use href="./images/icons.svg#icon_shopping"></use>
+    </svg>
+  </div>
 
-    <!-- Mеню Gamburger -->
-    <li>
-      <a href="">
-        <svg class="" width="28" height="28">
-          <use href="./images/icons.svg#icon-gamburger"></use>
-        </svg>
-    </li>
-
-    <!-- Регістрація ??? -->
-    <!-- <li><a href="">Register</a></li> -->
-  </ul>
-</nav>
+  <!-- Кнопка бургер меню - вместо буквы нужно будет поставить SVG -->
+  <button type="button" class="header-burger-menu">E</button>
+</div>
