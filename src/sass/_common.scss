@@ -5,6 +5,17 @@
 // 
 
 // Colors
+.light {
+    $background-color: #F6F6F6;
+    background-color: $background-color;
+  }
+  
+  .dark {
+    $background-color: #202024;
+    background-color: $background-color;
+  }
+  
+
 $color-black: #111111;
 $color-black1: #202024;
 $color-violet: #4F2EE8;
@@ -15,13 +26,7 @@ $color-lightgrey: #B4AFAF;
 $background-color: #F6F6F6;
 
 
-html.light {
-$background-color: #F6F6F6;
-}
-  
-html.dark {
-$background-color: #202024;
-}
+
 
 /* Reset styles start */
 

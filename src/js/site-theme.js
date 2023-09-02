@@ -1,9 +1,22 @@
-document.querySelector('.toggle-switch').addEventListener('change', (event) => {
-    console.log('log');
-    if (event.target.checked) {
-      document.documentElement.className = 'dark';
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+
+themeToggle.addEventListener('change', () => {
+    const allElements = document.querySelectorAll('*'); 
+
+    if (themeToggle.checked) {
+        body.classList.add('dark-theme');
+
+        allElements.forEach((element) => {
+
+            element.classList.add('dark-theme'); 
+        });
     } else {
-      document.documentElement.className = 'light';
+        body.classList.remove('dark-theme');
+
+        allElements.forEach((element) => {
+            element.classList.remove('dark-theme');
+            element.removeAttribute('style'); 
+        });
     }
-  });
-  
+});
