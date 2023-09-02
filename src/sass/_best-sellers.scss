@@ -67,8 +67,10 @@
   }
 }
 
+
 @media only screen and (min-width: 768px) {
   .item-link {
+    cursor: pointer;
   }
 }
 
@@ -183,4 +185,36 @@
 .book-button:focus {
   background-color: $color-violet;
   color: #fff;
+}
+
+.overlay-book {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 27%;
+  opacity: 0;
+  transform: translateY(100%);
+  border-radius: 0 0 8px 8px;
+  background: $color-yellow;
+  
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.overlay-text {
+font-size: 14px;
+font-weight: 500;
+line-height: 18px;
+letter-spacing: -0.56px;
+text-transform: uppercase;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item-link:hover .overlay-book,
+.item-link:focus .overlay-book {
+  opacity: 1;
+  transform: translateY(0);
 }
