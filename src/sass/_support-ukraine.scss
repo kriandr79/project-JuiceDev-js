@@ -5,9 +5,9 @@
         width: 100%;
         padding: 24px 40px 86px 40px;
         height: 352px;
-        color: #fff;
+        color: $color-white;
         border-radius: 16px; 
-        background: radial-gradient(189.32% 190.93% at 59.76% -23.42%, #4F2EE8 18.03%, #FFF 100%);
+        background: radial-gradient(189.32% 190.93% at 59.76% -23.42%, $color-violet 18.03%, $color-white 100%);
         box-shadow: 0px 10px 10px 0px rgba(245, 245, 247, 0.10);
     }
       
@@ -26,26 +26,32 @@
     }
   
     &__carousel {
-      margin-top: 44px;
-  
-        &.swiper {
-            height: 292px;
-        }
+      margin-top: 30px;
   
         &-item {
+            margin: 10px 0;
+            max-height: 32px;
+
+            &-number {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 1.29;
+                letter-spacing: -0.56px; 
+            }
+
             &-link {
                 display: inline-block;
-            }
-    
-            &-img {
-                height: 32px;
+
+                & img {
+                    height: 32px;
+                }
             }
         }
   
         &-button {
             width: 38px;
             height: 38px;
-            background-color: #fff;
+            background-color: $color-white;
             border-radius: 50%;
             position: absolute;
             left: 50%;
@@ -53,26 +59,65 @@
             bottom: 24px;
             cursor: pointer;
         }
+        & .slick {
+            &-slider {
+                position: static;
+            }
+
+            &-list {
+                position: static;
+            }
+
+            &-slide {
+                box-sizing: border-box;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+            }
+
+            &-prev {
+                display: none !important;
+            }
+
+            &-next {
+                width: 38px;
+                height: 38px;
+                right: 50%;
+                transform: translate(50%);
+                top: unset;
+                bottom: 24px;
+      
+                &:before {
+                    content: '';
+                    display: block;
+                    width: 38px;
+                    height: 38px;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-image: url("data:image/svg+xml,%3Csvg width='38' height='38' viewBox='0 0 38 38' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='19' cy='19' rx='19' ry='19' transform='rotate(90 19 19)' fill='white'/%3E%3Cpath d='M18.3491 20.2835C18.4344 20.3694 18.5357 20.4376 18.6475 20.4841C18.7592 20.5306 18.879 20.5546 19 20.5546C19.121 20.5546 19.2408 20.5306 19.3525 20.4841C19.4642 20.4376 19.5656 20.3694 19.6508 20.2835L23.8492 16.076C23.9344 15.99 24.0358 15.9218 24.1475 15.8753C24.2592 15.8288 24.379 15.8048 24.5 15.8048C24.621 15.8048 24.7408 15.8288 24.8525 15.8753C24.9642 15.9218 25.0656 15.99 25.1508 16.076C25.3216 16.2477 25.4174 16.48 25.4174 16.7222C25.4174 16.9644 25.3216 17.1967 25.1508 17.3685L20.9433 21.576C20.4277 22.0909 19.7287 22.3802 19 22.3802C18.2712 22.3802 17.5723 22.0909 17.0566 21.576L12.8491 17.3685C12.6798 17.1977 12.5843 16.9673 12.5833 16.7268C12.5826 16.6062 12.6057 16.4866 12.6513 16.3749C12.697 16.2632 12.7642 16.1616 12.8491 16.076C12.9344 15.99 13.0357 15.9218 13.1474 15.8753C13.2591 15.8288 13.379 15.8048 13.5 15.8048C13.621 15.8048 13.7408 15.8288 13.8525 15.8753C13.9642 15.9218 14.0656 15.99 14.1508 16.076L18.3491 20.2835Z' fill='%234F2EE8'/%3E%3C/svg%3E");
+                }
+            }
+        }
     } 
-  }
+}
   
-  @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
     .funds {      
         &__container {
             width: 335px;
             height: 474px;
         }
-  
+
         &__title {
             font-size: 24px;
         }
     }
-  }
-  
-  @media screen and (min-width: 1440px) {
+}
+
+@media screen and (min-width: 1440px) {
     .funds {      
         &__container {
             width: 356px;
         }
     }
-  }
+}
