@@ -17,11 +17,11 @@
 <path d="M9.257 9.028l13.6 13.601v-13.6h-13.6z"></path>
 </symbol>
 
-<symbol id="icon-shopping" viewBox="0 0 32 32">
+<symbol id="icon_shopping" viewBox="0 0 32 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M23.777 14.444v-4.667c0-4.295-3.482-7.777-7.777-7.777s-7.777 3.482-7.777 7.777v0 4.667M9.467 30h13.067c2.613 0 3.92 0 4.919-0.508 0.882-0.456 1.584-1.158 2.028-2.014l0.012-0.026c0.508-0.999 0.508-2.305 0.508-4.919v-0.623c0-2.613 0-3.92-0.508-4.919-0.456-0.882-1.158-1.584-2.014-2.028l-0.026-0.012c-0.999-0.507-2.305-0.507-4.919-0.507h-13.067c-2.613 0-3.92 0-4.919 0.507-0.882 0.456-1.584 1.158-2.028 2.014l-0.012 0.026c-0.508 1-0.508 2.307-0.508 4.92v0.621c0 2.613 0 3.92 0.508 4.919 0.456 0.882 1.158 1.584 2.014 2.028l0.026 0.012c0.999 0.508 2.305 0.508 4.919 0.508z"></path>
 </symbol>
 
-<symbol id="icon-burger" viewBox="0 0 32 32">
+<symbol id="icon-gamburger" viewBox="0 0 32 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M22.667 13.333h-18.667"></path>
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M28 8h-24"></path>
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M28 18.667h-24"></path>
@@ -31,7 +31,6 @@
 <symbol id="icon-x-close" viewBox="0 0 32 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.4286" d="M24 8l-16 16M8 8l16 16"></path>
 </symbol>
-
 
 </defs>
 </svg>
