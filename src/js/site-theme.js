@@ -2,7 +2,7 @@ const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 const allElements = document.querySelectorAll('*');
 
-themeToggle.addEventListener('change', () => {
+function onThemeChange() {
     if (themeToggle.checked) {
         body.classList.add('dark-theme');
         allElements.forEach((element) => {
@@ -14,4 +14,6 @@ themeToggle.addEventListener('change', () => {
             element.classList.remove('dark-theme');
         });
     }
-});
+}
+
+themeToggle.addEventListener('change', onThemeChange);
