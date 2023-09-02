@@ -1,10 +1,12 @@
 <div class="header-container">
   <!-- Логотип -->
-  <a class="header-container-logo-link" href="./index.html">
+  <a class="header-container-logo-link link" href="./index.html">
     <svg class="" width="24" height="24">
       <use href="./images/icons.svg#icon-logo_website"></use>
     </svg>
-    Bookshelf
+    <svg class="header-container-logo-bookshelf" width="77" height="13">
+      <use href="./images/icons.svg#icon-Bookshelf"></use>
+    </svg>
   </a>
 
   <!-- Основная навигация -->
@@ -14,10 +16,10 @@
         <a class="header-nav-link current link" href="#">Home</a>
       </li>
       <li class="header-nav-item">
-        <a class="header-nav-link link" href="./shoppinglist.html"
-          >Shopping list
-          <svg class="" width="10" height="10">
-            <use href="./images/icons.svg#icon-logo_website"></use>
+        <a class="header-nav-link link" href="./shoppinglist.html">
+          <span>Shopping list</span>
+          <svg class="header-nav-shopping-cart" width="20" height="20">
+            <use href="./images/icons.svg#icon-shopping_cart"></use>
           </svg>
         </a>
       </li>
@@ -33,7 +35,7 @@
   </div>
 
   <!-- Блок логина -->
-  <a href="" class="header-login-box link">
+  <a href="#" class="header-login-box link">
     <img
       src="./images/stephen_icon.png"
       class="header-user-pic"
@@ -42,11 +44,15 @@
       height="37"
     />
     <p class="header-login-name">Stepfen</p>
-    <svg class="" width="20" height="20">
-      <use href="./images/icons.svg#icon_shopping"></use>
+    <svg class="header-login-arrow" width="23" height="26">
+      <use href="./images/icons.svg#icon-arrow-down"></use>
     </svg>
   </a>
 
-  <!-- Кнопка бургер меню - вместо буквы нужно будет поставить SVG -->
-  <button type="button" class="header-burger-menu-btn">E</button>
+  <!-- Кнопка бургер меню  -->
+  <button type="button" class="header-burger-menu-btn">
+    <svg class="header-burger-menu-icon" width="28" height="28">
+      <use href="./images/icons.svg#icon-burger"></use>
+    </svg>
+  </button>
 </div>
