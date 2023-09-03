@@ -1,6 +1,6 @@
 import { getTopBooks } from './api-best-sellers';
 
-// createMarkup();
+createMarkup();
 
 export async function createMarkup() {
   const info = await getTopBooks();
