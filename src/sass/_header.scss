@@ -241,3 +241,123 @@
 .toggle-switch:checked+.switch-slider::before {
     transform: translateX(20px);
 }
+
+.login-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    width: 184px;
+    border: 2px solid $color-black;
+    border-radius: 36px;
+    background: $color-violet;
+    margin-left: 24px;
+    // transition: all $cubic;
+    z-index: 1;
+  
+    @media (max-width <= 768px) {
+      display: none;
+      position: fixed;
+      top: 84px;
+      left: 20px;
+      margin: 0;
+  
+      &:hover,
+      &:focus {
+        background-color: $color-white;;
+      }
+  
+      &:hover .login-btn__title,
+      &:focus .login-btn__title {
+        color: $color-white;
+      }
+  
+      &.is-open {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+      }
+    }
+  
+    &__title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--swicher);
+      font-size: 14px;
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: -0.56px;
+    //   transition: all $cubic;
+    }
+  }
+  
+  .logout-btn {
+    display: none;
+    align-items: center;
+    padding: 10px 14px;
+    width: 184px;
+    border-radius: 36px;
+    background-color: $color-white;
+    border: 2px solid $color-white;
+    margin-left: 24px;
+    // transition: all $cubic;
+    z-index: 1;
+  
+    &:hover,
+    &:focus {
+      background-color: $color-violet;
+    }
+  
+    &:hover .logout-btn__title,
+    &:focus .logout-btn__title {
+      color: $color-white;
+    }
+  
+    @media (width <= 768px) {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      margin: 0;
+      background-color: $color-white;
+  
+      &.is-open {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  
+    @media (width >= 768px) {
+      position: absolute;
+      margin-right: 32px;
+      right: 0;
+      top: 56px;
+  
+      &.is-open {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  
+    @media (width >= 1440px) {
+      margin-right: 24px;
+    }
+  
+  
+    &__title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: $color-black;
+      font-size: 14px;
+      font-family: DM Sans;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: -0.56px;
+    //   transition: all $cubic;
+    }
+  }
+  
