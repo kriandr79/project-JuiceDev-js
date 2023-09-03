@@ -180,7 +180,9 @@
 
 .header-burger-menu-btn {
     display: block;
-    background-color: none;
+    width: 20px;
+    height: 20px;
+    border: none;
 }
 
 @media only screen and (min-width: 768px) {
@@ -198,7 +200,10 @@
 .header-burger-menu-icon {
     fill: $color-black;
 }
-
+.header-burger-menu-icon:hover,
+.header-burger-menu-icon:focus {
+    fill: $color-violet;
+}
 
 // Toggle styles
 .toggle-container {
