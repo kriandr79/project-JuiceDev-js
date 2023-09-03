@@ -8,7 +8,25 @@ export async function createMarkup() {
   createGallery(info);
 }
 
+
+
+
+
 const allCategories = document.querySelector('.all-categories');
+
+allCategories.addEventListener('click', function (event) {
+  const target = event.target.closest('.item-link-book');
+
+  // Перевірте, чи клікнуто на елемент з класом 'item-link-book'
+  if (target) {
+    // Отримайте атрибут 'list-id' з клікнутого елемента
+    const bookId = target.getAttribute('list-id');
+
+    // Виведіть ID книги в консоль
+    console.log('Клікнуто на книжку з ID:', bookId);
+  }
+});
+
 
 function createGallery(data) {
   const absentImage = '/images/book_absent.png';
@@ -33,7 +51,7 @@ function createGallery(data) {
               }
               
               return `
-                <a class="item-link" list-id='${book._id}'>
+                <a class="item-link-book" list-id='${book._id} aria-label="${book.title || 'Title Absent'} by ${book.author || 'Author Absent'}"'>
                   <div class="card-of-book">
                     <img
                       src="${imgSrc}"
@@ -86,3 +104,4 @@ function createGallery(data) {
 // export function onBookClick(e) {
 
 // } відкриття модалки по кліку на книгу
+
