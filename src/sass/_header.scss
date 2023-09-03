@@ -2,7 +2,8 @@
     display: flex;
     align-items: center;
 
-    width: 335px;
+    max-width: 100%;
+    min-width: 320px;
     height: 28px;
 
     padding: 18px 20px;
@@ -13,13 +14,13 @@
     border: 1.5px solid $color-black;
     background: $color-white;
 }
-
 @media only screen and (min-width: 768px) {
     .header-container {
         display: flex;
         align-items: center;
 
-        width: 768px;
+        max-width: 100%;
+        min-width: 768px;
         height: 72px;
 
         padding: 14px 32px;
@@ -31,7 +32,8 @@
         display: flex;
         align-items: center;
 
-        width: 1440px;
+        
+        max-width: 1440px;
         height: 72px;
 
         padding: 14px 24px;
