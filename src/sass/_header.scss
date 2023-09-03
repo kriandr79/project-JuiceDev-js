@@ -179,8 +179,17 @@
 }
 
 .header-burger-menu-btn {
-    display: block;
-    background-color: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: none;
+
+    background-color: transparent;
+
 }
 
 @media only screen and (min-width: 768px) {
@@ -196,9 +205,13 @@
 }
 
 .header-burger-menu-icon {
-    fill: $color-black;
+    stroke: $color-black;
 }
 
+.header-burger-menu-icon:hover,
+.header-burger-menu-icon:focus {
+    stroke: $color-violet;
+}
 
 // Toggle styles
 .toggle-container {

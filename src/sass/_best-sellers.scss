@@ -66,13 +66,11 @@
     height: 306px;
   }
 }
-
-
-@media only screen and (min-width: 768px) {
-  .item-link {
-    cursor: pointer;
-  }
+.item-link-book {
+  cursor: pointer;
+  text-decoration: none;
 }
+
 
 .card-of-book {
   position: relative;
@@ -213,8 +211,8 @@ text-transform: uppercase;
   transform: translate(-50%, -50%);
 }
 
-.item-link:hover .overlay-book,
-.item-link:focus .overlay-book {
+.item-link-book:hover .overlay-book,
+.item-link-book:focus .overlay-book {
   opacity: 1;
   transform: translateY(0);
 }

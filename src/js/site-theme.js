@@ -18,6 +18,26 @@ function removeDarkThemeClass(element) {
     }
 }
 
+function saveThemeToLocalStorage(theme) {
+    localStorage.setItem('theme', theme);
+}
+
+function loadThemeFromLocalStorage() {
+    return localStorage.getItem('theme');
+}
+
+function applyThemeFromLocalStorage() {
+    const savedTheme = loadThemeFromLocalStorage();
+    if (savedTheme === 'dark') {
+        themeToggle.checked = true;
+        addDarkThemeClass(body);
+        const liElements = document.querySelectorAll('li');
+        liElements.forEach((liElement) => {
+            liElement.classList.add('dark-theme');
+        });
+    }
+}
+
 function onThemeChange() {
     if (themeToggle.checked) {
         addDarkThemeClass(body);
@@ -25,13 +45,18 @@ function onThemeChange() {
         liElements.forEach((liElement) => {
             liElement.classList.add('dark-theme');
         });
+        saveThemeToLocalStorage('dark');
     } else {
         removeDarkThemeClass(body);
         const liElements = document.querySelectorAll('li');
         liElements.forEach((liElement) => {
             liElement.classList.remove('dark-theme');
         });
+        saveThemeToLocalStorage('light');
     }
 }
 
 themeToggle.addEventListener('change', onThemeChange);
+
+
+applyThemeFromLocalStorage();
