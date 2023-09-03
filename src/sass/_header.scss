@@ -114,8 +114,11 @@
 
 }
 
-.header-nav-item {}
-
+.header-nav-item.current {
+        background-color: $color-yellow;
+        padding: 8px 16px;
+        border-radius: 36px;
+    }
 .toggle-container {}
 
 .label-switch {}
