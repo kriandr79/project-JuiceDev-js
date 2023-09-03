@@ -19,10 +19,8 @@ allCategories.addEventListener('click', function (event) {
 
   // Перевірте, чи клікнуто на елемент з класом 'item-link-book'
   if (target) {
-    // Отримайте атрибут 'list-id' з клікнутого елемента
+    // Отримати атрибут 'list-id' з клікнутого елемента
     const bookId = target.getAttribute('list-id');
-
-    // Виведіть ID книги в консоль
     console.log('Клікнуто на книжку з ID:', bookId);
   }
 });
