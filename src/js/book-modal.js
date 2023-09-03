@@ -71,7 +71,7 @@ function handlerAdd(evt) {
     }
   
     const book = evt.target.closest('item-link');
-    const booktId = Number(book.dataset.id);
+    const bookId = Number(book.dataset.id);
     const currentBook = books.find(({ id }) => id === bookId);
     const books = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) ?? [];
     const idx = books.findIndex(({ id }) => id === bookId);
