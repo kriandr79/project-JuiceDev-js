@@ -1,4 +1,4 @@
-
+import axios from 'axios';
 // import { createMarkup } from './best-sellers';
 
 const select = document.querySelector('.select');
