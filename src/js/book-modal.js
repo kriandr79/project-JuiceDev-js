@@ -5,7 +5,7 @@ import axios from 'axios';
 const allCategories = document.querySelector('.all-categories');
 
 allCategories.addEventListener('click', onBookClick);
-
+let $selectedBookInfo = null;
 async function fetchBooks(bookid) {
   try {
     if (!bookid) {
@@ -13,9 +13,18 @@ async function fetchBooks(bookid) {
     }
 
     const response = await axios.get(`https://books-backend.p.goit.global/books/${bookid}`);
-    
-   
-const { _id, book_image, list_name, author, description, amazon_product_url, buy_links } = response.data;
+const { _id, book_image, list_name, author, description, amazon_product_url, buy_links, publisher } = response.data;
+
+$selectedBookInfo = {
+  _id,
+  book_image,
+  list_name,
+  author,
+  description,
+  amazon_product_url,
+  buy_links,
+  publisher
+};
 
     const bookCard = `
       <div class="book-card-modal" data-id="${_id}"> 
@@ -37,13 +46,14 @@ const { _id, book_image, list_name, author, description, amazon_product_url, buy
         </div>
         <button class="js-add" type="submit" data-id="${_id}">Add to shopping list</button>
       </div>`;
-return bookCard;
+return  bookCard;
   } 
 catch (err) {
     
    
 console.log(err);
   }}
+
 
   function onBookClick(e) {
     const target = e.target.closest('.item-link-book');
@@ -67,18 +77,19 @@ console.log(err);
   
   
   function onhandlerAdd(evt) {
-      
-      const bookId = evt.target.getAttribute('data-id');
-      console.log('click:', bookId);
-      const books = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) || [];
-      const currentBook = books.find(({ id }) => id === bookId);
+    if (evt.target.classList.contains('js-add')) {
+      if ($selectedBookInfo) {
+        const books = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) || [];
+        const currentBook = books.find(({ id }) => id === $selectedBookInfo._id);
   
-      if (currentBook) {
-        currentBook.qty += 1;
-      } else {
-        const newBook = { id: bookId, qty: 1 };
-        books.push(newBook);
+        if (currentBook) {
+          currentBook.qty += 1;
+        } else {
+          const newBook = { id: $selectedBookInfo._id, qty: 1, info: $selectedBookInfo };
+          books.push(newBook);
+        }
+  
+        localStorage.setItem(PRODUCT_LS_KEY, JSON.stringify(books));
       }
-  
-      localStorage.setItem(PRODUCT_LS_KEY, JSON.stringify(books));
     }
+  }
