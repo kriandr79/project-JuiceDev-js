@@ -18,53 +18,48 @@ function loadThemeFromLocalStorage() {
 }
 
 function applyTheme(theme) {
+    const allElements = document.querySelectorAll('*');
     if (theme === 'dark') {
         themeToggle.checked = true;
         addDarkThemeClass(body);
+        allElements.forEach(addDarkThemeClass);
     } else {
         themeToggle.checked = false;
         removeDarkThemeClass(body);
+        allElements.forEach(removeDarkThemeClass);
     }
+}
 
-    const allElements = document.querySelectorAll('*');
-    allElements.forEach((element) => {
-        if (theme === 'dark') {
-            addDarkThemeClass(element);
-        } else {
-            removeDarkThemeClass(element);
+function applyThemeToAddedNodes(addedNodes, theme) {
+    addedNodes.forEach((node) => {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+            if (theme === 'dark') {
+                addDarkThemeClass(node);
+            } else {
+                removeDarkThemeClass(node);
+            }
         }
     });
 }
 
 function onThemeChange() {
-    if (themeToggle.checked) {
-        saveThemeToLocalStorage('dark');
-        applyTheme('dark');
-    } else {
-        saveThemeToLocalStorage('light');
-        applyTheme('light');
-    }
+    const theme = themeToggle.checked ? 'dark' : 'light';
+    saveThemeToLocalStorage(theme);
+    applyTheme(theme);
 }
 
 themeToggle.addEventListener('change', onThemeChange);
 
-
 const savedTheme = loadThemeFromLocalStorage();
 applyTheme(savedTheme);
-
 
 const observer = new MutationObserver((mutationsList) => {
     mutationsList.forEach((mutation) => {
         if (mutation.type === 'childList') {
             const addedNodes = Array.from(mutation.addedNodes);
-            addedNodes.forEach((node) => {
-                if (node.nodeType === Node.ELEMENT_NODE) {
-                    addDarkThemeClass(node);
-                }
-            });
+            applyThemeToAddedNodes(addedNodes, loadThemeFromLocalStorage());
         }
     });
 });
-
 
 observer.observe(body, { childList: true, subtree: true });
