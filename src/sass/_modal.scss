@@ -1,8 +1,11 @@
 .modal {
   background-color: white;
   width: 579px;
-  
 }
+.modal-open {
+  overflow: hidden;
+}
+
       @media screen and (max-width: 427px) {
         .modal {
           padding-top: 50px;
@@ -33,3 +36,4 @@
         fill: #4F2EE8;
         
       }
+    
