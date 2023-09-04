@@ -5,8 +5,8 @@ import { onLoader, offLoader } from './loader';
 const select = document.querySelector('.select');
 console.dir(select);
 const allCategories = document.querySelector('.all-categories');
-selectChild = select.querySelectorAll('.select-text');
-console.log(selectChild);
+// selectChild = select.querySelectorAll('.select-text');
+// console.log(selectChild);
 
 select.addEventListener('click', getSelectedCategory);
 
