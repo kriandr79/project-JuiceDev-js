@@ -47,7 +47,6 @@ console.log(err);
 
 function onBookClick(e) {
   
- 
   const target = e.target.closest('.item-link-book');
     if (target) {
       const bookId = target.getAttribute('list-id');
@@ -67,14 +66,11 @@ function onBookClick(e) {
   }
   
 
-
-
-
 const PRODUCT_LS_KEY = 'storebook'; 
 
-document.body.addEventListener('click', handlerAdd);
+document.body.addEventListener('click', onhandlerAdd);
 
-function handlerAdd(evt) {
+function onhandlerAdd(evt) {
   if (evt.target.classList.contains('js-add')) {
     const bookId = Number(evt.target.getAttribute('data-id'));
     const books = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) || [];
@@ -90,6 +86,7 @@ function handlerAdd(evt) {
 
     localStorage.setItem(PRODUCT_LS_KEY, JSON.stringify(books));
   }
-}
+  
 
+}
 
