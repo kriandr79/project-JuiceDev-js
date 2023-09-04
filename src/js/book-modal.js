@@ -46,15 +46,11 @@ console.log(err);
   }}
 
 function onBookClick(e) {
-  
  
   const target = e.target.closest('.item-link-book');
     if (target) {
       const bookId = target.getAttribute('list-id');
       
-      fetchBooks
-  
-     
   fetchBooks(bookId).then((bookCard) => {
         const instance = basicLightbox.create(`
           <div class="modal">
@@ -67,6 +63,7 @@ function onBookClick(e) {
   }
   
 
+ 
 
 
 
