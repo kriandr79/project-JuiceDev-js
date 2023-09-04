@@ -1,21 +1,12 @@
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
-const allElements = document.querySelectorAll('*');
 
 function addDarkThemeClass(element) {
     element.classList.add('dark-theme');
-    const children = element.children;
-    for (const child of children) {
-        addDarkThemeClass(child);
-    }
 }
 
 function removeDarkThemeClass(element) {
     element.classList.remove('dark-theme');
-    const children = element.children;
-    for (const child of children) {
-        removeDarkThemeClass(child);
-    }
 }
 
 function saveThemeToLocalStorage(theme) {
@@ -26,37 +17,54 @@ function loadThemeFromLocalStorage() {
     return localStorage.getItem('theme');
 }
 
-function applyThemeFromLocalStorage() {
-    const savedTheme = loadThemeFromLocalStorage();
-    if (savedTheme === 'dark') {
+function applyTheme(theme) {
+    if (theme === 'dark') {
         themeToggle.checked = true;
         addDarkThemeClass(body);
-        const liElements = document.querySelectorAll('li');
-        liElements.forEach((liElement) => {
-            liElement.classList.add('dark-theme');
-        });
+    } else {
+        themeToggle.checked = false;
+        removeDarkThemeClass(body);
     }
+
+    const allElements = document.querySelectorAll('*');
+    allElements.forEach((element) => {
+        if (theme === 'dark') {
+            addDarkThemeClass(element);
+        } else {
+            removeDarkThemeClass(element);
+        }
+    });
 }
 
 function onThemeChange() {
     if (themeToggle.checked) {
-        addDarkThemeClass(body);
-        const liElements = document.querySelectorAll('li');
-        liElements.forEach((liElement) => {
-            liElement.classList.add('dark-theme');
-        });
         saveThemeToLocalStorage('dark');
+        applyTheme('dark');
     } else {
-        removeDarkThemeClass(body);
-        const liElements = document.querySelectorAll('li');
-        liElements.forEach((liElement) => {
-            liElement.classList.remove('dark-theme');
-        });
         saveThemeToLocalStorage('light');
+        applyTheme('light');
     }
 }
 
 themeToggle.addEventListener('change', onThemeChange);
 
 
-applyThemeFromLocalStorage();
+const savedTheme = loadThemeFromLocalStorage();
+applyTheme(savedTheme);
+
+
+const observer = new MutationObserver((mutationsList) => {
+    mutationsList.forEach((mutation) => {
+        if (mutation.type === 'childList') {
+            const addedNodes = Array.from(mutation.addedNodes);
+            addedNodes.forEach((node) => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    addDarkThemeClass(node);
+                }
+            });
+        }
+    });
+});
+
+
+observer.observe(body, { childList: true, subtree: true });
