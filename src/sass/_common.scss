@@ -13,6 +13,7 @@ $color-white: #fff;
 $color-grey: rgba(0, 0, 0, 0.6);
 $color-lightgrey: #B4AFAF;
 $background-color: #F6F6F6;
+$color-white1: rgba(255, 255, 255, 0.6);
 
 /* Reset styles start */
 
@@ -70,7 +71,9 @@ body {
 
 // Common
 .container {
-    max-width: 375px;
+
+    min-width: 320px;
+    max-width: 100%;
     padding-right: 20px;
     padding-left: 20px;
     margin-left: auto;
@@ -79,7 +82,8 @@ body {
 
 @media only screen and (min-width: 768px) {
     .container {
-        max-width: 768px;
+        max-width: 100%;
+        min-width: 768px;
         padding-left: 32px;
         padding-right: 32px;
     }
@@ -87,6 +91,7 @@ body {
 
 @media only screen and (min-width: 1440px) {
     .container {
+
         max-width: 1440px;
         padding-left: 24px;
         padding-right: 24px;
@@ -111,7 +116,12 @@ body {
         flex-direction: column;
     }
 }
-
+@media only screen and (min-width: 900px) {
+    .main-box {
+        display: flex;
+        flex-direction: row;
+    }
+}
 @media only screen and (min-width: 1440px) {
     .main-box {
         display: flex;
@@ -122,6 +132,7 @@ body {
 .shoppinglist-main-box {
     display: flex;
     flex-direction: row;
+    gap: 40px;
 }
 
 
@@ -134,7 +145,6 @@ body {
     max-width: 335px;
     width: 335px;
 }
-
 @media only screen and (min-width: 768px) {
     .main-menu-wrapper {
         display: flex;
@@ -145,7 +155,16 @@ body {
         width: 704px;
     }
 }
+@media only screen and (min-width: 900px) {
+    .main-menu-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 86px;
 
+        max-width: 356px;
+        width: 356px;
+    }
+}
 @media only screen and (min-width: 1440px) {
     .main-menu-wrapper {
         display: flex;

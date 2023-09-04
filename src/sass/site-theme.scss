@@ -1,29 +1,47 @@
 body.dark-theme {
+
   background-color: $color-black1;
   color: $color-white;
 }
 .header-container.dark-theme {
+
   background-color: $color-black;
   border: 1.5px solid $color-white;
 }
 
 .select-text.dark-theme {
+
   color: $color-lightgrey;
 
 }
 .select-text.dark-theme:hover,
 .select-text.dark-theme:focus {
+
     color: $color-yellow;
 }
 h1.dark-theme {
+
   color: $color-white;
 }
 .header-container-logo-bookshelf.dark-theme {
+
   fill: $background-color;
 }
-.header-span-style.dark-theme {
+.header-nav-link.dark-theme {
+
   color: $color-white;
 }
 .header-nav-shopping-cart.dark-theme {
+
   fill: $color-white;
+}
+.shoppingList-text.dark-theme {
+
+  color: $color-white1;
+}
+.header-nav-item.current.dark-theme {
+  background-color: $color-yellow;
+  padding: 8px 16px;
+  border-radius: 36px;
+  color: $color-black;
 }

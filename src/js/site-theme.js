@@ -1,37 +1,65 @@
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
-const allElements = document.querySelectorAll('*');
 
 function addDarkThemeClass(element) {
     element.classList.add('dark-theme');
-    const children = element.children;
-    for (const child of children) {
-        addDarkThemeClass(child);
-    }
 }
 
 function removeDarkThemeClass(element) {
     element.classList.remove('dark-theme');
-    const children = element.children;
-    for (const child of children) {
-        removeDarkThemeClass(child);
+}
+
+function saveThemeToLocalStorage(theme) {
+    localStorage.setItem('theme', theme);
+}
+
+function loadThemeFromLocalStorage() {
+    return localStorage.getItem('theme');
+}
+
+function applyTheme(theme) {
+    const allElements = document.querySelectorAll('*');
+    if (theme === 'dark') {
+        themeToggle.checked = true;
+        addDarkThemeClass(body);
+        allElements.forEach(addDarkThemeClass);
+    } else {
+        themeToggle.checked = false;
+        removeDarkThemeClass(body);
+        allElements.forEach(removeDarkThemeClass);
     }
+}
+
+function applyThemeToAddedNodes(addedNodes, theme) {
+    addedNodes.forEach((node) => {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+            if (theme === 'dark') {
+                addDarkThemeClass(node);
+            } else {
+                removeDarkThemeClass(node);
+            }
+        }
+    });
 }
 
 function onThemeChange() {
-    if (themeToggle.checked) {
-        addDarkThemeClass(body);
-        const liElements = document.querySelectorAll('li');
-        liElements.forEach((liElement) => {
-            liElement.classList.add('dark-theme');
-        });
-    } else {
-        removeDarkThemeClass(body);
-        const liElements = document.querySelectorAll('li');
-        liElements.forEach((liElement) => {
-            liElement.classList.remove('dark-theme');
-        });
-    }
+    const theme = themeToggle.checked ? 'dark' : 'light';
+    saveThemeToLocalStorage(theme);
+    applyTheme(theme);
 }
 
 themeToggle.addEventListener('change', onThemeChange);
+
+const savedTheme = loadThemeFromLocalStorage();
+applyTheme(savedTheme);
+
+const observer = new MutationObserver((mutationsList) => {
+    mutationsList.forEach((mutation) => {
+        if (mutation.type === 'childList') {
+            const addedNodes = Array.from(mutation.addedNodes);
+            applyThemeToAddedNodes(addedNodes, loadThemeFromLocalStorage());
+        }
+    });
+});
+
+observer.observe(body, { childList: true, subtree: true });
