@@ -5,7 +5,7 @@ import axios from 'axios';
 const allCategories = document.querySelector('.all-categories');
 
 allCategories.addEventListener('click', onBookClick);
-let $selectedBookInfo = null;
+let selectedBookInfo = null;
 async function fetchBooks(bookid) {
   try {
     if (!bookid) {
@@ -15,7 +15,7 @@ async function fetchBooks(bookid) {
     const response = await axios.get(`https://books-backend.p.goit.global/books/${bookid}`);
 const { _id, book_image, list_name, author, description, amazon_product_url, buy_links, publisher } = response.data;
 
-$selectedBookInfo = {
+selectedBookInfo = {
   _id,
   book_image,
   list_name,
@@ -78,14 +78,14 @@ console.log(err);
   
   function onhandlerAdd(evt) {
     if (evt.target.classList.contains('js-add')) {
-      if ($selectedBookInfo) {
+      if (selectedBookInfo) {
         const books = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) || [];
         const currentBook = books.find(({ id }) => id === $selectedBookInfo._id);
   
         if (currentBook) {
           currentBook.qty += 1;
         } else {
-          const newBook = { id: $selectedBookInfo._id, qty: 1, info: $selectedBookInfo };
+          const newBook = { id: selectedBookInfo._id, qty: 1, info: selectedBookInfo };
           books.push(newBook);
         }
   
