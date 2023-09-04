@@ -2,6 +2,7 @@ const location = window.location.pathname.slice(1).split('.');
 const locationPageName = location[0];
 const HEADER_NAV_CLASS = 'current'
 
+console.log('Window Location:', window.location);
 console.log('Location:', location);
 console.log('PageName:', locationPageName);
 
