@@ -11,27 +11,23 @@ async function fetchBooks(bookid) {
     if (!bookid) {
       throw new Error('Book ID not found');
     }
-    const response = await axios.get(`https://books-backend.p.goit.global/books/${bookid}`);
+    const response = await axios.get(
+      `https://books-backend.p.goit.global/books/${bookid}`
+    );
 
-const { _id, book_image, list_name, author, description, amazon_product_url, buy_links, publisher } = response.data;
+    const selectedBookInfo = {
+      _id,
+      book_image,
+      list_name,
+      author,
+      description,
+      amazon_product_url,
+      buy_links,
+      publisher,
+    } = response.data;
 
-selectedBookInfo = {
-  _id,
-  book_image,
-  list_name,
-  author,
-  description,
-  amazon_product_url,
-  buy_links,
-  publisher
-};
-
-    const bookCard = `
-      <div class="book-card-modal" data-id="${_id}"> 
-        <img src="${book_image}" alt="${list_name} Cover" class="book-cover">
-        <div class="book-inform"> 
-
-const { _id, book_image, list_name, author, description, amazon_product_url, buy_links } = response.data;
+  
+    
     const bookCard = `
       <div class="book-card-modal" data-id="${_id}">
         <img src="${book_image}" alt="${list_name} Cover" class="book-cover">
@@ -52,49 +48,50 @@ const { _id, book_image, list_name, author, description, amazon_product_url, buy
         </div>
         <button class="js-add" type="submit" data-id="${_id}">Add to shopping list</button>
       </div>`;
-return bookCard;
-  } 
-catch (err) {
-console.log(err);
-  }}
+    return bookCard;
+  } catch (err) {
+    console.log(err);
+  }
+}
 
-  function onBookClick(e) {
-    const target = e.target.closest('.item-link-book');
-    if (target) {
-      const bookId = target.getAttribute('list-id');
+function onBookClick(e) {
+  const target = e.target.closest('.item-link-book');
+  if (target) {
+    const bookId = target.getAttribute('list-id');
 
-      
-      fetchBooks(bookId).then(bookCard => {
-        const instance = basicLightbox.create(`
+    fetchBooks(bookId).then(bookCard => {
+      const instance = basicLightbox.create(`
             <div class="modal">
               ${bookCard}
             </div>`);
-        instance.show();
+      instance.show();
 
-        const addBtn = document.querySelector('.js-add');
-        addBtn.addEventListener('click', onhandlerAdd);
-      });
-    }
+      const addBtn = document.querySelector('.js-add');
+      addBtn.addEventListener('click', onhandlerAdd);
+    });
   }
+}
 
-  
-  const PRODUCT_LS_KEY = 'storebook';
-  
-  
-  function onhandlerAdd(evt) {
-    if (evt.target.classList.contains('js-add')) {
-      if (selectedBookInfo) {
-        const books = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) || [];
-        const currentBook = books.find(({ id }) => id === $selectedBookInfo._id);
-  
-        if (currentBook) {
-          currentBook.qty += 1;
-        } else {
-          const newBook = { id: selectedBookInfo._id, qty: 1, info: selectedBookInfo };
-          books.push(newBook);
-        }
-  
-        localStorage.setItem(PRODUCT_LS_KEY, JSON.stringify(books));
+const PRODUCT_LS_KEY = 'storebook';
+
+function onhandlerAdd(evt) {
+  if (evt.target.classList.contains('js-add')) {
+    if (selectedBookInfo) {
+      const books = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) || [];
+      const currentBook = books.find(({ id }) => id === $selectedBookInfo._id);
+
+      if (currentBook) {
+        currentBook.qty += 1;
+      } else {
+        const newBook = {
+          id: selectedBookInfo._id,
+          qty: 1,
+          info: selectedBookInfo,
+        };
+        books.push(newBook);
       }
+
+      localStorage.setItem(PRODUCT_LS_KEY, JSON.stringify(books));
     }
   }
+}
