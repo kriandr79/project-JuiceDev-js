@@ -34,20 +34,40 @@
     </label>
   </div>
 
-  <!-- Блок логина -->
-  <a href="#" class="header-login-box link">
-    <img
-      src="./images/stephen_icon.png"
-      class="header-user-pic"
-      alt="User Stepfen"
-      width="37"
-      height="37"
-    />
-    <p class="header-login-name">Stepfen</p>
-    <svg class="header-login-arrow" width="23" height="26">
-      <use href="./images/icons.svg#icon-arrow-down"></use>
-    </svg>
-  </a>
+  <div class="header-buttons">
+    <button class="header-login-box login-btn is-hidden" type="button">
+      <img
+        src="./images/user-icon.png"
+        class="header-user-pic"
+        alt="User icon"
+        width="37"
+        height="37"
+      />
+      <span class="">Sign up</span>
+      <svg class="login-btn__icon" width="20" height="20">
+        <use href="images/icons.svg#icon-yellow-arrow-right"></use>
+      </svg>
+    </button>
+    <button class="header-login-box user-btn is-hidden" type="button">
+      <img
+        src="./images/authorized-user.png"
+        class="header-user-pic"
+        alt="User icon"
+        width="37"
+        height="37"
+      />
+      <span class="header-login-name user-btn-name"></span>
+      <svg class="header-login-arrow" width="23" height="26">
+        <use href="./images/icons.svg#icon-arrow-down"></use>
+      </svg>
+    </button>
+    <button class="header-logout-btn logout-btn is-hidden" type="button">Log out
+      <svg class="header-logout-btn__icon" width="20" height="20">
+        <use href="images/icons.svg#icon-yellow-arrow-right"></use>
+      </svg>
+    </button>
+  </div>
+
 
   <!-- Кнопка бургер меню  -->
   <button type="button" class="header-burger-menu-btn">
