@@ -61,8 +61,8 @@ async function fetchBooks(bookid) {
               </ul> 
             </div> 
           </div>
+          </div>
           <button class="js-add modal-btn" type="submit" data-id="${_id}">Add to shopping list</button>
-        </div>
       </div>`;
 
     return bookCard;
@@ -125,5 +125,3 @@ function onhandlerAdd(evt) {
     }
   }
 }
-
-  
