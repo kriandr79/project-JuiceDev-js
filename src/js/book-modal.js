@@ -1,4 +1,8 @@
 
+import amazonImg from '../images/amazon.png';
+import appleShopImg from '../images/applebook.png';
+import bookShopImg from '../images/bookshop.png';
+import closeSvg from '../images/icons.svg';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import axios from 'axios';
@@ -17,12 +21,13 @@ async function fetchBooks(bookid) {
     }
 
     const response = await axios.get(`https://books-backend.p.goit.global/books/${bookid}`);
-const { _id, book_image, list_name, author, description, amazon_product_url, buy_links, publisher } = response.data;
+const { _id, book_image, title, list_name, author, description, amazon_product_url, buy_links, publisher } = response.data;
 
 $selectedBookInfo = {
   _id,
   book_image,
   list_name,
+  title,
   author,
   description,
   amazon_product_url,
@@ -30,25 +35,33 @@ $selectedBookInfo = {
   publisher
 };
 
-
     const bookCard = `
       <div class="book-card-modal" data-id="${_id}"> 
-        <img src="${book_image}" alt="${list_name} Cover" class="book-cover">
-        <div class="book-inform"> 
-          <h2 class="book-title" aria-label="${list_name}">${list_name}</h2>
-          <p class="book-author" aria-label="${author}"> ${author}</p>
-          <p class="book-description">${description}</p>
+      <button class="close-modal-btn" type="button">
+    <svg class="close-modal-icon">
+      <use href="${closeSvg}#icon-x-close"></use>
+    </svg>
+  </button>
+      <div class="modal-wrapper">
+        <img src="${book_image}" alt="${title} class="modal-book-img">
+        <div class="modal-titles"> 
+          <h2 class="modal-book-name" aria-label="${title}">${title}</h2>
+          <p class="modal-book-author" aria-label="${author}"> ${author}</p>
+          <p class="modal-book-descr">${description}</p>
           <div ${buy_links}> 
+         <ul class="modal-list-partners"> 
           <a  href="${amazon_product_url}" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
-          <img src="../images/amazon.png" alt="amazon"></a>
+          <img src="${amazonImg}" alt="amazon"></a>
           <a  href="https://www.apple.com/ua/apple-books/" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
-          <img src="../images/books.png" alt="apple-books"></a>  
+          <img src="${appleShopImg} " alt="apple-books"></a>  
           </a>
           <a  href="https://bookshop.org/" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
-          <img src="../images/bookshop.png.png" alt="/bookshop"></a>
+          <img src="${bookShopImg} " alt="/bookshop"></a>
          </a>
+         </ul> 
         </div> 
-        <button class="js-add" type="submit" data-id="${_id}">Add to shopping list</button>
+        </div>
+        <button class="js-add modal-btn" type="submit" data-id="${_id}">Add to shopping list</button>
       </div>`;
 return  bookCard;
   } 
@@ -58,7 +71,6 @@ catch (err) {
 
 console.log(err);
   }}
-
 
   function onBookClick(e) {
     const target = e.target.closest('.item-link-book');
@@ -122,3 +134,4 @@ console.log(err);
       closeModal();
     }
   });
+
