@@ -54,7 +54,6 @@ $selectedBookInfo = {
           <img src="${amazonImg}" alt="amazon"></a>
           <a  href="https://www.apple.com/ua/apple-books/" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
           <img src="${appleShopImg} " alt="apple-books"></a>  
-          </a>
           <a  href="https://bookshop.org/" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
           <img src="${bookShopImg} " alt="/bookshop"></a>
          </a>
@@ -71,11 +70,11 @@ catch (err) {
 
 console.log(err);
   }}
-
+ 
   function onBookClick(e) {
     const target = e.target.closest('.item-link-book');
     if (target) {
-      const bookId = target.getAttribute('list-id');
+      const bookId = target.getAttribute('id');
   
       fetchBooks(bookId).then(bookCard => {
         body.classList.add('modal-open');
@@ -93,6 +92,7 @@ console.log(err);
       });
     }
   }
+  
 
   function closeModal() {
     // Видалити клас "modal-open" з батьківського елемента (фонового контенту)
