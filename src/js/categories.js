@@ -5,8 +5,6 @@ import { onLoader, offLoader } from './loader';
 const select = document.querySelector('.select');
 console.dir(select);
 const allCategories = document.querySelector('.all-categories');
-// selectChild = select.querySelectorAll('.select-text');
-// console.log(selectChild);
 
 select.addEventListener('click', getSelectedCategory);
 
@@ -49,6 +47,7 @@ async function getSelectedCategory(evt) {
   if (evt.target.nodeName !== 'LI') {
     return;
   }
+  allCategories.innerHTML = '';
   onLoader();
 
   for (var i = 0; i < select.children.length; i++) {
@@ -62,7 +61,7 @@ async function getSelectedCategory(evt) {
     };
   }
   console.log(evt.target);
-  allCategories.innerHTML = '';
+
   let selectedCategory = evt.target.textContent;
   console.dir(selectedCategory);
 
@@ -86,18 +85,24 @@ async function getSelectedCategory(evt) {
 }
 
 function creatCategory(selectedCategory, arr) {
-  const markup = `<h1 class="title-category">${selectedCategory}</h1>
+  let text = selectedCategory;
+  let lastWord = text.split(' ').pop();
+  let newText = text.replace(
+    lastWord,
+    "<span style='color: rgb(79, 46, 232)'>" + lastWord + '</span>'
+  );
+  const markup = `<h1 class="title-category">${newText}</h1>
   <ul class="wrap">${arr
     .map(({ list_name, book_image, title, author, _id }) => {
       return `
     <li class='list book-card' id = "${_id}">
     <div class='book-img'>
-    <img aria - label="${list_name}" src="${book_image}" alt="${title}" loading="lazy" class="cover" />
-    <p class='quick-view'>quick view</p>
+    <img id = "${_id}" aria - label="${list_name}" src="${book_image}" alt="${title}" loading="lazy" class="cover" />
+    <p id = "${_id}" class='quick-view'>quick view</p>
     </div>
     <div class="book-info">
-    <p aria - label="${title}" class="title">${title}</p>
-    <p aria - label="${author}" class="author">${author}</p>
+    <p id = "${_id}" aria - label="${title}" class="title">${title}</p>
+    <p id = "${_id}" aria - label="${author}" class="author">${author}</p>
     </div>
     </li>`;
     })
@@ -106,18 +111,3 @@ function creatCategory(selectedCategory, arr) {
 
   allCategories.insertAdjacentHTML('beforeend', markup);
 }
-
-// // Получаем список
-// var list = document.getElementById('myList');
-
-// // Добавляем обработчик события onclick к каждому элементу списка
-// for (var i = 0; i < select.children.length; i++) {
-//   select.children[i].onclick = function () {
-//     // Убираем выделение со всех элементов списка
-//     for (var j = 0; j < select.children.length; j++) {
-//       select.children[j].style.color = 'rgb(17, 17, 17';
-//     }
-//     // Выделяем выбранный элемент
-//     this.style.color = 'rgb(79, 46, 232';
-//   };
-// }
