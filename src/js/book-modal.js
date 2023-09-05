@@ -63,13 +63,14 @@ $selectedBookInfo = {
         <button class="js-add modal-btn" type="submit" data-id="${_id}">Add to shopping list</button>
       </div>`;
 return  bookCard;
-  } 
+ } 
 catch (err) {
 
    
 
 console.log(err);
-  }}
+  }
+  }
  
   function onBookClick(e) {
     const target = e.target.closest('.item-link-book');
@@ -83,12 +84,6 @@ console.log(err);
               ${bookCard}
             </div>`);
         instance.show();
-        const addBtn = document.querySelector('.js-add');
-        addBtn.addEventListener('click', onhandlerAdd);
-        instance.element().addEventListener('click', function (e) {
-          if (e.target === instance.element()) {
-            closeModal();
-          }})
       });
     }
   }
@@ -135,3 +130,9 @@ console.log(err);
     }
   });
 
+  // const addBtn = document.querySelector('.js-add');
+  // addBtn.addEventListener('click', onhandlerAdd);
+  // instance.element().addEventListener('click', function (e) {
+  //   if (e.target === instance.element()) {
+  //     closeModal();
+  //   }})
