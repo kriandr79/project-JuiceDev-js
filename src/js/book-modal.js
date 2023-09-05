@@ -1,4 +1,3 @@
-
 import amazonImg from '../images/amazon.png';
 import appleShopImg from '../images/applebook.png';
 import bookShopImg from '../images/bookshop.png';
@@ -8,12 +7,12 @@ import 'basiclightbox/dist/basicLightbox.min.css';
 import axios from 'axios';
 
 const allCategories = document.querySelector('.all-categories');
+const PRODUCT_LS_KEY = 'storebook';
+const body = document.body;
+let $selectedBookInfo = null; 
 
 allCategories.addEventListener('click', onBookClick);
 
-const body = document.body;
-
-let $selectedBookInfo = null;
 async function fetchBooks(bookid) {
   try {
     if (!bookid) {
@@ -21,118 +20,110 @@ async function fetchBooks(bookid) {
     }
 
     const response = await axios.get(`https://books-backend.p.goit.global/books/${bookid}`);
-const { _id, book_image, title, list_name, author, description, amazon_product_url, buy_links, publisher } = response.data;
+    const { _id, book_image, title, list_name, author, description, amazon_product_url, buy_links, publisher } = response.data;
 
-$selectedBookInfo = {
-  _id,
-  book_image,
-  list_name,
-  title,
-  author,
-  description,
-  amazon_product_url,
-  buy_links,
-  publisher
-};
+    $selectedBookInfo = {
+      _id,
+      book_image,
+      list_name,
+      title,
+      author,
+      description,
+      amazon_product_url,
+      buy_links,
+      publisher
+    };
 
     const bookCard = `
       <div class="book-card-modal" data-id="${_id}"> 
-      <button class="close-modal-btn" type="button">
-    <svg class="close-modal-icon">
-      <use href="${closeSvg}#icon-x-close"></use>
-    </svg>
-  </button>
-      <div class="modal-wrapper">
-        <img src="${book_image}" alt="${title} class="modal-book-img">
-        <div class="modal-titles"> 
-          <h2 class="modal-book-name" aria-label="${title}">${title}</h2>
-          <p class="modal-book-author" aria-label="${author}"> ${author}</p>
-          <p class="modal-book-descr">${description}</p>
-          <div ${buy_links}> 
-         <ul class="modal-list-partners"> 
-          <a  href="${amazon_product_url}" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
-          <img src="${amazonImg}" alt="amazon"></a>
-          <a  href="https://www.apple.com/ua/apple-books/" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
-          <img src="${appleShopImg} " alt="apple-books"></a>  
-          <a  href="https://bookshop.org/" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
-          <img src="${bookShopImg} " alt="/bookshop"></a>
-         </a>
-         </ul> 
-        </div> 
+        <button class="close-modal-btn" type="button">
+          <svg class="close-modal-icon">
+            <use href="${closeSvg}#icon-x-close"></use>
+          </svg>
+        </button>
+        <div class="modal-wrapper">
+          <img src="${book_image}" alt="${title}" class="modal-book-img">
+          <div class="modal-titles"> 
+            <h2 class="modal-book-name" aria-label="${title}">${title}</h2>
+            <p class="modal-book-author" aria-label="${author}"> ${author}</p>
+            <p class="modal-book-descr">${description}</p>
+            <div ${buy_links}> 
+              <ul class="modal-list-partners"> 
+                <a  href="${amazon_product_url}" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
+                  <img src="${amazonImg}" alt="amazon">
+                </a>
+                <a  href="https://www.apple.com/ua/apple-books/" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
+                  <img src="${appleShopImg}" alt="apple-books">
+                </a>  
+                <a  href="https://bookshop.org/" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
+                  <img src="${bookShopImg}" alt="/bookshop">
+                </a>
+              </ul> 
+            </div> 
+          </div>
+          <button class="js-add modal-btn" type="submit" data-id="${_id}">Add to shopping list</button>
         </div>
-        <button class="js-add modal-btn" type="submit" data-id="${_id}">Add to shopping list</button>
       </div>`;
-return  bookCard;
- } 
-catch (err) {
 
-   
+    return bookCard;
+  } catch (err) {
+    console.log(err);
+  }
+}
 
-console.log(err);
-  }
-  }
- 
-  function onBookClick(e) {
-    const target = e.target.closest('.item-link-book');
-    if (target) {
-      const bookId = target.getAttribute('id');
-  
-      fetchBooks(bookId).then(bookCard => {
-        body.classList.add('modal-open');
-        const instance = basicLightbox.create(`
-            <div class="modal">
-              ${bookCard}
-            </div>`);
-        instance.show();
-      });
-    }
-  }
-  
+function onBookClick(e) {
+  const target = e.target.closest('.item-link-book');
+  if (target) {
+    const bookId = target.getAttribute('id');
 
-  function closeModal() {
-    // Видалити клас "modal-open" з батьківського елемента (фонового контенту)
-    body.classList.remove('modal-open');
-  
-    const instance = basicLightbox.instance();
-    if (instance) {
-      instance.close();
-    }
+    fetchBooks(bookId).then(bookCard => {
+      body.classList.add('modal-open');
+      const instance = basicLightbox.create(`
+        <div class="modal">
+          ${bookCard}
+        </div>`);
+      instance.show();
+    });
   }
-  
-  const PRODUCT_LS_KEY = 'storebook';
-  
-  function onhandlerAdd(evt) {
-    if (evt.target.classList.contains('js-add')) {
-      if ($selectedBookInfo) {
-        const books = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) || [];
-        const currentBook = books.find(({ id }) => id === $selectedBookInfo._id);
-  
-        if (currentBook) {
-          const bookIndex = books.findIndex(({ id }) => id === $selectedBookInfo._id);
-          books.splice(bookIndex, 1);
-  
-          evt.target.textContent = 'Add to shopping list';
-        } else {
-          const newBook = { id: $selectedBookInfo._id, qty: 1, info: $selectedBookInfo };
-          books.push(newBook);
-  
-          evt.target.textContent = 'Remove from the shopping list';
-        }
-  
-        localStorage.setItem(PRODUCT_LS_KEY, JSON.stringify(books));
+}
+
+function closeModal() {
+
+  body.classList.remove('modal-open');
+
+  const instance = basicLightbox.instance();
+  if (instance) {
+    instance.close();
+  }
+}
+
+
+document.addEventListener('click', onhandlerAdd);
+
+function onhandlerAdd(evt) {
+  const clickedButton = evt.target;
+
+
+  if (clickedButton.classList.contains('js-add')) {
+    if ($selectedBookInfo) {
+      const books = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) || [];
+      const currentBook = books.find(({ id }) => id === $selectedBookInfo._id);
+
+      if (currentBook) {
+        const bookIndex = books.findIndex(({ id }) => id === $selectedBookInfo._id);
+        books.splice(bookIndex, 1);
+
+        clickedButton.textContent = 'Add to shopping list';
+      } else {
+        const newBook = { id: $selectedBookInfo._id, qty: 1, info: $selectedBookInfo };
+        books.push(newBook);
+
+        clickedButton.textContent = 'Remove from the shopping list';
       }
+
+      localStorage.setItem(PRODUCT_LS_KEY, JSON.stringify(books));
     }
   }
+}
 
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      closeModal();
-    }
-  });
-
-  // const addBtn = document.querySelector('.js-add');
-  // addBtn.addEventListener('click', onhandlerAdd);
-  // instance.element().addEventListener('click', function (e) {
-  //   if (e.target === instance.element()) {
-  //     closeModal();
-  //   }})
+  
