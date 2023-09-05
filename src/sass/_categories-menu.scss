@@ -1,4 +1,14 @@
 // Categories menu =================
+.all-categories-menu-title {
+  color: rgba(17, 17, 17, 0.6);
+    font-family: DM Sans;
+    font-size: 16px;
+    width: 327px;
+    font-size: 18px;
+    padding-left: 4px;
+    padding-bottom: 32px;
+}
+
 .select {
   overflow-y: scroll;
   scroll-behavior: smooth;
