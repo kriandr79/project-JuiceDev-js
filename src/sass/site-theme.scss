@@ -54,3 +54,21 @@ h1.dark-theme {
 .header-burger-menu-icon {
   stroke: $color-white;
 }
+// MODAL 
+.modal-wrapper.dark-theme {
+ background-color: $color-black1;
+}
+.modal-book-name.dark-theme {
+  color: $color-white;
+}
+.modal-book-author.dark-theme {
+ color: $color-lightgrey;
+}
+.modal-book-descr.dark-theme {
+  color: $color-white;
+}
+.modal-btn.dark-theme {
+  background-color: transparent;
+  color: $color-white;
+  border-color: $color-violet;
+}
