@@ -15,9 +15,9 @@ offLoader();
 const KEY_LS = 'storebook';
 let imgEmptyBig = new URL('/src/images/empty-page@2.png', import.meta.url);
 let imgEmpty = new URL('/src/images/empty-page.png', import.meta.url);
-let imgAmazon = new URL('/src/images/amazon.jpg', import.meta.url);
-let imgAppleBooks = new URL('/src/images/applebooks.jpg', import.meta.url);
-let imgBookshop = new URL('/src/images/bookshop.jpg', import.meta.url);
+let imgAmazon = new URL('/src/images/amazon.png', import.meta.url);
+let imgAppleBooks = new URL('/src/images/applebook.png', import.meta.url);
+let imgBookshop = new URL('/src/images/bookshop.png', import.meta.url);
 let imgTrash = new URL('/src/images/trash-03.png', import.meta.url);
 
 const ulMarkupLS = document.querySelector('.shoppingList-books');
