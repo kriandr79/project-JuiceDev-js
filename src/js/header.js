@@ -1,12 +1,16 @@
 const location = window.location.pathname.slice(1).split('/');
 const locationPageName = location[1];
 
-const HEADER_NAV_CLASS = 'current'
+const HEADER_NAV_CLASS = 'current';
 
-const headerNavList = document.querySelector('.header-nav-list');
+const headerNavLinks = document.querySelectorAll('.header-nav-list a');
 
-if (locationPageName === 'index.html') {
-  headerNavList.children[0].classList.toggle(HEADER_NAV_CLASS);
-} else if (locationPageName === 'shoppinglist.html') {
-  headerNavList.children[1].classList.toggle(HEADER_NAV_CLASS);
+for (const link of headerNavLinks) {
+  const linkHref = link.getAttribute('href');
+  
+  if (linkHref === locationPageName) {
+    link.classList.add(HEADER_NAV_CLASS);
+  } else {
+    link.classList.remove(HEADER_NAV_CLASS);
+  }
 }
