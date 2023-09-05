@@ -39,3 +39,15 @@ h1.dark-theme {
 
   color: $color-white1;
 }
+.header-nav-link.dark-theme {
+  color: $color-white;
+}
+.header-nav-link.current.dark-theme {
+  color: $color-black;
+  background-color: #eac645;
+  border-radius: 36px;
+  padding: 8px 16px;
+}
+.header-burger-menu-icon {
+  stroke: $color-white;
+}
