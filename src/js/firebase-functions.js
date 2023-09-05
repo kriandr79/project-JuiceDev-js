@@ -17,8 +17,8 @@ const firebaseConfig = {
 
 // Initialization
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 const db = getFirestore(app);
+export const auth = getAuth(app);
 
 // Form methods
 const loginBtn = document.querySelector('.login-btn');
@@ -26,6 +26,7 @@ export const userBtn = document.querySelector('.user-btn');
 const userBtnName = document.querySelector('.user-btn-name');
 export const logoutBtn = document.querySelector('.logout-btn');
 export const authorizationModal = document.querySelector('.authorization-modal');
+const shoppingListLink = document.querySelector('#shoppingListLink');
 
 // Checking of user status
 onAuthStateChanged(auth, (data) => {
@@ -35,12 +36,14 @@ onAuthStateChanged(auth, (data) => {
         loginBtn.classList.remove('is-hidden');
         loginBtn.dataset.status = false;
         userBtnName.innerHTML= '';
+        shoppingListLink.classList.add('is-hidden');
     } else {
         userBtnName.innerHTML = auth.currentUser.displayName;
         loginBtn.dataset.status = true;
         authorizationModal.classList.add('is-hidden')
         userBtn.classList.remove('is-hidden');
         loginBtn.classList.add('is-hidden');
+        shoppingListLink.classList.remove('is-hidden');
     }
 
 })
