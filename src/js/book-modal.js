@@ -83,7 +83,7 @@ console.log(err);
             <div class="modal">
               ${bookCard}
             </div>`);
-        currentLightboxInstance = instance; // Store the current instance
+        currentLightboxInstance = instance; 
         instance.show();
         const addBtn = document.querySelector('.js-add');
         addBtn.addEventListener('click', onhandlerAdd);
@@ -101,7 +101,7 @@ console.log(err);
     body.classList.remove('modal-open');
   
     if (currentLightboxInstance) {
-      currentLightboxInstance.close(); // Close the stored instance
+      currentLightboxInstance.close(); 
     }
   }
   
