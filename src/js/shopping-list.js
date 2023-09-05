@@ -41,7 +41,6 @@ const markupBookEmpty = `<li><p class="shoppingList-text">
 document.addEventListener('DOMContentLoaded', () => {
   loadBookLS();
   deleteBookId();
-  console.log(parsedData);
 });
 
 function loadBookLS() {
@@ -69,7 +68,7 @@ function markupBookContent(parsedData) {
               <h2 class="text-shoppingList-title">${parsedData.info.title}</h2>
               <p class="text-shoppingList-category">${parsedData.info.publisher}</p>
             </div>
-            <button class="box-shoppingList-trash" id="${parsedData.info.id}">
+            <button class="box-shoppingList-trash" id="${parsedData.id}">
               <img
                 class="box-shoppingList-trash-icon"
                 src="${imgTrash}"
@@ -132,18 +131,19 @@ function markupBookContent(parsedData) {
   ulMarkupLS.innerHTML = markupBookLi;
 }
 
-// function deleteBookId() {
-//   let dots = document.getElementsByClassName('box-shoppingList-trash');
-
-// for (let i = 0; i < dots.length; i+1) {
-//     dots[i].addEventListener('click', e => {
-//       let keyId = e.target.parentElement.getAttribute('id');
-//       let filtered = parsedData.filter(o => o.id !== keyId);
-
-//       localStorage.setItem(KEY_LS, JSON.stringify(filtered));
-//       loadData = localStorage.getItem(KEY_LS);
-//       parsedData = JSON.parse(loadData);
-//       loadBookLS();
-//     });
-//   }
-// }
+function deleteBookId() {
+    let dots = document.getElementsByClassName('box-shoppingList-trash');
+    let i;
+  
+    for (i = 0; i < dots.length; i++) {
+      dots[i].addEventListener('click', e => {
+        let keyId = e.target.parentElement.attributes.id.value;
+        let filtered = parsedData.filter(o => o.id !== keyId);
+  
+        localStorage.setItem(KEY_LS, JSON.stringify(filtered));
+        loadData = localStorage.getItem(KEY_LS);
+        parsedData = JSON.parse(loadData);
+        loadBookLS();
+      });
+    }
+  }
