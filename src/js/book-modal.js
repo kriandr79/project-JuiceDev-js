@@ -1,19 +1,3 @@
-// import * as basicLightbox from 'basiclightbox';
-// import "basiclightbox/dist/basicLightbox.min.css";
-
-// allCategories = document.querySelector(".all-categories")
-// allCategories.addEventListener('click', onBookClick);
-// export function onBookClick(e) {
-//     const target = e.target.closest('.item-link');
-//         if (target) { const bookId = target.getAttribute('list-id');
-//     }
-    
-//     const instance = basicLightbox.create(`<div class="modal">
-   
-//     </div>
-// `)
-
-// instance.show()}
 
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
@@ -23,66 +7,118 @@ const allCategories = document.querySelector('.all-categories');
 
 allCategories.addEventListener('click', onBookClick);
 
-async function onBookClick(e) {
-  const target = e.target.closest('.item-link');
-  if (target) {
-    const bookId = target.getAttribute('list-id');
+const body = document.body;
 
-    try {
-      if (!bookId) {
-        throw new Error('Book ID not found');
-      }
+let $selectedBookInfo = null;
+async function fetchBooks(bookid) {
+  try {
+    if (!bookid) {
+      throw new Error('Book ID not found');
+    }
 
-      const response = await axios.get(`https://books-backend.p.goit.global/books/${bookId}`);
-      const { book_image, list_name, author, description, buy_links } = response.data;
+    const response = await axios.get(`https://books-backend.p.goit.global/books/${bookid}`);
+const { _id, book_image, list_name, author, description, amazon_product_url, buy_links, publisher } = response.data;
 
-      const bookCard = `
-        <div class="book-card">
-          <img src="${book_image}" alt="${list_name} Cover" class="book-cover">
-          <div class="book-inform">
-          <h2 class="book-title">${list_name}</h2>
-          <p class="book-author">Author: ${author}</p>
+$selectedBookInfo = {
+  _id,
+  book_image,
+  list_name,
+  author,
+  description,
+  amazon_product_url,
+  buy_links,
+  publisher
+};
+
+
+    const bookCard = `
+      <div class="book-card-modal" data-id="${_id}"> 
+        <img src="${book_image}" alt="${list_name} Cover" class="book-cover">
+        <div class="book-inform"> 
+          <h2 class="book-title" aria-label="${list_name}">${list_name}</h2>
+          <p class="book-author" aria-label="${author}"> ${author}</p>
           <p class="book-description">${description}</p>
-          <div>${buy_links}</div>
-        </div>
-        <button class="js-add" type="button">Add to shopping list</button>
-        </div>`;
+          <div ${buy_links}> 
+          <a  href="${amazon_product_url}" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
+          <img src="../images/amazon.png" alt="amazon"></a>
+          <a  href="https://www.apple.com/ua/apple-books/" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
+          <img src="../images/books.png" alt="apple-books"></a>  
+          </a>
+          <a  href="https://bookshop.org/" target="_blank" crossorigin="anonymous" rel="noopener noreferrer nofollow">
+          <img src="../images/bookshop.png.png" alt="/bookshop"></a>
+         </a>
+        </div> 
+        <button class="js-add" type="submit" data-id="${_id}">Add to shopping list</button>
+      </div>`;
+return  bookCard;
+  } 
+catch (err) {
 
+   
+
+console.log(err);
+  }}
+
+
+  function onBookClick(e) {
+    const target = e.target.closest('.item-link-book');
+    if (target) {
+      const bookId = target.getAttribute('list-id');
   
-
-      // Create and show the modal
-      const instance = basicLightbox.create(`
-        <div class="modal">
-          ${bookCard}
-        </div>
-      `);
-
-      instance.show();
-    } catch (error) {
-      console.error(error);
+      fetchBooks(bookId).then(bookCard => {
+        body.classList.add('modal-open');
+        const instance = basicLightbox.create(`
+            <div class="modal">
+              ${bookCard}
+            </div>`);
+        instance.show();
+        const addBtn = document.querySelector('.js-add');
+        addBtn.addEventListener('click', onhandlerAdd);
+        instance.element().addEventListener('click', function (e) {
+          if (e.target === instance.element()) {
+            closeModal();
+          }})
+      });
     }
   }
-}
 
-
-function handlerAdd(evt) {
-    if (!evt.target.classList.contains('js-add')) {
-        return;
+  function closeModal() {
+    // Видалити клас "modal-open" з батьківського елемента (фонового контенту)
+    body.classList.remove('modal-open');
+  
+    const instance = basicLightbox.instance();
+    if (instance) {
+      instance.close();
     }
-  
-    const book = evt.target.closest('item-link');
-    const bookId = Number(book.dataset.id);
-    const currentBook = books.find(({ id }) => id === bookId);
-    const books = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) ?? [];
-    const idx = books.findIndex(({ id }) => id === bookId);
-  
-    if (idx !== -1) {
-        books[idx].qty += 1;
-    } else {
-        currentBook.qty = 1;
-        books.push(currentBook);
-    }
-  
-    localStorage.setItem(PRODUCT_LS_KEY, JSON.stringify(books))
   }
   
+  const PRODUCT_LS_KEY = 'storebook';
+  
+  function onhandlerAdd(evt) {
+    if (evt.target.classList.contains('js-add')) {
+      if ($selectedBookInfo) {
+        const books = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) || [];
+        const currentBook = books.find(({ id }) => id === $selectedBookInfo._id);
+  
+        if (currentBook) {
+          const bookIndex = books.findIndex(({ id }) => id === $selectedBookInfo._id);
+          books.splice(bookIndex, 1);
+  
+          evt.target.textContent = 'Add to shopping list';
+        } else {
+          const newBook = { id: $selectedBookInfo._id, qty: 1, info: $selectedBookInfo };
+          books.push(newBook);
+  
+          evt.target.textContent = 'Remove from the shopping list';
+        }
+  
+        localStorage.setItem(PRODUCT_LS_KEY, JSON.stringify(books));
+      }
+    }
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
