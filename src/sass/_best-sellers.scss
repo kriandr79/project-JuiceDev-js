@@ -25,6 +25,10 @@
 .list-categories {
   margin-bottom: 40px;
 }
+
+.list-categories:last-child {
+  margin-bottom: 0;
+}
 .list-categories-title {
   color: #b4afaf;
   font-size: 14px;
