@@ -96,11 +96,11 @@ function creatCategory(selectedCategory, arr) {
     .map(({ list_name, book_image, title, author, _id }) => {
       return `
     <li class='list book-card' id = "${_id}">
-    <div class='book-img'>
+    <div id = "${_id}" class='book-img'>
     <img id = "${_id}" aria - label="${list_name}" src="${book_image}" alt="${title}" loading="lazy" class="cover" />
     <p id = "${_id}" class='quick-view'>quick view</p>
     </div>
-    <div class="book-info">
+    <div id = "${_id}" class="book-info">
     <p id = "${_id}" aria - label="${title}" class="title">${title}</p>
     <p id = "${_id}" aria - label="${author}" class="author">${author}</p>
     </div>
