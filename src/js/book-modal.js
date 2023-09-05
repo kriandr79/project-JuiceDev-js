@@ -70,7 +70,8 @@ catch (err) {
 
 console.log(err);
   }}
- 
+  let currentLightboxInstance = null;
+
   function onBookClick(e) {
     const target = e.target.closest('.item-link-book');
     if (target) {
@@ -82,27 +83,28 @@ console.log(err);
             <div class="modal">
               ${bookCard}
             </div>`);
+        currentLightboxInstance = instance; // Store the current instance
         instance.show();
         const addBtn = document.querySelector('.js-add');
         addBtn.addEventListener('click', onhandlerAdd);
         instance.element().addEventListener('click', function (e) {
           if (e.target === instance.element()) {
             closeModal();
-          }})
+          }
+        });
       });
     }
   }
   
-
   function closeModal() {
     // Видалити клас "modal-open" з батьківського елемента (фонового контенту)
     body.classList.remove('modal-open');
   
-    const instance = basicLightbox.instance();
-    if (instance) {
-      instance.close();
+    if (currentLightboxInstance) {
+      currentLightboxInstance.close(); // Close the stored instance
     }
   }
+  
   
   const PRODUCT_LS_KEY = 'storebook';
   
