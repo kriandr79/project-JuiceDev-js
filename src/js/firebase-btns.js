@@ -1,53 +1,53 @@
-const btnSingUp = document.querySelector('[data-action="sign-up"]');
-const btnSingIn = document.querySelector('[data-action="sign-in"]');
+import { userBtn, logoutBtn, authorizationModal } from "./firebase-functions";
 
-btnSingUp.disabled = true;
-const autorizationBtnEl = document.querySelector('.authorization__btn__submit');
+const openAuthModalBtn = document.querySelector('.login-btn');
+const closeAuthModalBtn = document.querySelector('.authorization-modal__btn-close');
+const singUpBtn = document.querySelector('[data-action="sign-up"]');
+const singInBtn = document.querySelector('[data-action="sign-in"]');
 const signInForm = document.querySelector('#sign-in');
 const signUpForm = document.querySelector('#sign-up');
+const submitAuthBtn = document.querySelector('.authorization-modal__btn-submit');
 
-btnSingIn.addEventListener('click', e => {
-  e.preventDefault();
-  btnSingUp.classList.remove('active-link');
-  btnSingUp.classList.add('desactive-link');
-  btnSingIn.classList.remove('desactive-link');
-  btnSingIn.classList.add('active-link');
-  autorizationBtnEl.textContent = 'Sign in';
+singUpBtn.disabled = true;
 
-  signInForm.classList.remove('display-form');
-  signUpForm.classList.add('display-form');
+singInBtn.addEventListener('click', event => {
+  event.preventDefault();
+  singUpBtn.classList.remove('active-link');
+  singUpBtn.classList.add('inactive-link');
+  singInBtn.classList.remove('inactive-link');
+  singInBtn.classList.add('active-link');
+  submitAuthBtn.textContent = 'Sign in';
 
-  btnSingUp.disabled = false;
-  btnSingIn.disabled = true;
+  signInForm.classList.remove('hide-form');
+  signUpForm.classList.add('hide-form');
+
+  singUpBtn.disabled = false;
+  singInBtn.disabled = true;
 });
 
-btnSingUp.addEventListener('click', e => {
-  e.preventDefault();
-  btnSingUp.classList.add('active-link');
-  btnSingUp.classList.remove('desactive-link');
-  btnSingIn.classList.add('desactive-link');
-  btnSingIn.classList.remove('active-link');
-  autorizationBtnEl.textContent = 'Sign up';
+singUpBtn.addEventListener('click', event => {
+  event.preventDefault();
+  singUpBtn.classList.add('active-link');
+  singUpBtn.classList.remove('inactive-link');
+  singInBtn.classList.add('inactive-link');
+  singInBtn.classList.remove('active-link');
+  submitAuthBtn.textContent = 'Sign up';
 
-  signInForm.classList.add('display-form');
-  signUpForm.classList.remove('display-form');
+  signInForm.classList.add('hide-form');
+  signUpForm.classList.remove('hide-form');
 
-  btnSingUp.disabled = true;
-  btnSingIn.disabled = false;
+  singUpBtn.disabled = true;
+  singInBtn.disabled = false;
 });
 
-const openAutorizationBtnRef = document.querySelector('.open-autorization-btn');
-const authorizationBacdropRef = document.querySelector(
-  '.authorization__bacdrop'
-);
-const closeAuthorizationBtnRef = document.querySelector(
-  '.authorization__button__close'
-);
-
-openAutorizationBtnRef.addEventListener('click', () => {
-  authorizationBacdropRef.classList.remove('is-hidden');
+openAuthModalBtn.addEventListener('click', () => {
+  authorizationModal.classList.remove('is-hidden');
 });
 
-closeAuthorizationBtnRef.addEventListener('click', () => {
-  authorizationBacdropRef.classList.add('is-hidden');
+closeAuthModalBtn.addEventListener('click', () => {
+  authorizationModal.classList.add('is-hidden');
+});
+
+userBtn.addEventListener('click', () => {
+  logoutBtn.classList.toggle('is-hidden');
 });

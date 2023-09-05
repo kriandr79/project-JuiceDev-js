@@ -1,380 +1,372 @@
 .is-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
-  }
-  
-.authorization__form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .authorization__modal {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.authorization-modal {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-violet;
+  transform: translateY(0);
+  transition-property: opacity, transform;
+  transition-duration: .25s;
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+
+  &__content {
     width: 300px;
     padding: 40px 15px 15px;
-    @media screen and (min-width: 375px) {
-      width: 335px;
-      padding: 40px 20px;
-    }
-    @media screen and (min-width: 768px) {
-      width: 450px;
-      padding: 65px 25px 25px;
-    }
-    @media screen and (min-width: 1440px) {
-      width: 579px;
-      padding: 80px 40px 40px;
-    }
     position: absolute;
-  
     top: 50%;
     left: 50%;
-  
     transform: translate(-50%, -50%);
-  
-    background-color: #ffffff;
-    border: 2px solid #111111;
+    background-color: $color-white;
+    border: 2px solid $color-black;
     border-radius: 18px;
   }
-  
-  .authorization__icon__close {
-    display: block;
-  
-    width: 20px;
-    height: 20px;
-  
-    @media screen and (min-width: 768px) {
-      width: 28px;
-      height: 28px;
-    }
-  
-    transition-property: stroke;
-    transition-duration: 0.25s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  
-    stroke: #111111;
-  
-    &:hover,
-    &:focus {
-      stroke: #4f2ee8;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+
+    &.hide-form {
+      display: none;
     }
   }
-  
-  .authorization__button__close {
+
+  &__icon {
+    stroke: $color-black;
+    fill: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20;
+    width: 15px;
+    height: 15px;
+
+    &-close {
+      display: block;
+      width: 20px;
+      height: 20px;
+      transition-property: stroke;
+      transition-duration: 0.25s;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      stroke: $color-black;
+    
+      &:hover,
+      &:focus {
+        stroke: $color-violet;
+      }
+    }
+  }
+
+  &__btn-close {
     position: absolute;
     cursor: pointer;
     top: 13px;
     right: 10px;
-  
-    @media screen and (min-width: 375px) {
-      top: 14px;
-      right: 2%;
-    }
-    @media screen and (min-width: 768px) {
-      top: 20px;
-      right: 20px;
-    }
-    @media screen and (min-width: 1440px) {
-      top: 24px;
-      right: 24px;
-    }
     background-color: transparent;
     border: 0;
   }
-  
-  .authorization__field {
+
+  &__field {
     display: block;
     position: relative;
-    margin-bottom: 13px;
-  
-    @media screen and (min-width: 375px) {
-      margin-bottom: 24px;
-    }
-    @media screen and (min-width: 768px) {
-      margin-bottom: 26px;
-    }
-    @media screen and (min-width: 1440px) {
-      margin-bottom: 28px;
-    }
+    margin-bottom: 24px;
   }
-  
-  .authorization__field:nth-child(3) {
-    margin-bottom: 17px;
-  
-    @media screen and (min-width: 375px) {
-      margin-bottom: 24px;
-    }
-    @media screen and (min-width: 768px) {
-      margin-bottom: 40px;
-    }
+
+  &__label {
+    position: absolute; 
+    top: 50%;
+    transform: translateY(-50%);
+    left: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: calc(24 / 18);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: $color-black;
+    cursor: pointer;
+    transition: 300ms;
   }
-  
-  .authorization__input {
+
+  &__input {
     padding: 10px 20px;
     font-size: 14px;
+    background-color: transparent;
+    width: 100%;
+    color: $color-black;
+    border: 2px solid $color-black;
+    border-radius: 40px;
+    display: block;
+
+    &:not(:placeholder-shown) {
+      & + .authorization-modal__label {
+        top: -26%;
+        font-size: 10px;
+      }
+
+      &:not(:valid) {
+        outline: 2px solid #db5353;
+
+        & ~ .authorization-modal__icon {
+          stroke: #db5353;
+          transition: stroke 300ms;
+        }
+      }
+    }
+
+    &:focus {
+      outline: 2px solid $color-violet;
+
+      & ~ .authorization-modal__icon {
+        stroke: $color-violet;
+        transition: stroke 300ms;
+      }
+
+      & + .authorization-modal__label {
+        top: -16%;
+        font-size: 10px;
+      }
+    }
+
+    &:valid {
+      outline: 2px solid #70b509;
+
+      & ~ .authorization-modal__icon {
+        stroke: #70b509;
+        transition: stroke 300ms;
+      }
+    }
+  }
+
+  &__btn-submit {
+    cursor: pointer;
+    padding: 10px 100px;
+    color: $color-white;
+    background: $color-black;
+    border-radius: 40px;
+    border: none;
+    margin-bottom: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    transition-property: color, background-color;
+    transition-duration: 0.25s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &:hover,
+    &:focus {
+      background-color: $color-violet;
+      color: $color-white;
+    }
+  }
+
+  &__link {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: calc(24 / 18);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: none;
+    padding: 0;
   
-    @media screen and (min-width: 375px) {
+    &:hover,
+    &:focus {
+      color: $color-violet;
+    }
+
+    &-block {
+      text-align: center;
+    }
+
+    &.active-link {
+      color: $color-violet;
+      text-decoration-line: underline;
+    }
+
+    &.inactive-link {
+      color: $color-lightgrey;
+    }
+
+    &:nth-child(1) {
+      margin-right: 7px;
+
+      @media screen and (min-width: 375px) {
+        margin-right: 10px;
+      }
+      @media screen and (min-width: 768px) {
+        margin-right: 15px;
+      }
+      @media screen and (min-width: 1440px) {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width: 375px) {
+  .authorization-modal {
+    &__content {
+      width: 335px;
+      padding: 40px 20px;
+    }
+
+    &__icon {
+      width: 18px;
+      height: 18px;
+      right: 24;
+    }
+
+    &__btn-close {
+      top: 14px;
+    }
+
+    &__label {
+      left: 30px;
+      font-size: 16px;
+    }
+
+    &__input {
       height: 50px;
-  
       padding-top: 16px;
       padding-bottom: 16px;
       padding-left: 24px;
       padding-right: 45px;
+
+      &:not(:placeholder-shown) {
+        & + .authorization-modal__label {
+          top: -23%;
+          font-size: 12px;
+        }
+      }
+  
+      &:focus {   
+        & + .authorization-modal__label {
+          top: -23%;
+          font-size: 12px;
+        }
+      }
     }
-    @media screen and (min-width: 768px) {
+
+    &__btn-submit {
+      padding: 16px 113px;
+      font-size: 16px;
+      line-height: calc(18 / 16);
+    }
+
+    &__link {
+      font-size: 14px;
+      line-height: calc(18 / 14);
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .authorization-modal {
+    &__content {
+      width: 450px;
+      padding: 65px 25px 25px;
+    }
+
+    &__icon {
+      width: 28px;
+      height: 28px;
+
+      &-close {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    &__btn-close {
+      top: 20px;
+      right: 20px;
+    }
+
+    &__field {
+      margin-bottom: 26px;
+    }
+
+    &__label {
+      left: 40px;
+      font-size: 18px;
+    }
+
+    &__input {
       height: 64px;
       padding-top: 20px;
       padding-bottom: 20px;
       padding-left: 40px;
       padding-right: 60px;
-  
       font-size: 24px;
+
+      &:not(:placeholder-shown) {
+        & + .authorization-modal__label {
+          top: -20%;
+          font-size: 15px;
+        }
+      }
+  
+      &:focus {   
+        & + .authorization-modal__label {
+          top: -20%;
+          font-size: 15px;
+        }
+      }
     }
-  
-    width: 100%;
-  
-    color: #111111;
-    background-color: inherit;
-    border: 2px solid #111111;
-    border-radius: 40px;
-    display: block;
-  }
-  
-  .authorization__label {
-    position: absolute;
-  
-    top: 50%;
-    transform: translateY(-50%);
-    left: 20px;
-  
-    font-size: 13px;
-  
-    @media screen and (min-width: 375px) {
-      left: 30px;
-  
-      font-size: 16px;
-    }
-    @media screen and (min-width: 768px) {
-      left: 40px;
-      font-size: 18px;
-    }
-  
-    font-weight: 700;
-  
-    line-height: calc(24 / 18);
-  
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-  
-    color: #111111;
-  
-    cursor: pointer;
-  
-    transition: 300ms;
-  }
-  
-  .authorization__input:not(:placeholder-shown) + .authorization__label,
-  .authorization__input:focus + .authorization__label {
-    top: -16%;
-    font-size: 10px;
-    @media screen and (min-width: 375px) {
-      top: -23%;
-      font-size: 12px;
-    }
-  
-    @media screen and (min-width: 768px) {
-      top: -20%;
-      font-size: 15px;
-    }
-  }
-  
-  .authorization__input:focus {
-    outline: 2px solid #4f2ee8;
-  }
-  
-  .authorization__input:focus ~ .authorization__icon {
-    stroke: #4f2ee8;
-    transition: stroke 300ms;
-  }
-  
-  .authorization__input:valid {
-    outline: 2px solid #70b509;
-  }
-  
-  .authorization__input:valid ~ .authorization__icon {
-    stroke: #70b509;
-    transition: stroke 300ms;
-  }
-  
-  .authorization__input:not(:placeholder-shown):not(:valid) {
-    outline: 2px solid #db5353;
-  }
-  
-  .authorization__input:not(:placeholder-shown):not(:valid)
-    ~ .authorization__icon {
-    stroke: #db5353;
-    transition: stroke 300ms;
-  }
-  
-  .authorization__icon {
-    stroke: #111111;
-    fill: none;
-    position: absolute;
-  
-    top: 50%;
-    transform: translateY(-50%);
-    right: 20;
-  
-    width: 15px;
-    height: 15px;
-  
-    @media screen and (min-width: 375px) {
-      width: 18px;
-      height: 18px;
-  
-      right: 24;
-    }
-  
-    @media screen and (min-width: 768px) {
-      width: 28px;
-      height: 28px;
-    }
-  
-    @media screen and (min-width: 1440px) {
-      right: 32;
-    }
-  }
-  
-  .authorization__btn__submit {
-    cursor: pointer;
-  
-    padding: 10px 100px;
-  
-    color: #ffffff;
-    background: #111111;
-    border-radius: 40px;
-    border: none;
-  
-    margin-bottom: 6px;
-  
-    @media screen and (min-width: 375px) {
-      padding: 16px 113px;
-  
-      font-size: 16px;
-      line-height: calc(18 / 16);
-    }
-  
-    @media screen and (min-width: 768px) {
+
+    &__btn-submit {
       padding: 20px 154px;
-      margin-bottom: 7px;
-  
       font-size: 15px;
       line-height: calc(24 / 15);
     }
-    @media screen and (min-width: 1440px) {
+
+    &__link {
+      font-size: 18px;
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .authorization-modal {
+    &__content {
+      width: 579px;
+      padding: 80px 40px 40px;
+    }
+
+    &__icon {
+      right: 32;
+    }
+
+    &__btn-close {
+      top: 24px;
+      right: 24px;
+    }
+
+    &__field {
+      margin-bottom: 28px;
+    }
+
+    &__btn-submit {
       padding: 20px 213px;
-      margin-bottom: 10px;
-  
+      margin-bottom: 20px;
       font-size: 17px;
       line-height: calc(24 / 15);
     }
-  
-    font-weight: 700;
-  
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-  
-    transition-property: color, background-color;
-    transition-duration: 0.25s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  
-    &:hover,
-    &:focus {
-      background-color: #4f2ee8;
-      color: #ffffff;
-    }
   }
-  
-  .authorization__link__block {
-    text-align: center;
-  }
-  
-  .authorization__link {
-    cursor: pointer;
-  
-    font-weight: 700;
-    font-size: 13px;
-    @media screen and (min-width: 375px) {
-      font-size: 14px;
-      line-height: calc(18 / 14);
-    }
-    @media screen and (min-width: 768px) {
-      font-size: 18px;
-    }
-    line-height: calc(24 / 18);
-  
-    letter-spacing: -0.01em;
-  
-    text-transform: uppercase;
-  
-    background-color: transparent;
-    border: none;
-    padding: 0;
-  
-    &:hover,
-    &:focus {
-      color: #4f2ee8;
-    }
-  }
-  
-  .active-link {
-    color: #4f2ee8;
-  
-    text-decoration-line: underline;
-  }
-  
-  .desactive-link {
-    color: #b4afaf;
-  }
-  
-  .authorization__link:nth-child(1) {
-    margin-right: 7px;
-  
-    @media screen and (min-width: 375px) {
-      margin-right: 10px;
-    }
-    @media screen and (min-width: 768px) {
-      margin-right: 15px;
-    }
-    @media screen and (min-width: 1440px) {
-      margin-right: 20px;
-    }
-  }
-  
-  .display-form {
-    display: none;
-  }
-  
-  .authorization__bacdrop {
-    z-index: 1000;
-    position: fixed;
-  
-    top: 0;
-    left: 0;
-  
-    width: 100%;
-    height: 100%;
-  
-    background-color: #4f2ee8;
-  
-    transform: translateY(0);
-    transition-property: opacity, transform;
-    transition-duration: .25s;
-    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
-  }
+}

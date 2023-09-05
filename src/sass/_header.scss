@@ -126,56 +126,66 @@
     display: none;
 }
 
-@media only screen and (min-width: 768px) {
-    .header-login-box {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 184px;
-        height: 45px;
-        flex-shrink: 0;
-        padding: 8px 12px;
+@media only screen and (min-width: 768px) {   
+    .header {
+        &-buttons {
+            position: relative;
+        }
+        &-login-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 184px;
+            height: 45px;
+            flex-shrink: 0;
+            padding: 8px 12px;
+            border-radius: 36px;
+            border: none;
+            background: $color-violet;
 
-        border-radius: 36px;
-        background: $color-violet;
+            &.login-btn {
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1.28;
+                color: $color-white;
+                border-radius: 18px;
+                border: 1.5px solid $color-black;
+            }
+        }
+
+        &-logout-btn {
+            display: flex;
+            justify-content: space-between;
+            width: 184px;
+            height: 48px;
+            border-radius: 18px;
+            border: 1.5px solid $color-black;
+            background: $color-white;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: -0.56px;
+            padding: 14px;
+            position: absolute;
+            bottom: -48px;
+        }
+
+        &-login-name {
+            color: $color-white;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.44px;
+        }
+
+        &-login-arrow {
+            fill: $color-white;
+        }
+
+        &-user-pic {
+            border-radius: 50%;
+        }
     }
-}
-
-@media only screen and (min-width: 1440px) {
-    .header-login-box {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 184px;
-        height: 45px;
-        flex-shrink: 0;
-        padding: 8px 12px;
-
-        border-radius: 36px;
-        background: $color-violet;
-    }
-}
-
-.header-user-pic {
-    // width: 37px;
-    // height: 37px;
-    // flex-shrink: 0;
-    // border-radius: 37px;
-    // background: url(./images/stephen_icon.png), lightgray 50% / cover no-repeat;
-}
-
-.header-login-name {
-    color: $color-white;
-    font-family: DM Sans;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.44px;
-}
-
-.header-login-arrow {
-    fill: $color-white;
 }
 
 .header-burger-menu-btn {
@@ -254,123 +264,3 @@
 .toggle-switch:checked+.switch-slider::before {
     transform: translateX(20px);
 }
-
-.login-btn {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 14px;
-    width: 184px;
-    border: 2px solid $color-black;
-    border-radius: 36px;
-    background: $color-violet;
-    margin-left: 24px;
-    // transition: all $cubic;
-    z-index: 1;
-  
-    @media (max-width <= 768px) {
-      display: none;
-      position: fixed;
-      top: 84px;
-      left: 20px;
-      margin: 0;
-  
-      &:hover,
-      &:focus {
-        background-color: $color-white;;
-      }
-  
-      &:hover .login-btn__title,
-      &:focus .login-btn__title {
-        color: $color-white;
-      }
-  
-      &.is-open {
-        display: flex;
-        justify-content: space-between;
-        cursor: pointer;
-      }
-    }
-  
-    &__title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--swicher);
-      font-size: 14px;
-      font-family: DM Sans;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 18px;
-      letter-spacing: -0.56px;
-    //   transition: all $cubic;
-    }
-  }
-  
-  .logout-btn {
-    display: none;
-    align-items: center;
-    padding: 10px 14px;
-    width: 184px;
-    border-radius: 36px;
-    background-color: $color-white;
-    border: 2px solid $color-white;
-    margin-left: 24px;
-    // transition: all $cubic;
-    z-index: 1;
-  
-    &:hover,
-    &:focus {
-      background-color: $color-violet;
-    }
-  
-    &:hover .logout-btn__title,
-    &:focus .logout-btn__title {
-      color: $color-white;
-    }
-  
-    @media (width <= 768px) {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      margin: 0;
-      background-color: $color-white;
-  
-      &.is-open {
-        display: flex;
-        justify-content: space-between;
-      }
-    }
-  
-    @media (width >= 768px) {
-      position: absolute;
-      margin-right: 32px;
-      right: 0;
-      top: 56px;
-  
-      &.is-open {
-        display: flex;
-        justify-content: space-between;
-      }
-    }
-  
-    @media (width >= 1440px) {
-      margin-right: 24px;
-    }
-  
-  
-    &__title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: $color-black;
-      font-size: 14px;
-      font-family: DM Sans;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 18px;
-      letter-spacing: -0.56px;
-    //   transition: all $cubic;
-    }
-  }
-  
