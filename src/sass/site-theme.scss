@@ -51,6 +51,13 @@ h1.dark-theme {
   fill: black;
  }
 }
-.header-burger-menu-icon {
+.header-burger-menu-icon.dark-theme {
   stroke: $color-white;
+}
+.label-switch.dark-theme {
+  background: linear-gradient(to bottom, #4F2EE8, #686868);
+}
+.header-burger-menu-icon:hover,
+.header-burger-menu-icon:focus.dark-theme {
+    stroke: $color-violet;
 }
