@@ -7,3 +7,6 @@ import './js/site-theme';
 import './js/best-sellers';
 import './js/btntop.js';
 import './js/header.js';
+import './js/firebase-btns.js';
+import './js/firebase-functions.js';
+import './js/firebase-modals.js';

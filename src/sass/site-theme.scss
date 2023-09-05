@@ -1,41 +1,53 @@
 body.dark-theme {
-  transition: all 0.3s ease-in-out;
+
   background-color: $color-black1;
   color: $color-white;
 }
 .header-container.dark-theme {
-  transition: all 0.3s ease-in-out;
+
   background-color: $color-black;
   border: 1.5px solid $color-white;
 }
 
 .select-text.dark-theme {
-  transition: all 0.3s ease-in-out;
+
   color: $color-lightgrey;
 
 }
 .select-text.dark-theme:hover,
 .select-text.dark-theme:focus {
-  transition: all 0.3s ease-in-out;
+
     color: $color-yellow;
 }
 h1.dark-theme {
-  transition: all 0.3s ease-in-out;
+
   color: $color-white;
 }
 .header-container-logo-bookshelf.dark-theme {
-  transition: all 0.3s ease-in-out;
+
   fill: $background-color;
 }
-.header-span-style.dark-theme {
-  transition: all 0.3s ease-in-out;
+.header-nav-link.dark-theme {
+
   color: $color-white;
 }
 .header-nav-shopping-cart.dark-theme {
-  transition: all 0.3s ease-in-out;
+
   fill: $color-white;
 }
 .shoppingList-text.dark-theme {
-  transition: all 0.3s ease-in-out;
+
   color: $color-white1;
+}
+.header-nav-link.dark-theme {
+  color: $color-white;
+}
+.header-nav-link.current.dark-theme {
+  color: $color-black;
+  background-color: #eac645;
+  border-radius: 36px;
+  padding: 8px 16px;
+}
+.header-burger-menu-icon {
+  stroke: $color-white;
 }

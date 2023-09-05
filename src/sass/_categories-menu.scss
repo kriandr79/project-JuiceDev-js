@@ -1,4 +1,14 @@
 // Categories menu =================
+.all-categories-menu-title {
+  color: rgba(17, 17, 17, 0.6);
+    font-family: DM Sans;
+    font-size: 16px;
+    width: 327px;
+    font-size: 18px;
+    padding-left: 4px;
+    padding-bottom: 32px;
+}
+
 .select {
   overflow-y: scroll;
   scroll-behavior: smooth;
@@ -63,11 +73,11 @@
   cursor: pointer;
 }
 
-.select-text:hover,
-.select-text:focus {
-  color: #4f2ee8;
-  text-transform: uppercase;
-}
+// .select-text:hover,
+// .select-text:focus {
+//   color: #4f2ee8;
+//   text-transform: uppercase;
+// }
 @media only screen and (min-width: 768px) {
   .select-text {
     font-size: 18px;
@@ -92,8 +102,14 @@
   // margin-top: 40px;
   margin-bottom: 40px;
   padding: 0;
-  // color: #4f2ee8;
 }
+// .grey {
+//   color: rgb(17, 17, 17);
+// }
+
+// .blue {
+//   color: rgb(79, 46, 232);
+// }
 @media only screen and (min-width: 768px) {
   .title-category {
     // min-width: 768px;
@@ -134,6 +150,7 @@
   overflow: hidden;
   display: flex;
   width: 335px;
+  height: 535px;
   flex-direction: column;
   align-items: flex-start;
   gap: 14px;
@@ -141,12 +158,12 @@
   outline: transparent;
 }
 
-.book-card:hover,
-.book-card:focus {
-  outline: transparent;
-  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
-    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
-}
+// .book-card:hover,
+// .book-card:focus {
+//   outline: transparent;
+//   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+//     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+// }
 
 @media only screen and (min-width: 768px) {
   .book-card {
@@ -159,6 +176,14 @@
     width: 180px;
     height: 306px;
   }
+}
+.book-img {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 335px;
+  height: 485px;
 }
 .cover {
   display: block;
@@ -175,9 +200,18 @@
     width: 218px;
     height: 316px;
   }
+  .book-img {
+    width: 218px;
+    height: 316px;
+  }
 }
+
 @media only screen and (min-width: 1440px) {
   .cover {
+    width: 180px;
+    height: 256px;
+  }
+  .book-img {
     width: 180px;
     height: 256px;
   }
@@ -185,10 +219,10 @@
 
 .quick-view {
   position: absolute;
-  display: flex;
   width: 100%;
   height: 70px;
-  padding: 0px 52px;
+
+  padding: 26px 52px;
   justify-content: center;
   align-items: center;
   border-radius: 0px 0px 8px 8px;
@@ -202,22 +236,27 @@
   line-height: 1.29;
   letter-spacing: -0.56px;
   text-transform: uppercase;
+  text-align: center;
 
-  overflow-y: auto;
+  // overflow-y: auto;
   opacity: 0;
-  bottom: 50px;
-  transform: translate(0, 100%);
+  // bottom: 50px;
+  // top: 50%;
+  // left: 50%;
+  bottom: 0;
+  transform: translate(0, 50%);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.book-card:hover .quick-view,
-.book-card:focus .quick-view {
+.book-img:hover .quick-view,
+.book-img:focus .quick-view {
   transform: translate(0, 0);
   opacity: 1;
 }
 
 .book-info {
   display: flex;
+  height: 36px;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;

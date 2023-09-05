@@ -116,6 +116,7 @@
 
 .header-nav-item.current {
         background-color: $color-yellow;
+        color: $color-black;
         padding: 8px 16px;
         border-radius: 36px;
     }
@@ -131,56 +132,66 @@
     display: none;
 }
 
-@media only screen and (min-width: 768px) {
-    .header-login-box {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 184px;
-        height: 45px;
-        flex-shrink: 0;
-        padding: 8px 12px;
+@media only screen and (min-width: 768px) {   
+    .header {
+        &-buttons {
+            position: relative;
+        }
+        &-login-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 184px;
+            height: 45px;
+            flex-shrink: 0;
+            padding: 8px 12px;
+            border-radius: 36px;
+            border: none;
+            background: $color-violet;
 
-        border-radius: 36px;
-        background: $color-violet;
+            &.login-btn {
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1.28;
+                color: $color-white;
+                border-radius: 18px;
+                border: 1.5px solid $color-black;
+            }
+        }
+
+        &-logout-btn {
+            display: flex;
+            justify-content: space-between;
+            width: 184px;
+            height: 48px;
+            border-radius: 18px;
+            border: 1.5px solid $color-black;
+            background: $color-white;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: -0.56px;
+            padding: 14px;
+            position: absolute;
+            bottom: -48px;
+        }
+
+        &-login-name {
+            color: $color-white;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.44px;
+        }
+
+        &-login-arrow {
+            fill: $color-white;
+        }
+
+        &-user-pic {
+            border-radius: 50%;
+        }
     }
-}
-
-@media only screen and (min-width: 1440px) {
-    .header-login-box {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 184px;
-        height: 45px;
-        flex-shrink: 0;
-        padding: 8px 12px;
-
-        border-radius: 36px;
-        background: $color-violet;
-    }
-}
-
-.header-user-pic {
-    // width: 37px;
-    // height: 37px;
-    // flex-shrink: 0;
-    // border-radius: 37px;
-    // background: url(./images/stephen_icon.png), lightgray 50% / cover no-repeat;
-}
-
-.header-login-name {
-    color: $color-white;
-    font-family: DM Sans;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.44px;
-}
-
-.header-login-arrow {
-    fill: $color-white;
 }
 
 .header-burger-menu-btn {
