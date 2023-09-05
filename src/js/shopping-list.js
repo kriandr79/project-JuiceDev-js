@@ -6,3 +6,4 @@ import './header.js';
 import './firebase-btns.js';
 import './firebase-functions.js';
 import './firebase-modals.js';
+import { offLoader, onLoader } from '../js/loader.js';
