@@ -24,7 +24,7 @@ function createGallery(data) {
             ${elements.books
               .map(book => {
                 return `
-                <a class="item-link-book" id ="${book._id}" dataset-book="book-box">
+                <a class="item-link-book" id ="${book._id}" data-book="book-box">
                   <div  class="card-of-book">
                     <img
                     id ="${book._id}"
