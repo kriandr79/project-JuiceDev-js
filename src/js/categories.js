@@ -6,6 +6,8 @@ const titleAll = document.querySelector('.all');
 // titleAll.addEventListener('click', getSelectedCategory);
 // console.log(titleAll.textContent);
 const select = document.querySelector('.select');
+const childrenSelect = select.children;
+console.log(childrenSelect);
 // select.addEventListener('click', getSelectedCategory);
 
 const change = document.querySelector('.change-category');
@@ -39,6 +41,7 @@ getBooksCategory()
     }
   })
   .catch(err => console.log(err));
+console.log(childrenSelect);
 
 export async function getSelectedCategory(evt) {
   if (evt.target.nodeName !== 'LI') {
@@ -65,7 +68,10 @@ export async function getSelectedCategory(evt) {
       changeColor(selectedCategory);
       creatCategory(selectedCategory, arr);
       offLoader();
-    } else if ((selectedCategory = 'All categories')) {
+    } else if ((titleAll.textContent = 'All categories')) {
+      childrenSelect.style.color = 'rgba(17, 17, 17, 0.6)';
+      childrenSelect.style.textTransform = 'none';
+
       getAllCategoriesBooks();
     } else {
       allCategories.textContent = 'Ooops!';
@@ -78,10 +84,24 @@ export async function getSelectedCategory(evt) {
 function getAllCategoriesBooks() {
   allCategories.innerHTML = '';
 
-  titleAll.style.color = 'rgb(79, 46, 232)';
+  // childrenSelect.style.textColor = '$color-black';
+  // childrenSelect.style.textTransform = 'none';
+
+  titleAll.style.color = '$color-violet';
   titleAll.style.textTransform = 'uppercase';
 
   createMarkup();
+}
+function changeColor(selectedCategory) {
+  for (var i = 0; i < select.children.length; i++) {
+    if (select.children[i].textContent == selectedCategory) {
+      select.children[i].style.color = 'rgb(79, 46, 232)';
+      select.children[i].style.textTransform = 'uppercase';
+    } else {
+      select.children[i].style.color = 'rgba(17, 17, 17, 0.6)';
+      select.children[i].style.textTransform = 'none';
+    }
+  }
 }
 
 export function creatCategory(selectedCategory, arr) {
@@ -110,16 +130,4 @@ export function creatCategory(selectedCategory, arr) {
   </ul>`;
 
   allCategories.insertAdjacentHTML('beforeend', markup);
-}
-
-function changeColor(selectedCategory) {
-  for (var i = 0; i < select.children.length; i++) {
-    if (select.children[i].textContent == selectedCategory) {
-      select.children[i].style.color = 'rgb(79, 46, 232)';
-      select.children[i].style.textTransform = 'uppercase';
-    } else {
-      select.children[i].style.color = 'rgba(17, 17, 17, 0.6)';
-      select.children[i].style.textTransform = 'none';
-    }
-  }
 }
