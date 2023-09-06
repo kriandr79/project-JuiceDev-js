@@ -4,6 +4,8 @@ import { initializeApp } from "firebase/app";
 import { doc, getFirestore, collection, setDoc, getDoc, getDocs, deleteDoc } from "firebase/firestore";
 // Authentication imports
 import { getAuth, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged } from 'firebase/auth';
+// Notify
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 // Cradentials
 const firebaseConfig = {
@@ -27,6 +29,13 @@ const userBtnName = document.querySelector('.user-btn-name');
 export const logoutBtn = document.querySelector('.logout-btn');
 export const authorizationModal = document.querySelector('.authorization-modal');
 const shoppingListLink = document.querySelector('#shoppingListLink');
+
+const paramsForNotify = {
+    position: 'center-top',
+    timeout: 3000,
+    width: '350px',
+    fontSize: '18px'
+};
 
 // Checking of user status
 onAuthStateChanged(auth, (data) => {
@@ -74,8 +83,7 @@ export async function firebaseRegistration(user_email, user_password, user_nickn
             email: user_email,
             nickname: user_nickname,
             theme: theme
-        })
-            .catch(error => console.log(error));
+        }).catch(error => console.log(error));
     }
 
     try {
@@ -87,13 +95,14 @@ export async function firebaseRegistration(user_email, user_password, user_nickn
             })
         
         await addUserDataToDataBase();
-
+        Notify.success(`Hello, ${auth.currentUser.displayName}! Welcome to Bookshelf!`, paramsForNotify);
     }
 
     catch (error) {
         if (error.code === 'auth/email-already-in-use') {
-            console.log('Этот Email уже используется.');
+            Notify.failure('This Email is already in use.', paramsForNotify);
         } else {
+            Notify.failure('Oops! Something went wrong! Try reloading the page or make another choice!', paramsForNotify);
             console.log(error);
         }
     }
@@ -110,27 +119,29 @@ export function firebaseAuthorization(user_email, user_password) {
 
         signInWithEmailAndPassword(auth, user_email, user_password)
             .then(() => {
-                firebaseGetAllItems(auth.currentUser.displayName)
+                firebaseGetAllItems(auth.currentUser.displayName);
+                Notify.success(`Hello, ${auth.currentUser.displayName}! Welcome to Bookshelf!`, paramsForNotify);
             })
             .catch((error) => {
                 switch (error.code) {
                     case 'auth/user-not-found':
-                        console.log('User with this email was not found');
+                        Notify.failure('User with this email was not found.', paramsForNotify);
                         break;
                     case 'auth/wrong-password':
-                        console.log('Incorrect password');
+                        Notify.failure('Incorrect password!', paramsForNotify);
                         break;
                     case 'auth/invalid-email':
-                        console.log('Incorrect email');
+                        Notify.failure('Incorrect email!', paramsForNotify);
                         break;
                     default:
+                        Notify.failure('Oops! Something went wrong! Try reloading the page or make another choice!', paramsForNotify);
                         console.error(error);
                         break;
                 }
             });
 
     } else {
-        console.error('The user is already logged in!');
+        Notify.failure('The user is already logged in!', paramsForNotify);
     }
 }
 
@@ -189,4 +200,5 @@ export async function firebaseGetAllItems(userName) {
 logoutBtn.addEventListener('click', () => {
     firebaseLogout();
     logoutBtn.classList.toggle('is-hidden');
+    Notify.info(`We're going to miss you, ${auth.currentUser.displayName} ...`, paramsForNotify);
 });
