@@ -1,17 +1,21 @@
 import { getTopBooks } from './api-best-sellers';
 
+const allCategories = document.querySelector('.all-categories');
+
 createMarkup();
 
 export async function createMarkup() {
+  allCategories.innerHTML = '';
+
   const info = await getTopBooks();
   // console.log('info from getTopBooks:', info);
   createGallery(info);
 }
 
-const allCategories = document.querySelector('.all-categories');
+// const allCategories = document.querySelector('.all-categories');
 
-
-function createGallery(data) {
+export function createGallery(data) {
+  const absentImage = '/images/book_absent.png';
   const markup = `
   <h1 class="title-best-sellers">Best Sellers <span class="title-span">Books</span></h1>
     <ul class="list-names list">${data
@@ -66,14 +70,28 @@ function createGallery(data) {
   allCategories.insertAdjacentHTML('beforeend', markup);
 }
 
+//   Рома
 // const seeMoreBtn = document.querySelectorAll('.book-button');
 
 // seeMoreBtn.forEach(btn => {
 //   btn.addEventListener('click', onSeeMoreBtn);
 // });
 
-// function onSeeMoreBtn(e) {
-//   const listId = e.target.dataset.id;
-//   createCategoryMarkup(listId);
-// } 
+//   Ірина
+// const seeMoreBtn = document.querySelectorAll('.book-button');
+// const cardLink = document.querySelectorAll('.item-link');
 
+// seeMoreBtn.forEach(btn => {
+//   btn.addEventListener('click', onSeeMoreBtn);
+// });
+
+// cardLink.forEach(book => {
+//   book.addEventListener('click', onBookClick);
+// });
+
+// export function onSeeMoreBtn(e) {
+
+// } функція для реалізації кнопки see more і переходу на відповідну категорію
+// export function onBookClick(e) {
+
+// } відкриття модалки по кліку на книгу
