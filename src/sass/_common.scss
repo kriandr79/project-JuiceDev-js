@@ -215,3 +215,9 @@ body {
 .shoppinglist-wrapper {
     width: 100%;
 }
+
+// Скрол для all categories для Firefox
+.select {
+    scrollbar-width: thin;
+    scrollbar-color: e0e0e0 $background-color;
+}
