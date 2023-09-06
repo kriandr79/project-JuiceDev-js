@@ -40,7 +40,6 @@ const markupBookEmpty = `<li><p class="shoppingList-text">
 
 document.addEventListener('DOMContentLoaded', () => {
   loadBookLS();
-  deleteBookId();
 });
 
 function loadBookLS() {
@@ -131,19 +130,32 @@ function markupBookContent(parsedData) {
   ulMarkupLS.innerHTML = markupBookLi;
 }
 
-function deleteBookId() {
-    let dots = document.getElementsByClassName('box-shoppingList-trash');
-    let i;
+
+
+ulMarkupLS.addEventListener('click', deleteBookId);
+
+function deleteBookId(event) {
+  const btnTarget = event.target.closest('.box-shoppingList-trash'); 
+
+  if (btnTarget) {
+
+    const bookId = event.target.parentElement.attributes.id.value;
+
+    if (bookId) {
   
-    for (i = 0; i < dots.length; i++) {
-      dots[i].addEventListener('click', e => {
-        let keyId = e.target.parentElement.attributes.id.value;
-        let filtered = parsedData.filter(o => o.id !== keyId);
-  
-        localStorage.setItem(KEY_LS, JSON.stringify(filtered));
-        loadData = localStorage.getItem(KEY_LS);
-        parsedData = JSON.parse(loadData);
-        loadBookLS();
-      });
+      const savedData = localStorage.getItem(KEY_LS);
+      const parsedSavedData = savedData ? JSON.parse(savedData) : [];
+
+      const updatedData = parsedSavedData.filter(book => book.id !== bookId);
+      
+      localStorage.setItem(KEY_LS, JSON.stringify(updatedData));
+
+      event.target.closest('.books-shoppingListLi').remove();
+
+      if (updatedData.length === 0) {
+        ulMarkupLS.innerHTML = markupBookEmpty;
+      }
     }
   }
+}
+  
