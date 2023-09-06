@@ -38,6 +38,15 @@ function applyThemeToAddedNodes(addedNodes, theme) {
             } else {
                 removeDarkThemeClass(node);
             }
+
+            const childElements = node.querySelectorAll('*');
+            childElements.forEach((child) => {
+                if (theme === 'dark') {
+                    addDarkThemeClass(child);
+                } else {
+                    removeDarkThemeClass(child);
+                }
+            });
         }
     });
 }
