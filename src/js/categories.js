@@ -6,8 +6,8 @@ const titleAll = document.querySelector('.all');
 // titleAll.addEventListener('click', getSelectedCategory);
 // console.log(titleAll.textContent);
 const select = document.querySelector('.select');
-const childrenSelect = select.children;
-console.log(childrenSelect);
+// const childrenSelect = select.children;
+// console.log(childrenSelect);
 // select.addEventListener('click', getSelectedCategory);
 
 const change = document.querySelector('.change-category');
@@ -49,7 +49,7 @@ export async function getSelectedCategory(evt) {
   }
   console.log(evt.target);
   allCategories.innerHTML = '';
-  titleAll.style.color = 'rgba(17, 17, 17, 0.6)';
+  titleAll.style.color = '$color-black';
   titleAll.style.textTransform = 'none';
 
   let selectedCategory = evt.target.textContent;
@@ -69,7 +69,7 @@ export async function getSelectedCategory(evt) {
       creatCategory(selectedCategory, arr);
       offLoader();
     } else if ((titleAll.textContent = 'All categories')) {
-      childrenSelect.style.color = 'rgba(17, 17, 17, 0.6)';
+      childrenSelect.style.color = '$color-black';
       childrenSelect.style.textTransform = 'none';
 
       getAllCategoriesBooks();
@@ -95,10 +95,10 @@ function getAllCategoriesBooks() {
 function changeColor(selectedCategory) {
   for (var i = 0; i < select.children.length; i++) {
     if (select.children[i].textContent == selectedCategory) {
-      select.children[i].style.color = 'rgb(79, 46, 232)';
+      select.children[i].style.color = '$color-violet';
       select.children[i].style.textTransform = 'uppercase';
     } else {
-      select.children[i].style.color = 'rgba(17, 17, 17, 0.6)';
+      select.children[i].style.color = '$color-black';
       select.children[i].style.textTransform = 'none';
     }
   }
