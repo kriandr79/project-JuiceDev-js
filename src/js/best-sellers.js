@@ -24,7 +24,7 @@ function createGallery(data) {
             ${elements.books
               .map(book => {
                 return `
-                <a class="item-link-book" id ="${book._id}">
+                <a class="item-link-book" id ="${book._id}" dataset-book="book-box">
                   <div  class="card-of-book">
                     <img
                     id ="${book._id}"
@@ -66,14 +66,14 @@ function createGallery(data) {
   allCategories.insertAdjacentHTML('beforeend', markup);
 }
 
-const seeMoreBtn = document.querySelectorAll('.book-button');
+// const seeMoreBtn = document.querySelectorAll('.book-button');
 
-seeMoreBtn.forEach(btn => {
-  btn.addEventListener('click', onSeeMoreBtn);
-});
+// seeMoreBtn.forEach(btn => {
+//   btn.addEventListener('click', onSeeMoreBtn);
+// });
 
-function onSeeMoreBtn(e) {
-  const listId = e.target.dataset.id;
-  createCategoryMarkup(listId);
-} 
+// function onSeeMoreBtn(e) {
+//   const listId = e.target.dataset.id;
+//   createCategoryMarkup(listId);
+// } 
 
