@@ -1,12 +1,12 @@
 // Categories menu =================
 .all-categories-menu-title {
-  color: rgba(17, 17, 17, 0.6);
-    font-family: DM Sans;
-    font-size: 16px;
-    width: 327px;
-    font-size: 18px;
-    padding-left: 4px;
-    padding-bottom: 32px;
+  color: $color-black;
+  font-family: DM Sans;
+  font-size: 16px;
+  width: 327px;
+  font-size: 18px;
+  padding-left: 4px;
+  padding-bottom: 32px;
 }
 
 .select {
@@ -98,7 +98,7 @@
 
 .all:hover,
 .all:focus {
-  color: #4f2ee8;
+  color: $color-violet;
   text-transform: uppercase;
 }
 
@@ -120,7 +120,7 @@
   // align-items: flex-end;
   width: 335px;
   text-align: left;
-  color: #111;
+  color: $color-black;
   font-family: DM Sans;
   font-size: 28px;
   font-style: normal;
@@ -133,7 +133,7 @@
   padding: 0;
 }
 .last-word {
-  color: rgb(79, 46, 232);
+  color: $color-violet;
 }
 
 @media only screen and (min-width: 768px) {
@@ -258,9 +258,9 @@
   justify-content: center;
   align-items: center;
   border-radius: 0px 0px 8px 8px;
-  background: #eac645;
+  background: $color-yellow;
 
-  color: #111;
+  color: $color-black;
   font-family: DM Sans;
   font-size: 14px;
   font-style: normal;
@@ -296,7 +296,7 @@
   }
 }
 .title {
-  color: #111;
+  color: $color-black;
   font-family: DM Sans;
   font-size: 16px;
   font-style: normal;
@@ -318,7 +318,7 @@
   }
 }
 .author {
-  color: #b4afaf;
+  color: $color-lightgrey;
   font-family: DM Sans;
   font-size: 12px;
   font-style: italic;
@@ -339,37 +339,3 @@
   stroke: currentColor;
   fill: currentColor;
 }
-
-/* ==========================================
-Single-colored icons can be modified like so:
-.icon-name {
-  font-size: 32px;
-  color: red;
-}
-========================================== */
-
-.icon-book-4 {
-  width: 1.099609375em;
-}
-
-.icon-book-3 {
-  width: 1.111328125em;
-}
-
-.icon-book-2 {
-  width: 1.099609375em;
-}
-
-.icon-book-1 {
-  width: 1.06640625em;
-}
-// for (var i = 0; i < select.children.length; i++) {
-//   select.children[i].onclick = function () {
-//     for (var j = 0; j < select.children.length; j++) {
-//       select.children[j].style.color = 'rgba(17, 17, 17, 0.6)';
-//       select.children[j].style.textTransform = 'none';
-//     }
-//     this.style.color = 'rgb(79, 46, 232';
-//     this.style.textTransform = 'uppercase';
-//   };
-// }
