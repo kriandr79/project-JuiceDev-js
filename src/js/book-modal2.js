@@ -23,7 +23,7 @@ async function fetchBooks(bookid) {
 }
 
 async function onBookClick(e) {
-  const target = e.target.closest('.item-link-book'); // шукаємо потрібний елемент
+  const target = e.target.closest('[data-book="book-box"]'); // шукаємо потрібний елемент
   if (target) {
     const bookId = target.getAttribute('id');
     let action = '';
