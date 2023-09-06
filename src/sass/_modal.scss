@@ -20,7 +20,7 @@ body.modal-open {
   padding-left: 24px;
   padding-right: 24px;
 
-  overflow: hidden;
+  overflow: scroll;
   background-color: $color-white;
   border: solid 2px $color-black;
   border-radius: 20px;
@@ -90,7 +90,15 @@ body.modal-open {
   margin-bottom: 24px;
 }
 
+.list-partners {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;}
 
+  .shop-item-partners{
+  filter: grayscale(100%);
+}
 
 
 
