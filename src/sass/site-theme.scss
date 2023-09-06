@@ -91,3 +91,22 @@ h1.dark-theme {
 .title.dark-theme {
   color: $color-white;
 }
+// MODAL
+.book-card-modal.dark-theme {
+  background-color: $color-black1;
+}
+.close-modal-icon.dark-theme {
+  fill: $color-white;
+}
+.modal-book-name.dark-theme {
+  color: $color-white;
+}
+.modal-book-author.dark-theme {
+  color: $color-lightgrey;
+}
+.modal-book-description.dark-theme {
+  color: $color-white;
+}
+.js-add.dark-theme {
+  color: $color-white;
+}
