@@ -52,7 +52,7 @@
 }
 
 .select-text {
-  color: rgba(17, 17, 17, 0.6);
+  color: $color-black;
   font-family: DM Sans;
   font-size: 16px;
   font-style: normal;
@@ -65,7 +65,7 @@
 
 .select-text:hover,
 .select-text:focus {
-  color: #4f2ee8;
+  color: $color-violet;
   text-transform: uppercase;
 }
 
@@ -73,7 +73,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  color: rgba(79, 46, 232);
+  color: $color-violet;
   text-transform: uppercase;
   font-family: DM Sans;
   font-size: 16px;
