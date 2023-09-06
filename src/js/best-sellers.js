@@ -66,13 +66,14 @@ function createGallery(data) {
   allCategories.insertAdjacentHTML('beforeend', markup);
 }
 
-// const seeMoreBtn = document.querySelectorAll('.book-button');
+const seeMoreBtn = document.querySelectorAll('.book-button');
 
-// seeMoreBtn.forEach(btn => {
-//   btn.addEventListener('click', onSeeMoreBtn);
-// });
+seeMoreBtn.forEach(btn => {
+  btn.addEventListener('click', onSeeMoreBtn);
+});
 
-// export function onSeeMoreBtn(e) {
-
-// } функція для реалізації кнопки see more і переходу на відповідну категорію
+function onSeeMoreBtn(e) {
+  const listId = e.target.dataset.id;
+  createCategoryMarkup(listId);
+} 
 
