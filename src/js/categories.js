@@ -6,7 +6,7 @@ const titleAll = document.querySelector('.all');
 // titleAll.addEventListener('click', getSelectedCategory);
 // console.log(titleAll.textContent);
 const select = document.querySelector('.select');
-// const childrenSelect = select.children;
+const childrenSelect = select.children;
 // console.log(childrenSelect);
 // select.addEventListener('click', getSelectedCategory);
 
