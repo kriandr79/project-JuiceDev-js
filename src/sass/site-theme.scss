@@ -76,21 +76,9 @@ h1.dark-theme {
   filter: grayscale(100%);
 }
 
-// .shop-shoppingList-img1:focus,
-// .shop-shoppingList-img2:focus,
-// .shop-shoppingList-img1:hover,
-// .shop-shoppingList-img2:hover.dark-theme {
-//   filter: drop-shadow(0px 3px 3px rgba(255, 255, 255,0.35));
-// }
-
 .shop-shoppingList-img1:focus,
-.shop-shoppingList-img1:hover.dark-theme {
-  filter: drop-shadow(0px 3px 3px rgba(255, 255, 255,0.35));
-  filter: brightness(0) invert(1);
-}
-
 .shop-shoppingList-img2:focus,
+.shop-shoppingList-img1:hover,
 .shop-shoppingList-img2:hover.dark-theme {
   filter: drop-shadow(0px 3px 3px rgba(255, 255, 255,0.35));
-  filter: grayscale(100%);
 }
