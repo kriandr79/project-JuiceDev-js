@@ -39,3 +39,25 @@ h1.dark-theme {
 
   color: $color-white1;
 }
+.header-nav-link.dark-theme {
+  color: $color-white;
+}
+.header-nav-link.current.dark-theme {
+  color: $color-black;
+  background-color: #eac645;
+  border-radius: 36px;
+  padding: 8px 16px;
+ .header-nav-shopping-cart {
+  fill: black;
+ }
+}
+.header-burger-menu-icon.dark-theme {
+  stroke: $color-white;
+}
+.label-switch.dark-theme {
+  background: linear-gradient(to bottom, #4F2EE8, #686868);
+}
+.header-burger-menu-icon:hover,
+.header-burger-menu-icon:focus.dark-theme {
+    stroke: $color-violet;
+}
