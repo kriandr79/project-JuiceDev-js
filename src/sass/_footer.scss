@@ -11,9 +11,14 @@
     margin-left: auto;
     margin-right: auto;
         
-    border-radius: 8px 8px 0px 0px;
-    border: 1.5px solid $color-black;
-    background: $color-white;
+    // border-radius: 8px 8px 0px 0px;
+    // border: 1.5px solid $color-black;
+    // background: $color-white;
+
+    // background-color: $color-black1;
+    // background-color: $color-violet;
+    background-color: $color-yellow;
+      
 }
 
 .footer-left {}
@@ -76,10 +81,10 @@
 .footer-contact-item {
     text-decoration: none;
     
-        font-size: 16px;
-        line-height: 1.5;
-        letter-spacing: 0.02em;
-        color: $color-black;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: $color-black;
 }
 
 // Footer right
@@ -103,7 +108,7 @@
 .footer-social-link {}
 
 .footer-social-icon {  
-    background-color: $color-white;
+    background-color: $color-yellow;
     border: 0;
     padding: 0;
     line-height: 0;
