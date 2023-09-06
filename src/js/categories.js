@@ -4,7 +4,7 @@ import { onLoader, offLoader } from './loader';
 
 const titleAll = document.querySelector('.all');
 // titleAll.addEventListener('click', getSelectedCategory);
-console.log(titleAll.textContent);
+// console.log(titleAll.textContent);
 const select = document.querySelector('.select');
 // select.addEventListener('click', getSelectedCategory);
 
