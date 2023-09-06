@@ -1,15 +1,16 @@
 .footer-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: none;
+  
+    // align-items: center;
+    // justify-content: space-between;
 
-    max-width: 100%;
-    min-width: 320px;
-    height: 112px;
+    // max-width: 100%;
+    // min-width: 320px;
+    // height: 112px;
 
-    padding: 18px 20px;
-    margin-left: auto;
-    margin-right: auto;
+    // padding: 18px 20px;
+    // margin-left: auto;
+    // margin-right: auto;
 
     // border-radius: 8px 8px 0px 0px;
     // border: 1.5px solid $color-black;
@@ -17,7 +18,7 @@
 
     // background-color: $color-black1;
     // background-color: $color-violet;
-    background-color: $color-yellow;
+    // background-color: $color-yellow;
 
 }
 
@@ -32,6 +33,7 @@
         height: 112px;
 
         padding: 14px 32px;
+          background-color: $color-yellow;
     }
 }
 
