@@ -1,41 +1,27 @@
 .header-container {
     display: flex;
     align-items: center;
-
     max-width: 100%;
     min-width: 320px;
-    height: 28px;
-
+    height: 64px;
     padding: 18px 20px;
     margin-left: auto;
     margin-right: auto;
-
     border-radius: 0px 0px 8px 8px;
     border: 1.5px solid $color-black;
     background: $color-white;
 }
 @media only screen and (min-width: 768px) {
     .header-container {
-        display: flex;
-        align-items: center;
-
-        max-width: 100%;
         min-width: 768px;
         height: 72px;
-
         padding: 14px 32px;
     }
 }
 
 @media only screen and (min-width: 1440px) {
     .header-container {
-        display: flex;
-        align-items: center;
-
-        
         max-width: 1440px;
-        height: 72px;
-
         padding: 14px 24px;
     }
 }
@@ -63,170 +49,250 @@
     fill: $color-black;
 }
 
-.header-nav {
-    display: none;
-}
+.header {
+    &-mobile-menu {
+        position: absolute;
+        width: 100vw;
+        bottom: 0;
+        height: calc(100vh - 64px);
+        background: radial-gradient(189.32% 190.93% at 59.76% -23.42%, $color-violet 18.03%, $color-white 100%);
+        z-index: 100;
+        padding: 40px 20px;
 
-@media only screen and (min-width: 768px) {
-    .header-nav {
-        display: block;
-        margin-right: auto;
+        &::after {
+            content: '';
+            display: block;
+            width: 545px;
+            height: 540px;
+            background-image: url('../images/mobile-menu-bg.png');
+            background-size: contain;
+            background-position-x: center;
+            position: absolute;
+            left: 55%;
+            transform: translate(-50%, 170);
+            bottom: 0;
+            background-repeat: no-repeat;
+        }
     }
-}
 
-@media only screen and (min-width: 1440px) {
-    .header-nav {
-        display: block;
-        margin-right: auto;
+    &-nav {
+        display: none;
+
+        &-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 130px auto 0 auto;
+            max-width: max-content;
+        }
+
+        &-shopping-cart {
+            fill: $color-white;
+        }
+
+        &-item {
+            &.current {
+                & .header-vav-shopping-cart {
+                    fill: $color-white;
+                }
+            }
+        }
+
+        &-link {
+            display: flex;
+            align-items: center;
+            height: 34px;
+            gap: 4px;
+            color: $color-white;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.29;
+            letter-spacing: -0.56px;
+            text-transform: uppercase;
+
+            &.current {
+                background-color: $color-yellow;
+                color: $color-black;
+                padding: 8px 16px;
+                border-radius: 36px;
+                font-weight: 700;
+            }
+        }
     }
-}
 
-.header-nav-link {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    color: $color-black;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 18px;
-    /* 128.571% */
-    letter-spacing: -0.56px;
-    text-transform: uppercase;
-}
+    &-burger-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        border: none;
+        background-color: transparent;
 
-.header-nav-link.current {
-    background-color: $color-yellow;
-    padding: 8px 16px;
-    border-radius: 36px;
-}
+        & .icon-close {
+            display: none;
+        }
 
-.header-nav-shopping-cart {
-    fill: $color-black;
-}
+        &.is-open {
+            & .icon-burger {
+                display: none;
+            }
 
+            & .icon-close {
+                display: block;
+            }
+        }
+    }
 
-.header-nav-list {
-    display: flex;
-    align-items: center;
-    gap: 24px;
+    &-burger-menu-icon {
+        stroke: $color-black;
+    }
+    
+    &-burger-menu-icon:hover,
+    &-burger-menu-icon:focus {
+        stroke: $color-violet;
+    }
 
+    &-buttons {
+        position: relative;
+    }
 
-}
-
-.header-nav-item.current {
-        background-color: $color-yellow;
-        color: $color-black;
-        padding: 8px 16px;
+    &-login-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 184px;
+        height: 48px;
+        gap: 9px;
+        padding: 15px 14px;
         border-radius: 36px;
+        border: none;
+        background: transparent;
+
+        &.login-btn {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.28;
+            color: $color-white;
+            border-radius: 18px;
+            border: 1.5px solid $color-black;
+        }
+
+        &.user-btn {
+            padding: 0;
+            width: fit-content;
+        }
     }
-.toggle-container {}
 
-.label-switch {}
+    &-login-arrow {
+        display: none;
+        fill: $color-white;
+    }
 
-.toggle-switch {}
+    &-logout-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 118px;
+        height: 48px;
+        border-radius: 18px;
+        border: 1.5px solid $color-black;
+        background: $color-white;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: -0.56px;
+        padding: 14px 24px;
+        position: absolute;
+        bottom: -48px;
+    }
 
-.switch-slider {}
+    &-login-name {
+        color: $color-white;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.44px;
+        word-break: break-word;
+    }
 
-.header-login-box {
-    display: none;
+    &-user-pic {
+        border-radius: 50%;
+    }
 }
 
 @media only screen and (min-width: 768px) {   
     .header {
+        &-mobile-menu {
+            display: none;
+        }
+
+        &-nav {
+            display: block;
+            margin-right: auto;
+
+            &-list {
+                flex-direction: row;
+                gap: 24px;
+                margin: 0;
+            }
+
+            &-link {
+                color: $color-black;
+                font-weight: 700;
+            }
+
+            &-shopping-cart {
+                fill: $color-black;
+            }
+
+            &-item {
+                &.current { 
+                    & .header-vav-shopping-cart {
+                        fill: $color-black;
+                    }
+                }
+            }
+        }
+
+        &-burger-menu-btn {
+            display: none;
+        }
+
         &-buttons {
             position: relative;
         }
+
         &-login-box {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 184px;
             height: 45px;
             flex-shrink: 0;
             padding: 8px 12px;
-            border-radius: 36px;
-            border: none;
             background: $color-violet;
 
-            &.login-btn {
-                font-size: 14px;
-                font-weight: 500;
-                line-height: 1.28;
-                color: $color-white;
-                border-radius: 18px;
-                border: 1.5px solid $color-black;
+            &.user-btn {
+                padding: 8px 12px;
+                width: 184px;
             }
         }
 
         &-logout-btn {
-            display: flex;
-            justify-content: space-between;
             width: 184px;
-            height: 48px;
-            border-radius: 18px;
-            border: 1.5px solid $color-black;
-            background: $color-white;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 1.2;
-            letter-spacing: -0.56px;
-            padding: 14px;
             position: absolute;
             bottom: -48px;
         }
 
         &-login-name {
-            color: $color-white;
-            font-size: 22px;
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: -0.44px;
+            font-size: 18px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
 
         &-login-arrow {
-            fill: $color-white;
-        }
-
-        &-user-pic {
-            border-radius: 50%;
+            display: block;
         }
     }
-}
-
-.header-burger-menu-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 28px;
-    height: 28px;
-    padding: 0;
-    border: none;
-
-    background-color: transparent;
-
-}
-
-@media only screen and (min-width: 768px) {
-    .header-burger-menu-btn {
-        display: none;
-    }
-}
-
-@media only screen and (min-width: 1440px) {
-    .header-burger-menu-btn {
-        display: none;
-    }
-}
-
-.header-burger-menu-icon {
-    stroke: $color-black;
-}
-
-.header-burger-menu-icon:hover,
-.header-burger-menu-icon:focus {
-    stroke: $color-violet;
 }
 
 // Toggle styles
@@ -242,8 +308,7 @@
     height: 20px;
     background-color: brown;
     border-radius: 36px;
-
-    background: linear-gradient(to bottom, #4F2EE8, #DCDCDC);
+    background: linear-gradient(to bottom, $color-violet, #DCDCDC);
 }
 
 .toggle-switch {
@@ -261,7 +326,7 @@
     top: 1px;
     height: 18px;
     width: 18px;
-    background-color: white;
+    background-color: $color-white;
     border-radius: 100%;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
     transition: 0.5s;
