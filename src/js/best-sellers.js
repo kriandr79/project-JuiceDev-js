@@ -24,7 +24,7 @@ function createGallery(data) {
             ${elements.books
               .map(book => {
                 return `
-                <a class="item-link-book" id ="${book._id}">
+                <a class="item-link-book" id ="${book._id}" data-book="book-box">
                   <div  class="card-of-book">
                     <img
                     id ="${book._id}"
@@ -67,20 +67,13 @@ function createGallery(data) {
 }
 
 // const seeMoreBtn = document.querySelectorAll('.book-button');
-// const cardLink = document.querySelectorAll('.item-link');
 
 // seeMoreBtn.forEach(btn => {
 //   btn.addEventListener('click', onSeeMoreBtn);
 // });
 
-// cardLink.forEach(book => {
-//   book.addEventListener('click', onBookClick);
-// });
-
-// export function onSeeMoreBtn(e) {
-
-// } функція для реалізації кнопки see more і переходу на відповідну категорію
-// export function onBookClick(e) {
-
-// } відкриття модалки по кліку на книгу
+// function onSeeMoreBtn(e) {
+//   const listId = e.target.dataset.id;
+//   createCategoryMarkup(listId);
+// } 
 

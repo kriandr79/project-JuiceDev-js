@@ -12,7 +12,7 @@ import './firebase-modals.js';
 // window.addEventListener('load', loadBookLS);
 // offLoader();
 
-const KEY_LS = 'storebook';
+const KEY_LS = 'my-shoppinglist';
 let imgEmptyBig = new URL('/src/images/empty-page@2.png', import.meta.url);
 let imgEmpty = new URL('/src/images/empty-page.png', import.meta.url);
 let imgAmazon = new URL('/src/images/amazon.png', import.meta.url);
@@ -40,8 +40,6 @@ const markupBookEmpty = `<li><p class="shoppingList-text">
 
 document.addEventListener('DOMContentLoaded', () => {
   loadBookLS();
-  deleteBookId();
-  console.log(parsedData);
 });
 
 function loadBookLS() {
@@ -60,16 +58,16 @@ function markupBookContent(parsedData) {
       return `<li class="books-shoppingListLi">
         <img
           class="books-shoppingList-img"
-          src="${parsedData.info.book_image}"
+          src="${parsedData.image}"
           alt=""
         />
         <div class="box-shoppingList-content">
           <div id="cont" class="box-shoppingList">
             <div>
-              <h2 class="text-shoppingList-title">${parsedData.info.title}</h2>
-              <p class="text-shoppingList-category">${parsedData.info.publisher}</p>
+              <h2 class="text-shoppingList-title">${parsedData.title}</h2>
+              <p class="text-shoppingList-category">${parsedData.publisher}</p>
             </div>
-            <button class="box-shoppingList-trash" id="${parsedData.info.id}">
+            <button class="box-shoppingList-trash" id="${parsedData.id}">
               <img
                 class="box-shoppingList-trash-icon"
                 src="${imgTrash}"
@@ -78,16 +76,16 @@ function markupBookContent(parsedData) {
             </button>
           </div>
           <p class="text-shoppingList-content">
-            ${parsedData.info.description}
+            ${parsedData.description}
           </p>
           <div class="box-shoppingList-link">
-            <p class="text-shoppingList-author">${parsedData.info.author}</p>
+            <p class="text-shoppingList-author">${parsedData.author}</p>
             <ul class="box-shoppingList-shop">
               <li>
                 <a
                   class="shop-shoppingList-link"
                   target="_blank"
-                  href="${parsedData.info.buy_links.find(link => link.name === 'Amazon')?.url}"
+                  href="${parsedData.buy_links.find(link => link.name === 'Amazon')?.url}"
                 >
                   <img
                     class="shop-shoppingList-img1"
@@ -100,7 +98,7 @@ function markupBookContent(parsedData) {
                 <a
                   class="shop-shoppingList-link"
                   target="_blank"
-                  href="${parsedData.info.buy_links.find(link => link.name === 'Apple Books')?.url}"
+                  href="${parsedData.buy_links.find(link => link.name === 'Apple Books')?.url}"
                 >                          
                   <img
                     class="shop-shoppingList-img2"
@@ -113,7 +111,7 @@ function markupBookContent(parsedData) {
                 <a
                   class="shop-shoppingList-link"
                   target="_blank"
-                  href="${parsedData.info.buy_links.find(link => link.name === 'Bookshop')?.url}"
+                  href="${parsedData.buy_links.find(link => link.name === 'Bookshop')?.url}"
                 >
                   <img
                     class="shop-shoppingList-img2"
@@ -132,18 +130,32 @@ function markupBookContent(parsedData) {
   ulMarkupLS.innerHTML = markupBookLi;
 }
 
-// function deleteBookId() {
-//   let dots = document.getElementsByClassName('box-shoppingList-trash');
 
-// for (let i = 0; i < dots.length; i+1) {
-//     dots[i].addEventListener('click', e => {
-//       let keyId = e.target.parentElement.getAttribute('id');
-//       let filtered = parsedData.filter(o => o.id !== keyId);
 
-//       localStorage.setItem(KEY_LS, JSON.stringify(filtered));
-//       loadData = localStorage.getItem(KEY_LS);
-//       parsedData = JSON.parse(loadData);
-//       loadBookLS();
-//     });
-//   }
-// }
+ulMarkupLS.addEventListener('click', deleteBookId);
+
+function deleteBookId(event) {
+  const btnTarget = event.target.closest('.box-shoppingList-trash'); 
+
+  if (btnTarget) {
+
+    const bookId = event.target.parentElement.attributes.id.value;
+
+    if (bookId) {
+  
+      const savedData = localStorage.getItem(KEY_LS);
+      const parsedSavedData = savedData ? JSON.parse(savedData) : [];
+
+      const updatedData = parsedSavedData.filter(book => book.id !== bookId);
+      
+      localStorage.setItem(KEY_LS, JSON.stringify(updatedData));
+
+      event.target.closest('.books-shoppingListLi').remove();
+
+      if (updatedData.length === 0) {
+        ulMarkupLS.innerHTML = markupBookEmpty;
+      }
+    }
+  }
+}
+  
