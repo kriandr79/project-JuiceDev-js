@@ -12,7 +12,7 @@ import './firebase-modals.js';
 // window.addEventListener('load', loadBookLS);
 // offLoader();
 
-const KEY_LS = 'storebook';
+const KEY_LS = 'my-shoppinglist';
 let imgEmptyBig = new URL('/src/images/empty-page@2.png', import.meta.url);
 let imgEmpty = new URL('/src/images/empty-page.png', import.meta.url);
 let imgAmazon = new URL('/src/images/amazon.png', import.meta.url);
@@ -59,14 +59,14 @@ function markupBookContent(parsedData) {
       return `<li class="books-shoppingListLi">
         <img
           class="books-shoppingList-img"
-          src="${parsedData.info.book_image}"
+          src="${parsedData.image}"
           alt=""
         />
         <div class="box-shoppingList-content">
           <div id="cont" class="box-shoppingList">
             <div>
-              <h2 class="text-shoppingList-title">${parsedData.info.title}</h2>
-              <p class="text-shoppingList-category">${parsedData.info.publisher}</p>
+              <h2 class="text-shoppingList-title">${parsedData.title}</h2>
+              <p class="text-shoppingList-category">${parsedData.publisher}</p>
             </div>
             <button class="box-shoppingList-trash" id="${parsedData.id}">
               <img
@@ -77,16 +77,16 @@ function markupBookContent(parsedData) {
             </button>
           </div>
           <p class="text-shoppingList-content">
-            ${parsedData.info.description}
+            ${parsedData.description}
           </p>
           <div class="box-shoppingList-link">
-            <p class="text-shoppingList-author">${parsedData.info.author}</p>
+            <p class="text-shoppingList-author">${parsedData.author}</p>
             <ul class="box-shoppingList-shop">
               <li>
                 <a
                   class="shop-shoppingList-link"
                   target="_blank"
-                  href="${parsedData.info.buy_links.find(link => link.name === 'Amazon')?.url}"
+                  href="${parsedData.buy_links.find(link => link.name === 'Amazon')?.url}"
                 >
                   <img
                     class="shop-shoppingList-img1"
@@ -99,7 +99,7 @@ function markupBookContent(parsedData) {
                 <a
                   class="shop-shoppingList-link"
                   target="_blank"
-                  href="${parsedData.info.buy_links.find(link => link.name === 'Apple Books')?.url}"
+                  href="${parsedData.buy_links.find(link => link.name === 'Apple Books')?.url}"
                 >                          
                   <img
                     class="shop-shoppingList-img2"
@@ -112,7 +112,7 @@ function markupBookContent(parsedData) {
                 <a
                   class="shop-shoppingList-link"
                   target="_blank"
-                  href="${parsedData.info.buy_links.find(link => link.name === 'Bookshop')?.url}"
+                  href="${parsedData.buy_links.find(link => link.name === 'Bookshop')?.url}"
                 >
                   <img
                     class="shop-shoppingList-img2"
