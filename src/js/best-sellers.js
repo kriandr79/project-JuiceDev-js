@@ -1,17 +1,20 @@
 import { getTopBooks } from './api-best-sellers';
 
+const allCategories = document.querySelector('.all-categories');
+
 createMarkup();
 
 export async function createMarkup() {
+  allCategories.innerHTML = '';
+
   const info = await getTopBooks();
   console.log('info from getTopBooks:', info);
   createGallery(info);
 }
 
-const allCategories = document.querySelector('.all-categories');
+// const allCategories = document.querySelector('.all-categories');
 
-
-function createGallery(data) {
+export function createGallery(data) {
   const absentImage = '/images/book_absent.png';
   const markup = `
   <h1 class="title-best-sellers">Best Sellers <span class="title-span">Books</span></h1>
@@ -90,4 +93,3 @@ function createGallery(data) {
 // export function onBookClick(e) {
 
 // } відкриття модалки по кліку на книгу
-
