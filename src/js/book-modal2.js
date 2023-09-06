@@ -1,6 +1,10 @@
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import axios from 'axios';
+import amazonImg from '../images/amazon.png';
+import appleShopImg from '../images/applebook.png';
+import bookShopImg from '../images/bookshop.png';
+import closeSvg from '../images/icons.svg';
 
 const PRODUCT_LS_KEY = 'my-shoppinglist';
 
@@ -21,7 +25,7 @@ async function fetchBooks(bookid) {
     console.log(err);
   }
 }
-
+let instance; 
 async function onBookClick(e) {
   const target = e.target.closest('.item-link-book'); // шукаємо потрібний елемент
   if (target) {
@@ -65,10 +69,15 @@ async function onBookClick(e) {
 
       action = 'add';  // це дія для кнопки
     }
-
+    
     // Открываем модальное окно (разметка + одна из кнопок ADD / REMOVE)
-    const instance = basicLightbox.create(makeBookCardMarkup(bookData, action));
+   instance = basicLightbox.create(makeBookCardMarkup(bookData, action));
     instance.show();
+    document.body.classList.add('modal-open');     // класс для блокування скролу
+
+    const closeButton = document.querySelector('.close-modal-btn');
+    closeButton.addEventListener('click', handleCloseButtonClick);
+
 
     const actionBtn = document.querySelector('.js-add'); // находим кнопку
     actionBtn.addEventListener('click', event => {
@@ -76,6 +85,19 @@ async function onBookClick(e) {
     });
   }
 }
+
+function handleCloseButtonClick() {
+  instance.close(); // Закриваємо модальне вікно при кліку на кнопку з іконкою хрестика
+  document.body.classList.remove('modal-open');}
+
+window.addEventListener('keydown', handleEscKey);
+
+function handleEscKey(event) {
+  if (event.key === 'Escape') {
+    instance.close(); // Закриваємо модальне вікно при натисканні клавіші "Escape"
+  }
+}
+
 
 function onBtnPress(currentBook, event) {
   const action = event.target.getAttribute('data-action'); // Берем параметр действия кнопки - add / remove
@@ -118,41 +140,59 @@ function makeBookCardMarkup(
 ) {
   
   // Фільтруємо лінки по трьом назвам та робимо із них зразу li
-  const links = buy_links
+  const buyLinks = buy_links
     .filter(
       item =>
         item.name === 'Amazon' ||
         item.name === 'Apple Books' ||
-        item.name === 'Bookshop'
+        item.name === 'Books-A-Million'
     )
-    .map(({ name, url }) => `<li class=""><a href="${url}">${name}</a></li>`);
+    
 
   // Робимо відповідну кнопку Add або Remove
   let actionBtnMarckup = '';
   if (action === 'add') {
     actionBtnMarckup = `<button class="js-add" type="submit" data-action="add">Add to shopping list</button>`;
+    
   } else if (action === 'remove') {
     actionBtnMarckup = `<button class="js-add" type="submit" data-action="remove">Remove from shopping list</button>`;
+    
   }
-
+  const shopIcons = {
+    Amazon: amazonImg,
+    'Apple Books': appleShopImg,
+    'Books-A-Million': bookShopImg,
+  };
   return `
         <div class="modal">
         <div class="book-card-modal" data-id="${id}"> 
         <button class="close-modal-btn" type="button">
-          <svg class="close-modal-icon">
-            <use href="#icon-x-close"></use>
-          </svg>
-        </button>
+        <svg class="close-modal-icon">
+          <use href="${closeSvg}#icon-clear"></use>
+        </svg>
+      </button>
         <div class="modal-wrapper">
           <img src="${image}" alt="${title}" class="modal-book-img">
           <div class="modal-titles"> 
             <h2 class="modal-book-name" aria-label="${title}">${title}</h2>
             <p class="modal-book-author" aria-label="${author}"> ${author}</p>
-            <p class="modal-book-descr">${description}</p>
+            <p class="modal-book-description">${description}</p>
             <div> 
-              <ul class="modal-list-partners">
-              ${links} 
-              </ul> 
+            <ul class="list-partners">
+            ${buyLinks
+              .map(
+                buyLink => `<li class="shop-item-partners">
+                    <a
+                      href="${buyLink.url}"
+                      class="shop-partners-link"
+                      target="_blank"
+                      rel="noopener no-referrer"
+                      ><img src="${shopIcons[buyLink.name]}" alt="${buyLink.name}"
+                    /></a>
+                  </li>`
+              )
+              .join('')}
+          </ul>
             </div> 
           </div>
           </div>
@@ -160,3 +200,8 @@ function makeBookCardMarkup(
       </div>
       </div>`;
 }
+
+
+
+
+
