@@ -78,11 +78,9 @@
   text-transform: uppercase;
 }
 
-.all {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+.first {
   color: $color-violet;
+  text-align: left;
   text-transform: uppercase;
   font-family: DM Sans;
   font-size: 16px;
@@ -91,13 +89,10 @@
   line-height: 1.13;
   letter-spacing: -0.32px;
   cursor: pointer;
-  padding-bottom: 24px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
-.all:hover,
-.all:focus {
+.first:hover,
+.first:focus {
   color: $color-violet;
   text-transform: uppercase;
 }
@@ -106,9 +101,8 @@
   .select-text {
     font-size: 18px;
   }
-  .all {
+  .first {
     font-size: 18px;
-    padding-bottom: 32px;
   }
 }
 
@@ -132,6 +126,7 @@
   margin-right: auto;
   padding: 0;
 }
+
 .last-word {
   color: $color-violet;
 }
@@ -159,7 +154,6 @@
   min-width: 335px;
   gap: 40px;
   overflow: hidden;
-  background-image: url(../images/icons.svg#book-4);
 
   margin-left: auto;
   margin-right: auto;
@@ -191,7 +185,6 @@
   align-items: flex-start;
   gap: 14px;
   cursor: pointer;
-  background-image: url(../images/icons.svg#book-3);
   outline: transparent;
   margin-left: auto;
   margin-right: auto;
