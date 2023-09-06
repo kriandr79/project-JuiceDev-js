@@ -7,11 +7,6 @@ import './firebase-btns.js';
 import './firebase-functions.js';
 import './firebase-modals.js';
 
-// import { offLoader, onLoader } from '../js/loader.js';
-// onLoader();
-// window.addEventListener('load', loadBookLS);
-// offLoader();
-
 const KEY_LS = 'my-shoppinglist';
 let imgEmptyBig = new URL('/src/images/empty-page@2.png', import.meta.url);
 let imgEmpty = new URL('/src/images/empty-page.png', import.meta.url);
