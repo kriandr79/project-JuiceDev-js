@@ -131,19 +131,53 @@ function markupBookContent(parsedData) {
   ulMarkupLS.innerHTML = markupBookLi;
 }
 
+// function deleteBookId() {
+//     let dots = document.getElementsByClassName('box-shoppingList-trash');
+//     let i;
+  
+//     for (i = 0; i < dots.length; i++) {
+//       dots[i].addEventListener('click', e => {
+//         let keyId = e.target.parentElement.attributes.id.value;
+//         console.log(keyId)
+//         let filtered = parsedData.filter(o => o.id !== keyId);
+//   console.log(filtered)
+//         localStorage.setItem(KEY_LS, JSON.stringify(filtered));
+//         loadData = localStorage.getItem(KEY_LS);
+//         parsedData = JSON.parse(loadData);
+//         loadBookLS();
+//       });
+//     }
+//   }
+  
 function deleteBookId() {
-    let dots = document.getElementsByClassName('box-shoppingList-trash');
-    let i;
+    // 1. Добавляем слушатель событий на ul.shoppingList-books
+    ulMarkupLS.addEventListener('click', function (event) {
+      // 2. Проверяем, был ли клик на кнопке button.box-shoppingList-trash
+      if (event.target.classList.contains('box-shoppingList-trash')) {
+        // Получаем id книги из id атрибута кнопки
+        const bookId = event.target.parentElement.attributes.id.value;
   
-    for (i = 0; i < dots.length; i++) {
-      dots[i].addEventListener('click', e => {
-        let keyId = e.target.parentElement.attributes.id.value;
-        let filtered = parsedData.filter(o => o.id !== keyId);
+        // 3. Удалить id из localStorage
+        if (bookId) {
+          // Получаем текущие данные из Local Storage
+          const savedData = localStorage.getItem(KEY_LS);
+          const parsedSavedData = savedData ? JSON.parse(savedData) : [];
   
-        localStorage.setItem(KEY_LS, JSON.stringify(filtered));
-        loadData = localStorage.getItem(KEY_LS);
-        parsedData = JSON.parse(loadData);
-        loadBookLS();
-      });
-    }
+          // Фильтруем массив книг, исключая книгу с указанным id
+          const updatedData = parsedSavedData.filter(book => book.id !== bookId);
+  
+          // Сохраняем обновленные данные в Local Storage
+          localStorage.setItem(KEY_LS, JSON.stringify(updatedData));
+  
+          // 4. Очищаем li.books-shoppingListLi
+          event.target.closest('.books-shoppingListLi').remove();
+  
+          // 5. Показываем markupBookEmpty, если удалена последняя книга
+          if (updatedData.length === 0) {
+            ulMarkupLS.innerHTML = markupBookEmpty;
+          }
+        }
+      }
+    });
   }
+  
