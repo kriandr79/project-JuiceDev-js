@@ -21,12 +21,13 @@
 .title-span {
   color: #4f2ee8;
 }
-.list {
-}
-.list-names {
-}
+
 .list-categories {
   margin-bottom: 40px;
+}
+
+.list-categories:last-child {
+  margin-bottom: 0;
 }
 .list-categories-title {
   color: #b4afaf;

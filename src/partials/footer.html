@@ -11,24 +11,25 @@
     </a>
 
     <!-- Основная навигация -->
-    <nav class="footer-nav">
-      <ul class="footer-nav-list">
-        <li class="footer-nav-item">
-          <a class="footer-nav-link link" href="./index.html">Home</a>
-        </li>
-        <li class="footer-nav-item">
-          <a class="footer-nav-link link" href="./shoppinglist.html">
-            <span class="footer-span-style">Shopping list</span>
-            <svg class="footer-nav-shopping-cart" width="20" height="20">
-              <use href="./images/icons.svg#icon-shopping_cart"></use>
-            </svg>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
+    <div class="footer-left-nav">
+      <nav class="footer-nav">
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item">
+            <a class="footer-nav-link link" href="./index.html">Home</a>
+          </li>
+          <li class="footer-nav-item">
+            <a class="footer-nav-link link" href="./shoppinglist.html">
+              <span class="footer-span-style">Shopping list</span>
+              <svg class="footer-nav-shopping-cart" width="20" height="20">
+                <use href="./images/icons.svg#icon-shopping_cart"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
     <!-- Авторские права -->
-    <p class="footer-company-name">All rights reserved &copy; Bookshelf</p>
+    <p class="footer-company-name">&copy; 2023 Bookshelf All rights reserved</p>
   </div>
 
   <!-- контакты -->
@@ -36,17 +37,23 @@
     <address class="footer-contacts">
       <ul class="footer-address">
         <li class="footer-address-item">
-          <a href="tel:+380684439426" class="contact-item"
-            >+380 (68) 443-94-26</a
-          >
+          <svg class="" width="20" height="20">
+            <use href="./images/icons.svg#icon-phone"></use>
+          </svg>
+          <a class="contact-item" href="tel:+380687654321"
+            >+380 (68) 765-43-21
+          </a>
         </li>
         <li class="footer-address-item map-link">
+          <svg class="" width="20" height="20">
+            <use href="./images/icons.svg#icon-location"></use>
+          </svg>
           <a
             href="https://goo.gl/maps/28qS7DatdnMmZp9Q7?coh=178572&entry=tt"
             class="footer-contact-item"
             target="_blank"
             rel="noopener noreferrer"
-            >1678 S. Pioneer Road<br />Salt Lake City UT<br />84104</a
+            >1678 S. Pioneer Road<br />Salt Lake City UT 84104</a
           >
         </li>
       </ul>
@@ -69,6 +76,7 @@
           </svg>
         </a>
       </li>
+
       <li class="social-item">
         <a
           class="footer-social-link link"
@@ -82,6 +90,21 @@
           </svg>
         </a>
       </li>
+
+      <li class="social-item">
+        <a
+          class="footer-social-link link"
+          href="https://twitter.com"
+          target="_blank"
+          rel="noopener norefer"
+          aria-label="Twitter icon"
+        >
+          <svg class="footer-social-icon" width="28" height="28">
+            <use href="./images/icons.svg#icon-twitter"></use>
+          </svg>
+        </a>
+      </li>
+
       <li class="footer-social-item">
         <a
           class="footer-social-link link"

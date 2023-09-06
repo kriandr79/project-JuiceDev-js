@@ -95,7 +95,7 @@ export function creatCategory(selectedCategory, arr) {
   <ul class="wrap">${arr
     .map(({ list_name, book_image, title, author, _id }) => {
       return `
-    <li class='list book-card' id = "${_id}">
+    <li class='list book-card' id = "${_id}" data-book="book-box">
     <div id = "${_id}" class='book-img'>
     <img id = "${_id}" aria - label="${list_name}" src="${book_image}" alt="${title}" loading="lazy" class="cover" />
     <p id = "${_id}" class='quick-view'>quick view</p>

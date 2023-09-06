@@ -1,0 +1,120 @@
+<div class="authorization-modal is-hidden" data-modal="">
+    <!-- modal -->
+    <div class="authorization-modal__content">
+      <!-- close btn -->
+      <button class="authorization-modal__btn-close" data-modal-close="">
+        <svg class="authorization-modal__icon-close">
+          <use href="./images/icons.svg#icon-x-close"></use>
+        </svg>
+      </button>
+      <!-- form -->
+      <form class="authorization-modal__form" id="sign-up" autocomplete="off">
+        <!-- inputs -->
+        <div class="authorization-modal__field">
+          <input
+            type="text"
+            name="name"
+            class="authorization-modal__input"
+            id="user_name"
+            required=""
+            placeholder="&#32;"
+          />
+          <label class="authorization-modal__label" for="user_name">name</label>
+        </div>
+  
+        <div class="authorization-modal__field">
+          <input
+            type="email"
+            name="email"
+            class="authorization-modal__input"
+            id="user_email_up"
+            required=""
+            placeholder="&#32;"
+          />
+          <label class="authorization-modal__label" for="user_email_up">email</label>
+          <svg class="authorization-modal__icon">
+            <use href="./images/icons.svg#icon-email"></use>
+          </svg>
+        </div>
+  
+        <div class="authorization-modal__field">
+          <input
+            type="password"
+            name="password"
+            class="authorization-modal__input"
+            id="user_password_up"
+            required=""
+            placeholder="&#32;"
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+            title="Please include at least 1 uppercase character, 1 lowercase character, and 1 number."
+          />
+          <label class="authorization-modal__label" for="user_password_up"
+            >password
+          </label>
+          <svg class="authorization-modal__icon">
+            <use href="./images/icons.svg#icon-lock"></use>
+          </svg>
+        </div>
+        <!-- btn submit -->
+        <button type="submit" class="authorization-modal__btn-submit">Sign up</button>
+      </form>
+  
+      <form class="authorization-modal__form hide-form" id="sign-in">
+        <!-- inputs -->
+  
+        <div class="authorization-modal__field">
+          <input
+            type="email"
+            name="email"
+            class="authorization-modal__input"
+            id="user_email_in"
+            required=""
+            placeholder="&#32;"
+          />
+          <label class="authorization-modal__label" for="user_email_in">email</label>
+          <svg class="authorization-modal__icon">
+            <use href="./images/icons.svg#icon-email"></use>
+          </svg>
+        </div>
+  
+        <div class="authorization-modal__field">
+          <input
+            type="password"
+            name="password"
+            class="authorization-modal__input"
+            id="user_password_in"
+            required=""
+            placeholder="&#32;"
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+            title="Please include at least 1 uppercase character, 1 lowercase character, and 1 number."
+          />
+          <label class="authorization-modal__label" for="user_password_in"
+            >password
+          </label>
+          <svg class="authorization-modal__icon">
+            <use href="./images/icons.svg#icon-lock"></use>
+          </svg>
+        </div>
+        <!-- btn submit -->
+        <button type="submit" class="authorization-modal__btn-submit">Sign in</button>
+      </form>
+  
+      <div class="authorization-modal__link-block">
+        <button
+          type="button"
+          class="authorization-modal__link active-link"
+          data-action="sign-up"
+        >
+          sign up
+        </button>
+        <button
+          type="button"
+          class="authorization-modal__link inactive-link"
+          data-action="sign-in"
+        >
+          sign in
+        </button>
+      </div>
+    </div>
+  </div>
+  

@@ -8,7 +8,7 @@ export async function createMarkup() {
   allCategories.innerHTML = '';
 
   const info = await getTopBooks();
-  console.log('info from getTopBooks:', info);
+  // console.log('info from getTopBooks:', info);
   createGallery(info);
 }
 
@@ -27,36 +27,30 @@ export function createGallery(data) {
             <div class="card-container" list-name-id="${elements.list_name}">
             ${elements.books
               .map(book => {
-                const imgSrc = book.book_image || absentImage; // Використовуємо 'absent-image.png', якщо book.book_image не існує
-                let imgAlt = ''; // Змінна для зберігання значення атрибута alt
-                if (book.book_image) {
-                  imgAlt = book.title;
-                } else {
-                  imgAlt = 'Title Absent';
-                }
                 return `
-                <a class="item-link-book" list-id='${book._id}'>
-                  <div class="card-of-book">
+                <a class="item-link-book" id ="${book._id}" data-book="book-box">
+                  <div  class="card-of-book">
                     <img
+                    id ="${book._id}"
                     aria-label="${book.book_image}"
-                      src="${imgSrc}"
-                      alt="${imgAlt}"
+                      src="${book.book_image}"
+                      alt="${book.title}"
                       class="img-card-title"
                       width="180"
                       height="256"
                       loading="lazy"
                     />
                     <div class="overlay-book">
-                      <p class="overlay-text">quick view</p>
+                      <p id ="${book._id}" class="overlay-text" >quick view</p>
                     </div>
                   </div>
-                  <div class="book-description">
+                  <div id ="${book._id}" class="book-description">
                     <h3 aria-label="${
                       book.title || 'Title Absent'
-                    }" class="card-title">${book.title || 'Title Absent'}</h3>
+                    }" class="card-title" id ="${book._id}">${book.title || 'Title Absent'}</h3>
                     <p aria-label="${
                       book.author || 'Author Absent'
-                    }" class="card-author">${book.author || 'Author Absent'}</p>
+                    }" class="card-author" id ="${book._id}">${book.author || 'Author Absent'}</p>
                   </div>
                 </a>`;
               })
@@ -76,6 +70,14 @@ export function createGallery(data) {
   allCategories.insertAdjacentHTML('beforeend', markup);
 }
 
+//   Рома
+// const seeMoreBtn = document.querySelectorAll('.book-button');
+
+// seeMoreBtn.forEach(btn => {
+//   btn.addEventListener('click', onSeeMoreBtn);
+// });
+
+//   Ірина
 // const seeMoreBtn = document.querySelectorAll('.book-button');
 // const cardLink = document.querySelectorAll('.item-link');
 
