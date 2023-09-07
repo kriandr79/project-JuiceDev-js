@@ -19,28 +19,31 @@
     <script type="module" src="./js/shopping-list.js"></script>
   </head>
   <body>
-    <header>
-      <include src="./partials/header.html"></include>
-    </header>
-    <main>
-      <section class="shoppinglist section">
-        <div class="shoppinglist-main-box container">
-          <div class="shoppinglist-menu-wrapper">
-            <div>
-              <include src="./partials/support-ukraine.html"></include>
+    <div class="wrapper">
+      <header>
+        <include src="./partials/header.html"></include>
+      </header>
+      <main>
+        <section class="shoppinglist section">
+          <div class="shoppinglist-main-box container">
+            <div class="shoppinglist-menu-wrapper">
+              <div>
+                <include src="./partials/support-ukraine.html"></include>
+              </div>
+            </div>
+            <div class="shoppinglist-wrapper">
+              <div class="shoppingList-box">
+                <include src="./partials/shopping-list.html"></include>
+              </div>
             </div>
           </div>
-          <div class="shoppinglist-wrapper">
-            <div class="shoppingList-box">
-              <include src="./partials/shopping-list.html"></include>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer>
-      <include src="./partials/footer.html"></include>
-    </footer>
+        </section>
+      </main>
+      <footer>
+        <include src="./partials/footer.html"></include>
+      </footer>
+    </div>
+
     <include src="./partials/modal-form.html"></include>
     <include src="./partials/topbtn.html"></include>
   </body>
