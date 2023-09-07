@@ -75,9 +75,20 @@ body {
     font-family: 'DM Sans', sans-serif;
     background-color: $background-color;
 }
+html, body {
+    height: 100%;
+}
 
 // Sections
-.main {}
+main {
+    flex: 1 1 auto;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
 .shoppinglist {}
 
