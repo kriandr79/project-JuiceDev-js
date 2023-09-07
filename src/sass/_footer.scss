@@ -1,6 +1,6 @@
 .footer-container {
     display: none;
-  
+font-size: 12px;
     // align-items: center;
     // justify-content: space-between;
 
@@ -32,7 +32,8 @@
         max-width: 100%;
         min-width: 768px;
         height: 160px;
-
+        margin-left: auto;
+        margin-right: auto;
         padding: 14px 32px;
         background-color: $color-yellow;
     }
@@ -56,6 +57,8 @@
     align-items: center;
     gap: 8px;
     margin-right: auto;
+    margin-bottom: 10px;
+   
 }
 
 .footer-left {}
@@ -170,13 +173,20 @@
 .footer-contacts {}
 
 .footer-address {
-    font-style: normal
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    
+    font-style: normal;
+    
 }
 
 .footer-address-item {}
 
 .contact-item {
     color: $color-black;
+    font-size: 12px;
 }
 
 .map-link {}
@@ -184,7 +194,7 @@
 .footer-contact-item {
     text-decoration: none;
 
-    font-size: 16px;
+    font-size: 12px;
     line-height: 1.5;
     letter-spacing: 0.02em;
     color: $color-black;
