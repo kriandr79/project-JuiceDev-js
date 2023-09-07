@@ -174,7 +174,7 @@ body {
         gap: 32px;
 
         max-width: 704px;
-        width: 704px;
+        width: 100%;
     }
 }
 @media only screen and (min-width: 769px) {
@@ -184,8 +184,8 @@ body {
         align-items: flex-start;
         gap: 32px;
 
-        max-width: 704px;
-        width: 704px;
+        max-width: 356px;
+        width: 100%;
     }
 }
 @media only screen and (min-width: 1440px) {
@@ -195,7 +195,7 @@ body {
         gap: 86px;
 
         max-width: 356px;
-        width: 356px;
+        width: 100%;
     }
 }
 
