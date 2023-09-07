@@ -118,17 +118,19 @@ async function onSeeMoreBtnClick(e) {
       creatCategory(selectedCategory, data);
 
       const selectUL = document.querySelector('.select');
+      selectUL.children[0].classList.remove('first');
+      selectUL.children[0].classList.add('select-text');
 
       for (let i = 0; i < selectUL.children.length; i++) {
         const child = selectUL.children[i];
-      
+
         child.classList.remove('current');
         // Проверяем текст элемента
         if (child.textContent === selectedCategory) {
           child.classList.add('current');
         }
       }
-      window.scrollTo(0, 0); // екран до гори 
+      window.scrollTo(0, 0); // екран до гори
 
       // const select = document.querySelector('.select');
       // changeColor(selectedCategory);
