@@ -6,7 +6,7 @@ import appleShopImg from '../images/applebook.png';
 import bookShopImg from '../images/bookshop.png';
 import closeSvg from '../images/icons.svg';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './firebase-functions';
+import { auth, firebaseAddItem, firebaseDeleteItem } from './firebase-functions';
 
 const PRODUCT_LS_KEY = 'my-shoppinglist';
 
@@ -138,10 +138,8 @@ function onBtnPress(currentBook, event) {
     event.target.setAttribute('data-action', 'remove'); // меняем кнопку на Remove
     event.target.textContent = 'Remove from shopping list';
     firebaseAddItem(currentBook.id, currentBook);
-    console.log(currentBook);
-  
   } else if (action === 'remove') {
-
+    firebaseDeleteItem(currentBook.id, currentBook);
     const index = storedBooks.findIndex(book => book.id === currentBook.id); // ищем индекс книги в массие
     if (index !== -1) {
       storedBooks.splice(index, 1); // удаляем книгу из массива

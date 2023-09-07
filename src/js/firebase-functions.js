@@ -54,9 +54,8 @@ onAuthStateChanged(auth, (data) => {
         userBtn.classList.remove('is-hidden');
         loginBtn.classList.add('is-hidden');
         shoppingListLink.classList.remove('is-hidden');
-        // loadBookLS();
+        firebaseGetAllItems(auth.currentUser.displayName);
     }
-
 })
 
 // Logout function
