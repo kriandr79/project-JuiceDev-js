@@ -6,8 +6,7 @@ import appleShopImg from '../images/applebook.png';
 import bookShopImg from '../images/bookshop.png';
 import closeSvg from '../images/icons.svg';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth, firebaseAddItem, firebaseDeleteItem } from './firebase-functions';
-
+import { auth } from './firebase-functions';
 
 const PRODUCT_LS_KEY = 'my-shoppinglist';
 
@@ -91,6 +90,13 @@ async function onBookClick(e) {
       onBtnPress(bookData, event);
     });
 
+    onAuthStateChanged(auth, (data) => {
+      if (data === null || data === undefined) {
+        actionBtn.classList.add('is-hidden');
+      } else {
+        actionBtn.classList.remove('is-hidden');
+      }
+    });
     onAuthStateChanged(auth, (data) => {
       if (data === null || data === undefined) {
         actionBtn.classList.add('is-hidden');
@@ -204,7 +210,7 @@ function makeBookCardMarkup(
           <div class="modal-titles"> 
             <h2 class="modal-book-name" aria-label="${title}">${title}</h2>
             <p class="modal-book-author" aria-label="${author}"> ${author}</p>
-            <p class="modal-book-description">${description}</p>
+            <p class="modal-book-description">${description || "Description commit impossible"}</p>
             <div> 
             <ul class="list-partners">
             ${buyLinks

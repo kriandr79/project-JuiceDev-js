@@ -1,12 +1,21 @@
 // Categories menu =================
-.all-categories-menu-title {
-  color: $color-black;
-  
-  font-size: 16px;
-  width: 327px;
-  font-size: 18px;
-  padding-left: 4px;
-  padding-bottom: 32px;
+.err-title {
+  display: none;
+  color: $color-violet;
+  font-family: DM Sans;
+  text-align: center;
+
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.19;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media only screen and (min-width: 768px) {
+  .err-title {
+    font-size: 36px;
+  }
 }
 
 .select {
@@ -19,7 +28,7 @@
   gap: 24px;
 
   width: 327px;
-  height: 186px;
+  height: 228px;
 
   list-style: none;
   padding: 0;
@@ -29,7 +38,7 @@
 @media only screen and (min-width: 768px) {
   .select {
     width: 329px;
-    height: 416px;
+    height: 472px;
     gap: 32px;
   }
 }
@@ -210,6 +219,19 @@
   object-fit: cover;
   width: 335px;
   height: 485px;
+  background-color: $color-white;
+  background-image: url(../images/available-img-b.jpg);
+  background-repeat: no-repeat;
+}
+@media only screen and (min-width: 768px) {
+  .book-img {
+    background-image: url(../images/available-img-m.jpg);
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .book-img {
+    background-image: url(../images/available-img-s.jpg);
+  }
 }
 .cover {
   display: block;
