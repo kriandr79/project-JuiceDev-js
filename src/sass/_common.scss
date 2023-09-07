@@ -15,6 +15,17 @@ $color-lightgrey: #B4AFAF;
 $background-color: #F6F6F6;
 $color-white1: rgba(255, 255, 255, 0.6);
 
+@font-face {
+    font-family: 'DM Sans', sans-serif;
+    src:
+        local("DM Sans"),
+        url("../fonts/DMSans.woff2") format("woff2"),
+        url("../fonts/DMSans.woff") format("woff"),
+        url("../fonts/DMSans.ttf") format("truetype");
+
+}
+
+
 /* Reset styles start */
 
 h1,
@@ -112,6 +123,7 @@ body {
 .main-box {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 40px;
 }
 
@@ -119,18 +131,21 @@ body {
     .main-box {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
     }
 }
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 769px) {
     .main-box {
         display: flex;
         flex-direction: row;
+        align-items: flex-start;
     }
 }
 @media only screen and (min-width: 1440px) {
     .main-box {
         display: flex;
         flex-direction: row;
+        align-items: flex-start;
     }
 }
 
@@ -154,20 +169,22 @@ body {
     .main-menu-wrapper {
         display: flex;
         flex-direction: row;
+        align-items: flex-start;
         gap: 32px;
 
         max-width: 704px;
         width: 704px;
     }
 }
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 769px) {
     .main-menu-wrapper {
         display: flex;
         flex-direction: column;
-        gap: 86px;
+        align-items: flex-start;
+        gap: 32px;
 
-        max-width: 356px;
-        width: 356px;
+        max-width: 704px;
+        width: 704px;
     }
 }
 @media only screen and (min-width: 1440px) {
@@ -197,8 +214,33 @@ body {
     }
 }
 
-.main-shelf-wrapper {}
+
+.main-shelf-wrapper {
+    max-width: 335px;
+        width: 335px;
+}
+@media only screen and (min-width: 768px) {
+    .main-shelf-wrapper {
+        max-width: 704px;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .main-shelf-wrapper {
+        max-width: 996px;
+            width: 100%;
+    }
+}
+
+
 
 .shoppinglist-wrapper {
     width: 100%;
+}
+
+// Скрол для all categories для Firefox
+.select {
+    scrollbar-width: thin;
+    scrollbar-color: e0e0e0 $background-color;
 }

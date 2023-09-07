@@ -28,22 +28,22 @@ async function fetchBooks(bookid) {
     console.log(err);
   }
 }
-let instance; 
+
+let instance;
+let closeButton;
+let backdrop;
+
 async function onBookClick(e) {
-  const target = e.target.closest('[data-book="book-box"]'); // шукаємо потрібний елемент
+  const target = e.target.closest('[data-book="book-box"]');
   if (target) {
     const bookId = target.getAttribute('id');
     let action = '';
-    const storedBooks = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) || []; // беремо книги з ЛС
-    let bookData = storedBooks.find(book => book.id === bookId); // Перевірка ЛС чи є така книга по id
+    const storedBooks = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) || [];
+    let bookData = storedBooks.find(book => book.id === bookId);
 
-    // Якщо є книга в ЛС, то будемо дані
     if (bookData) {
-      action = 'remove'; // це дія для кнопки
-    }
-
-    // Якщо немає книги в ЛС, то беремо її з бекенду. ПЕРЕВІРИТИ ЗНАЧЕННЯ ЗА ЗАМОВЧЕННЯМ
-    else {
+      action = 'remove';
+    } else {
       try {
         const {
           _id,
@@ -66,23 +66,27 @@ async function onBookClick(e) {
           publisher,
           buy_links,
         };
-      } catch {
-        console.log(err); //  ОБРАБОТКА ОШИБКИ !!!!!!!!!!!!!!!!!
+      } catch (err) {
+        console.log(err);
       }
 
-      action = 'add';  // це дія для кнопки
+      action = 'add';
     }
-    
-    // Открываем модальное окно (разметка + одна из кнопок ADD / REMOVE)
-   instance = basicLightbox.create(makeBookCardMarkup(bookData, action));
+
+    instance = basicLightbox.create(makeBookCardMarkup(bookData, action));
     instance.show();
-    document.body.classList.add('modal-open');     // класс для блокування скролу
+    document.body.classList.add('modal-open');
 
-    const closeButton = document.querySelector('.close-modal-btn');
+    
+    backdrop = document.querySelector('.modal');
+    closeButton = document.querySelector('.close-modal-btn');
+
+    
+    backdrop.addEventListener('click', handleBackdropClick);
     closeButton.addEventListener('click', handleCloseButtonClick);
+    window.addEventListener('keydown', handleEscKey);
 
-
-    const actionBtn = document.querySelector('.js-add'); // находим кнопку
+    const actionBtn = document.querySelector('.js-add');
     actionBtn.addEventListener('click', event => {
       onBtnPress(bookData, event);
     });
@@ -98,14 +102,23 @@ async function onBookClick(e) {
 }
 
 function handleCloseButtonClick() {
-  instance.close(); // Закриваємо модальне вікно при кліку на кнопку з іконкою хрестика
-  document.body.classList.remove('modal-open');}
+  instance.close();
+  document.body.classList.remove('modal-open');
+}
 
-window.addEventListener('keydown', handleEscKey);
+function handleEscKey(e) {
+  if (e.key === 'Escape') {
+    instance.close();
+    document.body.classList.remove('modal-open');
+    closeButton.removeEventListener('click', handleEscKey);
+  }
+}
 
-function handleEscKey(event) {
-  if (event.key === 'Escape') {
-    instance.close(); // Закриваємо модальне вікно при натисканні клавіші "Escape"
+function handleBackdropClick(e) {
+  if (e.target === backdrop) {
+    instance.close();
+    // document.body.classList.remove('modal-open');
+    backdrop.removeEventListener('click', handleBackdropClick);
   }
 }
 
@@ -179,7 +192,7 @@ function makeBookCardMarkup(
     'Books-A-Million': bookShopImg,
   };
   return `
-        <div class="modal">
+        <div class="modal modal-backdrop">
         <div class="book-card-modal" data-id="${id}"> 
         <button class="close-modal-btn" type="button">
         <svg class="close-modal-icon">

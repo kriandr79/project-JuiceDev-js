@@ -2,17 +2,12 @@ import axios from 'axios';
 import { createMarkup } from './best-sellers';
 import { onLoader, offLoader } from './loader';
 
-const titleAll = document.querySelector('.all');
-// titleAll.addEventListener('click', getSelectedCategory);
-// console.log(titleAll.textContent);
 const select = document.querySelector('.select');
-const childrenSelect = select.children;
-console.log(childrenSelect);
-// select.addEventListener('click', getSelectedCategory);
+select.addEventListener('click', getSelectedCategory);
 
-const change = document.querySelector('.change-category');
-change.addEventListener('click', getSelectedCategory);
 const allCategories = document.querySelector('.all-categories');
+
+createMarkup();
 
 export async function getBooksCategory() {
   try {
@@ -30,18 +25,9 @@ getBooksCategory()
   .then(data => {
     let categories = [];
     categories = data;
-
-    for (let i = 0; i < categories.length; i++) {
-      const category = categories[i];
-      let item = document.createElement('li');
-      item.textContent = `${category.list_name}`;
-      item.classList.add('select-text');
-      item.setAttribute('idx', i);
-      select.appendChild(item);
-    }
+    creatListCategoryes(categories);
   })
   .catch(err => console.log(err));
-console.log(childrenSelect);
 
 export async function getSelectedCategory(evt) {
   if (evt.target.nodeName !== 'LI') {
@@ -49,13 +35,10 @@ export async function getSelectedCategory(evt) {
   }
   console.log(evt.target);
   allCategories.innerHTML = '';
-  titleAll.style.color = 'rgba(17, 17, 17, 0.6)';
-  titleAll.style.textTransform = 'none';
 
   let selectedCategory = evt.target.textContent;
   console.log(selectedCategory);
-
-  onLoader();
+  changeColor(selectedCategory);
 
   try {
     const response = await axios.get(
@@ -64,15 +47,13 @@ export async function getSelectedCategory(evt) {
     const data = response.data;
     let arr = data;
 
-    if (arr !== []) {
-      changeColor(selectedCategory);
-      creatCategory(selectedCategory, arr);
-      offLoader();
-    } else if ((titleAll.textContent = 'All categories')) {
-      childrenSelect.style.color = 'rgba(17, 17, 17, 0.6)';
-      childrenSelect.style.textTransform = 'none';
+    if (selectedCategory == 'All categories') {
+      select.firstChild.style.color = '#4F2EE8';
+      select.firstChild.style.textTransform = 'uppercase';
 
-      getAllCategoriesBooks();
+      createMarkup();
+    } else if (arr !== []) {
+      creatCategory(selectedCategory, arr);
     } else {
       allCategories.textContent = 'Ooops!';
     }
@@ -81,24 +62,31 @@ export async function getSelectedCategory(evt) {
   }
 }
 
-function getAllCategoriesBooks() {
-  allCategories.innerHTML = '';
+function creatListCategoryes(categories) {
+  const first = document.createElement('li');
+  first.textContent = 'All categories';
+  first.classList.add('first');
+  select.prepend(first);
 
-  // childrenSelect.style.textColor = '$color-black';
-  // childrenSelect.style.textTransform = 'none';
-
-  titleAll.style.color = '$color-violet';
-  titleAll.style.textTransform = 'uppercase';
-
-  createMarkup();
+  for (let i = 0; i < categories.length; i++) {
+    const category = categories[i];
+    let item = document.createElement('li');
+    item.textContent = `${category.list_name}`;
+    item.classList.add('select-text');
+    select.insertAdjacentElement('beforeend', item);
+  }
 }
+
 function changeColor(selectedCategory) {
+  select.firstChild.style.color = '#111111';
+  select.firstChild.style.textTransform = 'none';
+
   for (var i = 0; i < select.children.length; i++) {
     if (select.children[i].textContent == selectedCategory) {
-      select.children[i].style.color = 'rgb(79, 46, 232)';
+      select.children[i].style.color = '#4F2EE8';
       select.children[i].style.textTransform = 'uppercase';
     } else {
-      select.children[i].style.color = 'rgba(17, 17, 17, 0.6)';
+      select.children[i].style.color = '#111111';
       select.children[i].style.textTransform = 'none';
     }
   }

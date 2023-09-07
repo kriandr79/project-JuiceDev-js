@@ -2,7 +2,7 @@ import { getTopBooks } from './api-best-sellers';
 
 const allCategories = document.querySelector('.all-categories');
 
-createMarkup();
+// createMarkup();
 
 export async function createMarkup() {
   allCategories.innerHTML = '';
@@ -11,8 +11,6 @@ export async function createMarkup() {
   // console.log('info from getTopBooks:', info);
   createGallery(info);
 }
-
-// const allCategories = document.querySelector('.all-categories');
 
 export function createGallery(data) {
   const absentImage = '/images/book_absent.png';
@@ -28,7 +26,9 @@ export function createGallery(data) {
             ${elements.books
               .map(book => {
                 return `
-                <a class="item-link-book" id ="${book._id}" data-book="book-box">
+                <a class="item-link-book" id ="${
+                  book._id
+                }" data-book="book-box">
                   <div  class="card-of-book">
                     <img
                     id ="${book._id}"
@@ -47,10 +47,14 @@ export function createGallery(data) {
                   <div id ="${book._id}" class="book-description">
                     <h3 aria-label="${
                       book.title || 'Title Absent'
-                    }" class="card-title" id ="${book._id}">${book.title || 'Title Absent'}</h3>
+                    }" class="card-title" id ="${book._id}">${
+                  book.title || 'Title Absent'
+                }</h3>
                     <p aria-label="${
                       book.author || 'Author Absent'
-                    }" class="card-author" id ="${book._id}">${book.author || 'Author Absent'}</p>
+                    }" class="card-author" id ="${book._id}">${
+                  book.author || 'Author Absent'
+                }</p>
                   </div>
                 </a>`;
               })

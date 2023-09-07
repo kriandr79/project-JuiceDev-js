@@ -1,12 +1,12 @@
 // Categories menu =================
 .all-categories-menu-title {
-  color: rgba(17, 17, 17, 0.6);
-    font-family: DM Sans;
-    font-size: 16px;
-    width: 327px;
-    font-size: 18px;
-    padding-left: 4px;
-    padding-bottom: 32px;
+  color: $color-black;
+  
+  font-size: 16px;
+  width: 327px;
+  font-size: 18px;
+  padding-left: 4px;
+  padding-bottom: 32px;
 }
 
 .select {
@@ -62,7 +62,7 @@
 
 .select-text {
   color: $color-black;
-  font-family: DM Sans;
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -78,27 +78,22 @@
   text-transform: uppercase;
 }
 
-.all {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+.first {
   color: $color-violet;
+  text-align: left;
   text-transform: uppercase;
-  font-family: DM Sans;
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.13;
   letter-spacing: -0.32px;
   cursor: pointer;
-  padding-bottom: 24px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
-.all:hover,
-.all:focus {
-  color: #4f2ee8;
+.first:hover,
+.first:focus {
+  color: $color-violet;
   text-transform: uppercase;
 }
 
@@ -106,9 +101,8 @@
   .select-text {
     font-size: 18px;
   }
-  .all {
+  .first {
     font-size: 18px;
-    padding-bottom: 32px;
   }
 }
 
@@ -120,8 +114,8 @@
   // align-items: flex-end;
   width: 335px;
   text-align: left;
-  color: #111;
-  font-family: DM Sans;
+  color: $color-black;
+  
   font-size: 28px;
   font-style: normal;
   font-weight: 700;
@@ -132,8 +126,9 @@
   margin-right: auto;
   padding: 0;
 }
+
 .last-word {
-  color: rgb(79, 46, 232);
+  color: $color-violet;
 }
 
 @media only screen and (min-width: 768px) {
@@ -159,7 +154,6 @@
   min-width: 335px;
   gap: 40px;
   overflow: hidden;
-  background-image: url(../images/icons.svg#book-4);
 
   margin-left: auto;
   margin-right: auto;
@@ -191,7 +185,6 @@
   align-items: flex-start;
   gap: 14px;
   cursor: pointer;
-  background-image: url(../images/icons.svg#book-3);
   outline: transparent;
   margin-left: auto;
   margin-right: auto;
@@ -258,10 +251,10 @@
   justify-content: center;
   align-items: center;
   border-radius: 0px 0px 8px 8px;
-  background: #eac645;
+  background: $color-yellow;
 
-  color: #111;
-  font-family: DM Sans;
+  color: $color-black;
+  
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -296,8 +289,8 @@
   }
 }
 .title {
-  color: #111;
-  font-family: DM Sans;
+  color: $color-black;
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -318,8 +311,8 @@
   }
 }
 .author {
-  color: #b4afaf;
-  font-family: DM Sans;
+  color: $color-lightgrey;
+  
   font-size: 12px;
   font-style: italic;
   font-weight: 400;
@@ -339,37 +332,3 @@
   stroke: currentColor;
   fill: currentColor;
 }
-
-/* ==========================================
-Single-colored icons can be modified like so:
-.icon-name {
-  font-size: 32px;
-  color: red;
-}
-========================================== */
-
-.icon-book-4 {
-  width: 1.099609375em;
-}
-
-.icon-book-3 {
-  width: 1.111328125em;
-}
-
-.icon-book-2 {
-  width: 1.099609375em;
-}
-
-.icon-book-1 {
-  width: 1.06640625em;
-}
-// for (var i = 0; i < select.children.length; i++) {
-//   select.children[i].onclick = function () {
-//     for (var j = 0; j < select.children.length; j++) {
-//       select.children[j].style.color = 'rgba(17, 17, 17, 0.6)';
-//       select.children[j].style.textTransform = 'none';
-//     }
-//     this.style.color = 'rgb(79, 46, 232';
-//     this.style.textTransform = 'uppercase';
-//   };
-// }
