@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { getTopBooks } from './api-best-sellers';
 import { creatCategory } from './categories';
 const allCategories = document.querySelector('.all-categories');
@@ -8,7 +9,7 @@ export async function createMarkup() {
   allCategories.innerHTML = '';
 
   const info = await getTopBooks();
-  console.log('info from getTopBooks:', info);
+  // console.log('info from getTopBooks:', info);
   createGallery(info);
 }
 
@@ -99,3 +100,51 @@ export function createGallery(data) {
 // export function onBookClick(e) {
 
 // } відкриття модалки по кліку на книгу
+
+// Функція для SeeMore BTN
+allCategories.addEventListener('click', onSeeMoreBtnClick);
+
+async function onSeeMoreBtnClick(e) {
+  const target = e.target;
+  if (target.nodeName === 'BUTTON' && target.className === 'book-button') {
+    const selectedCategory = target.dataset.id;
+
+    try {
+      const response = await axios.get(
+        `https://books-backend.p.goit.global/books/category?category=${selectedCategory}`
+      );
+      const data = response.data;
+      allCategories.innerHTML = '';
+      creatCategory(selectedCategory, data);
+
+      const selectUL = document.querySelector('.select');
+
+      for (let i = 0; i < selectUL.children.length; i++) {
+        const child = selectUL.children[i];
+      
+        child.classList.remove('current');
+        // Проверяем текст элемента
+        if (child.textContent === selectedCategory) {
+          child.classList.add('current');
+        }
+      }
+      window.scrollTo(0, 0); // екран до гори 
+
+      // const select = document.querySelector('.select');
+      // changeColor(selectedCategory);
+      // if (selectedCategory == 'All categories') {
+      //   select.firstChild.style.color = '#4F2EE8';
+      //   select.firstChild.style.textTransform = 'uppercase';
+
+      //   createMarkup();
+      // } else if (arr !== []) {
+      //   creatCategory(selectedCategory, arr);
+      // } else {
+      //   errorMessage();
+      // }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  // console.dir(e.target.nodeName);
+}

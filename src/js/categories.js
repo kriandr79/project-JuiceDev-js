@@ -48,8 +48,8 @@ export async function getSelectedCategory(evt) {
     let arr = data;
 
     if (selectedCategory == 'All categories') {
-      select.firstChild.style.color = '#4F2EE8';
-      select.firstChild.style.textTransform = 'uppercase';
+      // select.firstChild.style.color = '#4F2EE8';
+      // select.firstChild.style.textTransform = 'uppercase';
 
       createMarkup();
     } else if (arr !== []) {
@@ -78,16 +78,21 @@ function creatListCategoryes(categories) {
 }
 
 function changeColor(selectedCategory) {
-  select.firstChild.style.color = '#111111';
-  select.firstChild.style.textTransform = 'none';
+  // select.firstChild.style.color = '#111111';
+  // select.firstChild.style.textTransform = 'none';
 
   for (var i = 0; i < select.children.length; i++) {
     if (select.children[i].textContent == selectedCategory) {
-      select.children[i].style.color = '#4F2EE8';
-      select.children[i].style.textTransform = 'uppercase';
+      // select.children[i].style.color = '#4F2EE8';
+      // select.children[i].style.textTransform = 'uppercase';
+      select.children[i].classList.toggle('current');
     } else {
-      select.children[i].style.color = '#111111';
-      select.children[i].style.textTransform = 'none';
+      // select.children[i].style.color = '#111111';
+      // select.children[i].style.textTransform = 'none';
+      select.children[i].classList.add('select-text');
+      select.children[i].classList.remove('current');
+      select.firstChild.classList.remove('first');
+     
     }
   }
 }
