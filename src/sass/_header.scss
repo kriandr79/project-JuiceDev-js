@@ -52,8 +52,8 @@
     &-mobile-menu {
         position: absolute;
         width: 100vw;
+        top: 64px;
         bottom: 0;
-        height: calc(100vh - 64px);
         background: radial-gradient(189.32% 190.93% at 59.76% -23.42%, $color-violet 18.03%, $color-white 100%);
         z-index: 100;
         padding: 40px 20px;
