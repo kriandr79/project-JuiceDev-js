@@ -6,6 +6,7 @@ import { doc, getFirestore, collection, setDoc, getDoc, getDocs, deleteDoc } fro
 import { getAuth, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged } from 'firebase/auth';
 // Notify
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { loadBookLS } from "./shopping-list.js";
 
 // Cradentials
 const firebaseConfig = {
@@ -53,6 +54,7 @@ onAuthStateChanged(auth, (data) => {
         userBtn.classList.remove('is-hidden');
         loginBtn.classList.add('is-hidden');
         shoppingListLink.classList.remove('is-hidden');
+        // loadBookLS();
     }
 
 })

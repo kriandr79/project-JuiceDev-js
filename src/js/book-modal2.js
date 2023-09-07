@@ -5,6 +5,9 @@ import amazonImg from '../images/amazon.png';
 import appleShopImg from '../images/applebook.png';
 import bookShopImg from '../images/bookshop.png';
 import closeSvg from '../images/icons.svg';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth, firebaseAddItem, firebaseDeleteItem } from './firebase-functions';
+
 
 const PRODUCT_LS_KEY = 'my-shoppinglist';
 
@@ -83,6 +86,14 @@ async function onBookClick(e) {
     actionBtn.addEventListener('click', event => {
       onBtnPress(bookData, event);
     });
+
+    onAuthStateChanged(auth, (data) => {
+      if (data === null || data === undefined) {
+        actionBtn.classList.add('is-hidden');
+      } else {
+        actionBtn.classList.remove('is-hidden');
+      }
+    });
   }
 }
 
@@ -107,6 +118,9 @@ function onBtnPress(currentBook, event) {
     storedBooks.push(currentBook); // добавляем новую книгу в массив
     event.target.setAttribute('data-action', 'remove'); // меняем кнопку на Remove
     event.target.textContent = 'Remove from shopping list';
+    firebaseAddItem(currentBook.id, currentBook);
+    console.log(currentBook);
+  
   } else if (action === 'remove') {
 
     const index = storedBooks.findIndex(book => book.id === currentBook.id); // ищем индекс книги в массие
@@ -116,6 +130,7 @@ function onBtnPress(currentBook, event) {
 
     event.target.setAttribute('data-action', 'add'); // меняем кнопку на ADD
     event.target.textContent = 'Add to shopping list';
+    firebaseDeleteItem(currentBook.id);
   }
 
   if (storedBooks.length === 0) {
