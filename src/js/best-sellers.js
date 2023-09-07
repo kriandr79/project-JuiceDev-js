@@ -1,5 +1,5 @@
 import { getTopBooks } from './api-best-sellers';
-
+import { creatCategory } from './categories';
 const allCategories = document.querySelector('.all-categories');
 
 // createMarkup();
@@ -8,7 +8,7 @@ export async function createMarkup() {
   allCategories.innerHTML = '';
 
   const info = await getTopBooks();
-  // console.log('info from getTopBooks:', info);
+  console.log('info from getTopBooks:', info);
   createGallery(info);
 }
 
