@@ -33,11 +33,10 @@ export async function getSelectedCategory(evt) {
   if (evt.target.nodeName !== 'LI') {
     return;
   }
-  console.log(evt.target);
   allCategories.innerHTML = '';
 
   let selectedCategory = evt.target.textContent;
-  console.log(selectedCategory);
+
   changeColor(selectedCategory);
 
   try {
