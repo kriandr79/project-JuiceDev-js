@@ -15,7 +15,6 @@ export async function getTopBooks() {
   }
 }
 
-
 // export async function getAllCategories(category) {
 //   const URL_ALL = `https://books-backend.p.goit.global/books/category?category=${category}`;
 //   try {

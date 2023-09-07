@@ -3,6 +3,7 @@ import { createMarkup } from './best-sellers';
 import { onLoader, offLoader } from './loader';
 
 const select = document.querySelector('.select');
+
 select.addEventListener('click', getSelectedCategory);
 
 const allCategories = document.querySelector('.all-categories');
@@ -33,11 +34,10 @@ export async function getSelectedCategory(evt) {
   if (evt.target.nodeName !== 'LI') {
     return;
   }
-  console.log(evt.target);
   allCategories.innerHTML = '';
 
   let selectedCategory = evt.target.textContent;
-  console.log(selectedCategory);
+
   changeColor(selectedCategory);
 
   try {
@@ -55,7 +55,7 @@ export async function getSelectedCategory(evt) {
     } else if (arr !== []) {
       creatCategory(selectedCategory, arr);
     } else {
-      allCategories.textContent = 'Ooops!';
+      errorMessage();
     }
   } catch (error) {
     console.error(error);
@@ -105,7 +105,7 @@ export function creatCategory(selectedCategory, arr) {
       return `
     <li class='list book-card' id = "${_id}" data-book="book-box">
     <div id = "${_id}" class='book-img'>
-    <img id = "${_id}" aria - label="${list_name}" src="${book_image}" alt="${title}" loading="lazy" class="cover" />
+    <img id = "${_id}" aria - label="${list_name}" src="${book_image}" alt="${title}" loading="lazy" class="cover" onerror="this.style.visibility = 'hidden'"/>
     <p id = "${_id}" class='quick-view'>quick view</p>
     </div>
     <div id = "${_id}" class="book-info">
@@ -118,4 +118,13 @@ export function creatCategory(selectedCategory, arr) {
   </ul>`;
 
   allCategories.insertAdjacentHTML('beforeend', markup);
+}
+
+function errorMessage() {
+  const err = document.createElement('h2');
+  err.classList.add('err-title');
+  err.textContent =
+    'Sorry, there are no books matching your search query. Please try again.';
+  allCategories.insertAdjacentElement('beforeend', err);
+  err.style.display = 'block';
 }
