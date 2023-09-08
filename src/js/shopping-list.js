@@ -6,6 +6,8 @@ import './header.js';
 import './firebase-btns.js';
 import './firebase-functions.js';
 import './firebase-modals.js';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth, firebaseDeleteItem } from './firebase-functions';
 
 const KEY_LS = 'my-shoppinglist';
 let imgEmptyBig = new URL('/src/images/empty-page@2.png', import.meta.url);
@@ -36,6 +38,14 @@ const markupBookEmpty = `<li><p class="shoppingList-text">
 document.addEventListener('DOMContentLoaded', () => {
   loadBookLS();
 });
+
+onAuthStateChanged(auth, (data) => {
+  if (data === null || data === undefined) {
+    ulMarkupLS.innerHTML = markupBookEmpty;
+  } else {
+    markupBookContent(parsedData);
+  }
+})
 
 function loadBookLS() {
   if (parsedData && parsedData.length > 0) {
@@ -137,12 +147,11 @@ function deleteBookId(event) {
     const bookId = event.target.parentElement.attributes.id.value;
 
     if (bookId) {
-  
       const savedData = localStorage.getItem(KEY_LS);
       const parsedSavedData = savedData ? JSON.parse(savedData) : [];
 
       const updatedData = parsedSavedData.filter(book => book.id !== bookId);
-      
+      firebaseDeleteItem(bookId);
       localStorage.setItem(KEY_LS, JSON.stringify(updatedData));
 
       event.target.closest('.books-shoppingListLi').remove();

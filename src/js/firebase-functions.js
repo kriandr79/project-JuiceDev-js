@@ -6,7 +6,6 @@ import { doc, getFirestore, collection, setDoc, getDoc, getDocs, deleteDoc } fro
 import { getAuth, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged } from 'firebase/auth';
 // Notify
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { loadBookLS } from "./shopping-list.js";
 
 // Cradentials
 const firebaseConfig = {
@@ -188,13 +187,14 @@ export async function firebaseGetAllItems(userName) {
     const userCollection = collection(db, userName);
     const querySnapshot = await getDocs(userCollection);
 
+    let storedBooks = [];
+
     querySnapshot.forEach((doc) => {
-        const item = {
-            id: doc.id,
-            data: doc.data(),
-        };
-        localStorage.setItem(item.id, JSON.stringify(item.data));
+        let item = doc.data();
+        storedBooks.push(item);
     });
+    storedBooks = JSON.stringify(storedBooks);
+    localStorage.setItem('my-shoppinglist', storedBooks);
 }
 
 // Log out
