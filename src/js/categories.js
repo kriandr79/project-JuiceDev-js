@@ -92,7 +92,6 @@ function changeColor(selectedCategory) {
       select.children[i].classList.add('select-text');
       select.children[i].classList.remove('current');
       select.firstChild.classList.remove('first');
-     
     }
   }
 }

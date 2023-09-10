@@ -6,6 +6,10 @@ import './header.js';
 import './firebase-btns.js';
 import './firebase-functions.js';
 import './firebase-modals.js';
+// Pagination=========================
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.css';
+// ===================================
 
 const KEY_LS = 'my-shoppinglist';
 let imgEmptyBig = new URL('/src/images/empty-page@2.png', import.meta.url);
@@ -16,6 +20,8 @@ let imgBookshop = new URL('/src/images/bookshop.png', import.meta.url);
 let imgTrash = new URL('/src/images/trash-03.png', import.meta.url);
 
 const ulMarkupLS = document.querySelector('.shoppingList-books');
+console.dir(ulMarkupLS);
+
 let loadData = localStorage.getItem(KEY_LS);
 let parsedData = loadData ? JSON.parse(loadData) : null;
 
@@ -36,6 +42,47 @@ const markupBookEmpty = `<li><p class="shoppingList-text">
 document.addEventListener('DOMContentLoaded', () => {
   loadBookLS();
 });
+// ==========  Paginstion  ===============================
+
+const boxPagination = document.querySelector('#pagination');
+console.log(boxPagination);
+
+let page = 30;
+let perPage = 3;
+
+const options = {
+  totalItems: page,
+  itemsPerPage: perPage,
+  visiblePages: 3,
+  page: 1,
+  centerAlign: true,
+  usageStatistics: false,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+      '<span class="tui-ico-ellip">...</span>' +
+      '</a>',
+  },
+};
+
+const pagination = new Pagination(boxPagination, options);
+
+pagination.on('afterMove', loadBookLS);
+
+// === END Pagination ===========================================
 
 function loadBookLS() {
   if (parsedData && parsedData.length > 0) {
@@ -80,7 +127,10 @@ function markupBookContent(parsedData) {
                 <a
                   class="shop-shoppingList-link"
                   target="_blank"
-                  href="${parsedData.buy_links.find(link => link.name === 'Amazon')?.url}"
+                  href="${
+                    parsedData.buy_links.find(link => link.name === 'Amazon')
+                      ?.url
+                  }"
                 >
                   <img
                     class="shop-shoppingList-img1"
@@ -93,7 +143,11 @@ function markupBookContent(parsedData) {
                 <a
                   class="shop-shoppingList-link"
                   target="_blank"
-                  href="${parsedData.buy_links.find(link => link.name === 'Apple Books')?.url}"
+                  href="${
+                    parsedData.buy_links.find(
+                      link => link.name === 'Apple Books'
+                    )?.url
+                  }"
                 >                          
                   <img
                     class="shop-shoppingList-img2"
@@ -106,7 +160,10 @@ function markupBookContent(parsedData) {
                 <a
                   class="shop-shoppingList-link"
                   target="_blank"
-                  href="${parsedData.buy_links.find(link => link.name === 'Bookshop')?.url}"
+                  href="${
+                    parsedData.buy_links.find(link => link.name === 'Bookshop')
+                      ?.url
+                  }"
                 >
                   <img
                     class="shop-shoppingList-img2"
@@ -125,24 +182,20 @@ function markupBookContent(parsedData) {
   ulMarkupLS.innerHTML = markupBookLi;
 }
 
-
-
 ulMarkupLS.addEventListener('click', deleteBookId);
 
 function deleteBookId(event) {
-  const btnTarget = event.target.closest('.box-shoppingList-trash'); 
+  const btnTarget = event.target.closest('.box-shoppingList-trash');
 
   if (btnTarget) {
-
     const bookId = event.target.parentElement.attributes.id.value;
 
     if (bookId) {
-  
       const savedData = localStorage.getItem(KEY_LS);
       const parsedSavedData = savedData ? JSON.parse(savedData) : [];
 
       const updatedData = parsedSavedData.filter(book => book.id !== bookId);
-      
+
       localStorage.setItem(KEY_LS, JSON.stringify(updatedData));
 
       event.target.closest('.books-shoppingListLi').remove();
@@ -153,4 +206,3 @@ function deleteBookId(event) {
     }
   }
 }
-  
