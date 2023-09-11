@@ -43,7 +43,7 @@ onAuthStateChanged(auth, (data) => {
   if (data === null || data === undefined) {
     ulMarkupLS.innerHTML = markupBookEmpty;
   } else {
-    markupBookContent(parsedData);
+    loadBookLS();
   }
 })
 
